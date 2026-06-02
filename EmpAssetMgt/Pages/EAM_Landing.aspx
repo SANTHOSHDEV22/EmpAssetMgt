@@ -82,6 +82,7 @@
         $(document).ready(() => {
             let dashboard = $("#dashboardId");
             let addEmp = $("#addEmployeeId");
+            let viewEmp = $("#viewEmployeeId");
             let page = `
                 <div class="embed-responsive embed-responsive-21by9 multiPage">
                     <iframe id="currentPage" class="embed-responsive-item" src="" allowfullscreen="allowfullscreen"></iframe>
@@ -91,25 +92,24 @@
 
             $(".sideNavToggle").on("click", function (e) {
                 e.preventDefault();
-
                 let parentItem = $(this).closest(".nav-item");
                 let menu = parentItem.find(".dropdown-menu");
                 let isOpen = menu.hasClass("open");
-
                 $(".dropdown-menu").removeClass("open");
                 $(".sideNavToggle").removeClass("active");
-
                 if (!isOpen) {
                     menu.addClass("open");
                     $(this).addClass("active");
                 }
             });
+
             dashboard.on("click", () => {
                 dashboard.removeClass("text-light").addClass("text-muted");
                 pageLoc.html(page);
                 $(".multiPage #currentPage").attr("src", "Dashboard.aspx");
                 $(".navbar-collapse").collapse("hide");
             });
+
             addEmp.on("click", () => {
                 addEmp.removeClass("text-light").addClass("text-muted");
                 pageLoc.html(page);
@@ -117,6 +117,12 @@
                 $(".navbar-collapse").collapse("hide");
             });
 
+            viewEmp.on("click", () => {
+                viewEmp.removeClass("text-light").addClass("text-muted");
+                pageLoc.html(page);
+                $(".multiPage #currentPage").attr("src", "ViewEmployee.aspx");
+                $(".navbar-collapse").collapse("hide");
+            });
         });
     </script>
 </body>

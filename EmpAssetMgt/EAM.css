@@ -103,3 +103,33 @@ a {
     height: 36px !important;
     top: 0 !important;
 }
+td.dt-control {
+    cursor: pointer;
+    text-align: center;
+}
+
+td.dt-control::before {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #007bff;
+}
+
+tr.shown td.dt-control::before {
+    content: "\f078";
+}
+
+.status-active {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.status-inactive {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.child-table th,
+.child-table td {
+    font-size: 0.875rem;
+}
