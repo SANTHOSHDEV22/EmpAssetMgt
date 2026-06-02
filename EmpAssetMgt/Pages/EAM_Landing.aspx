@@ -27,19 +27,36 @@
                         <li class="nav-item active pb-3 pt-3">
                             <a href="#" id="dashboardId" class="nav-link text-light"><i class="fa-solid fa-arrow-trend-up mr-2"></i>Dashboard</a>
                         </li>
-                        <li class="nav-item dropdown pb-3 ">
-                            <a href="#" class="nav-link dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fa-solid fa-user fa-sm mr-2"></i>Employees</a>
-                            <div class="dropdown-menu align-items-center position-relative mb-4 mt-n5">
-                                <a href="#" id="addEmployeeId" class="dropdown-item nav-link"><i class="fa-solid fa-plus fa-xs ml-4 mr-2"></i>Add</a>
-                                <a href="#" class="dropdown-item nav-link"><i class="fa-solid fa-eye fa-xs ml-4 mr-2"></i>View</a>
+                        <li class="nav-item dropdown pb-3">
+                            <a href="#" class="nav-link sideNavToggle text-light" type="button">
+                                <i class="fa-solid fa-user fa-sm mr-2"></i>Employees
+        <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="#" id="addEmployeeId" class="dropdown-item nav-link">
+                                    <i class="fa-solid fa-plus fa-xs ml-4 mr-2"></i>Add
+                                </a>
+                                <a href="#" class="dropdown-item nav-link">
+                                    <i class="fa-solid fa-eye fa-xs ml-4 mr-2"></i>View
+                                </a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown pb-3 ">
-                            <a href="#" class="nav-link dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fa-solid fa-suitcase fa-sm mr-2"></i>Assets</a>
-                            <div class="dropdown-menu align-items-center position-relative mb-4 mt-n5">
-                                <a href="#" class="dropdown-item nav-link"><i class="fa-solid fa-user fa-xs ml-4 mr-2"></i>Assign</a>
-                                <a href="#" class="dropdown-item nav-link"><i class="fa-solid fa-suitcase fa-xs ml-4 mr-2"></i>Inventory</a>
-                                <a href="#" class="dropdown-item nav-link"><i class="fa-solid fa-clipboard fa-xs ml-4 mr-2"></i>History</a>
+
+                        <li class="nav-item dropdown pb-3">
+                            <a href="#" class="nav-link sideNavToggle text-light" type="button">
+                                <i class="fa-solid fa-suitcase fa-sm mr-2"></i>Assets
+        <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item nav-link">
+                                    <i class="fa-solid fa-user fa-xs ml-4 mr-2"></i>Assign
+                                </a>
+                                <a href="#" class="dropdown-item nav-link">
+                                    <i class="fa-solid fa-suitcase fa-xs ml-4 mr-2"></i>Inventory
+                                </a>
+                                <a href="#" class="dropdown-item nav-link">
+                                    <i class="fa-solid fa-clipboard fa-xs ml-4 mr-2"></i>History
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item pb-3">
@@ -63,28 +80,41 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(() => {
-
-    
             let dashboard = $("#dashboardId");
-            let addEmp = $("addEmployeeId");
+            let addEmp = $("#addEmployeeId");
             let page = `
                 <div class="embed-responsive embed-responsive-21by9 multiPage">
-                    <iframe id="currentPage" class="embed-reponsive-item" src="" allowfullscreen="allowfullscreen"></iframe>
+                    <iframe id="currentPage" class="embed-responsive-item" src="" allowfullscreen="allowfullscreen"></iframe>
                 </div>
             `;
-            let multiPage = $(".multiPage #currentPage");
-            let pageLoc = $("#pageScreen")
-            dashboard.on('click', () => {
+            let pageLoc = $("#pageScreen");
+
+            $(".sideNavToggle").on("click", function (e) {
+                e.preventDefault();
+
+                let parentItem = $(this).closest(".nav-item");
+                let menu = parentItem.find(".dropdown-menu");
+                let isOpen = menu.hasClass("open");
+
+                $(".dropdown-menu").removeClass("open");
+                $(".sideNavToggle").removeClass("active");
+
+                if (!isOpen) {
+                    menu.addClass("open");
+                    $(this).addClass("active");
+                }
+            });
+            dashboard.on("click", () => {
                 dashboard.removeClass("text-light").addClass("text-muted");
                 pageLoc.html(page);
                 $(".multiPage #currentPage").attr("src", "Dashboard.aspx");
-                $(".navbar-collapse").collapse('hide');
+                $(".navbar-collapse").collapse("hide");
             });
-            addEmp.on('click', () => {
+            addEmp.on("click", () => {
                 addEmp.removeClass("text-light").addClass("text-muted");
                 pageLoc.html(page);
                 $(".multiPage #currentPage").attr("src", "AddUser.aspx");
-                $(".navbar-collapse").collapse('hide');
+                $(".navbar-collapse").collapse("hide");
             });
 
         });
