@@ -4,15 +4,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Add Employee</title>
+    <!-- Bootstarap4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Select2 Dropdown -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap4-theme@1.0.0/dist/select2-bootstrap4.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container-fluid">
-            <div class="shadow p-3 mb-5 bg-white rounded d-flex align-items-center justify-content-between">
+            <div class="shadow p-3 mb-5 mt-3 bg-white rounded d-flex align-items-center justify-content-between">
                 <span class="mt-2"><i class="fa-solid fa-user mr-2"></i>Add Employee</span>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addEmpModal">
                     <i class="fa-solid fa-plus mr-2"></i>Add
@@ -185,6 +188,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(() => {
+            // Sample data for departments and roles
             const deptRoles = {
                 "IT": ["Software Engineer", "QA Engineer", "DevOps Engineer", "Frontend Developer", "Backend Developer"],
                 "HR": ["HR Manager", "Recruiter", "Payroll Specialist", "HR Coordinator"],
@@ -192,6 +196,7 @@
                 "Marketing": ["Marketing Manager", "Content Writer", "SEO Specialist", "Brand Strategist"],
                 "Operations": ["Operations Manager", "Logistics Coordinator", "Supply Chain Analyst", "Warehouse Supervisor"]
             };
+            // Sample data for location dropdown
             const locationData = [
                 { text: "Tamil Nadu", children: [{ id: "Chennai", text: "Chennai" }, { id: "Coimbatore", text: "Coimbatore" }, { id: "Madurai", text: "Madurai" }, { id: "Salem", text: "Salem" }] },
                 { text: "Karnataka", children: [{ id: "Bangalore", text: "Bangalore" }, { id: "Mysore", text: "Mysore" }, { id: "Mangalore", text: "Mangalore" }] },
@@ -199,6 +204,7 @@
                 { text: "Delhi", children: [{ id: "New Delhi", text: "New Delhi" }, { id: "Dwarka", text: "Dwarka" }, { id: "Rohini", text: "Rohini" }] },
                 { text: "Telangana", children: [{ id: "Hyderabad", text: "Hyderabad" }, { id: "Warangal", text: "Warangal" }, { id: "Nizamabad", text: "Nizamabad" }] }
             ];
+            // Utility functions for validation and messages
             const successmsg = (message) => Swal.fire({ title: "Success", icon: "success", text: message });
             const showError = (fieldId, msg) => {
                 $("#" + fieldId).closest(".input-group").siblings(".error-msg").text(msg);
@@ -208,95 +214,161 @@
                 $("#" + fieldId).closest(".input-group").siblings(".error-msg").text("");
                 $("#" + fieldId).removeClass("is-invalid").addClass("is-valid");
             };
+            // firstname validation 
             const fnamePattern = /^[A-Za-z]+(['][A-Za-z]+)*'?$/;
             const validateFname = () => {
                 const inp = $("#fname");
                 const val = inp.val();
                 inp.removeClass("is-valid is-invalid");
-                if (val.trim() === "") { showError("fname", "Firstname is required!"); return false; }
-                if (/\s/.test(val)) { showError("fname", "Spaces are not allowed!"); return false; }
-                if (!fnamePattern.test(val)) { showError("fname", "Only alphabets and apostrophe are allowed!"); return false; }
+                if (val.trim() === "") {
+                    showError("fname", "Firstname is required!");
+                    return false;
+                }
+                if (/\s/.test(val)) {
+                    showError("fname", "Spaces are not allowed!");
+                    return false;
+                }
+                if (!fnamePattern.test(val)) {
+                    showError("fname", "Only alphabets and apostrophe are allowed!");
+                    return false;
+                }
                 clearError("fname");
                 return true;
             };
             $("#fname").on("input", validateFname);
-            $("#fname").on("blur", () => { if ($("#fname").val().trim() === "") showError("fname", "Firstname is required!"); });
+            $("#fname").on("blur", () => {
+                if ($("#fname").val().trim() === "") showError("fname", "Firstname is required!");
+            });
+            // lastname validation
             const lnamePattern = /^[A-Za-z]+(['][A-Za-z]+)*'?$/;
             const validateLname = () => {
                 const inp = $("#lname");
                 const val = inp.val();
                 inp.removeClass("is-valid is-invalid");
-                if (val.trim() === "") { showError("lname", "Lastname is required!"); return false; }
-                if (/\s/.test(val)) { showError("lname", "Spaces are not allowed!"); return false; }
-                if (!lnamePattern.test(val)) { showError("lname", "Only alphabets and apostrophe are allowed!"); return false; }
+                if (val.trim() === "") {
+                    showError("lname", "Lastname is required!");
+                    return false;
+                }
+                if (/\s/.test(val)) {
+                    showError("lname", "Spaces are not allowed!");
+                    return false;
+                }
+                if (!lnamePattern.test(val)) {
+                    showError("lname", "Only alphabets and apostrophe are allowed!");
+                    return false;
+                }
                 clearError("lname");
                 return true;
             };
             $("#lname").on("input", validateLname);
             $("#lname").on("blur", () => { if ($("#lname").val().trim() === "") showError("lname", "Lastname is required!"); });
+            // gender validation
             const validateGender = () => {
                 const checked = $("input[name='gender']:checked");
                 const errorEl = $("input[name='gender']").closest(".col-md-6").find(".error-msg");
-                if (checked.length === 0) { errorEl.text("Please select a gender!"); return false; }
+                if (checked.length === 0) {
+                    errorEl.text("Please select a gender!");
+                    return false;
+                }
                 errorEl.text("");
                 return true;
             };
             $("input[name='gender']").on("change", validateGender);
+            // dob validation
             const validateDob = () => {
                 const inp = $("#dob");
                 const val = inp.val().trim();
                 inp.removeClass("is-valid is-invalid");
-                if (val === "") { showError("dob", "Date of Birth is required!"); return false; }
+                if (val === "") {
+                    showError("dob", "Date of Birth is required!");
+                    return false;
+                }
                 clearError("dob");
                 return true;
             };
             $("#dob").on("input", validateDob);
             $("#dob").on("blur", () => { if ($("#dob").val().trim() === "") showError("dob", "Date of Birth is required!"); });
+            // email validation
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const validateEmail = () => {
                 const inp = $("#email");
                 const val = inp.val();
                 inp.removeClass("is-valid is-invalid");
-                if (val.trim() === "") { showError("email", "Email is required!"); return false; }
-                if (/\s/.test(val)) { showError("email", "Spaces are not allowed!"); return false; }
-                if (!emailPattern.test(val)) { showError("email", "Enter a valid email address!"); return false; }
+                if (val.trim() === "") {
+                    showError("email", "Email is required!");
+                    return false;
+                }
+                if (/\s/.test(val)) {
+                    showError("email", "Spaces are not allowed!");
+                    return false;
+                }
+                if (!emailPattern.test(val)) {
+                    showError("email", "Enter a valid email address!");
+                    return false;
+                }
                 clearError("email");
                 return true;
             };
             $("#email").on("input", validateEmail);
             $("#email").on("blur", () => { if ($("#email").val().trim() === "") showError("email", "Email is required!"); });
+            // contact validation
             const contactPattern = /^[0-9]{10}$/;
             const validateContact = () => {
                 const inp = $("#contact");
                 const val = inp.val();
                 inp.removeClass("is-valid is-invalid");
-                if (val.trim() === "") { showError("contact", "Contact number is required!"); return false; }
-                if (!contactPattern.test(val)) { showError("contact", "Enter a valid 10-digit number!"); return false; }
+                if (val.trim() === "") {
+                    showError("contact", "Contact number is required!");
+                    return false;
+                }
+                if (!contactPattern.test(val)) {
+                    showError("contact", "Enter a valid 10-digit number!");
+                    return false;
+                }
                 clearError("contact");
                 return true;
             };
             $("#contact").on("keydown", function (e) {
                 const allowed = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];
                 if (allowed.includes(e.key)) return;
-                if (!/^[0-9]$/.test(e.key)) { e.preventDefault(); showError("contact", "Only numbers are allowed!"); }
+                if (!/^[0-9]$/.test(e.key)) {
+                    e.preventDefault();
+                    showError("contact", "Only numbers are allowed!");
+                }
             });
             $("#contact").on("input", validateContact);
-            $("#contact").on("blur", () => { if ($("#contact").val().trim() === "") showError("contact", "Contact number is required!"); });
+            $("#contact").on("blur", () => {
+                if ($("#contact").val().trim() === "") showError("contact", "Contact number is required!");
+            });
+            // password validation
             const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!$%&])[A-Za-z\d@!$%&]{8,}$/;
             const validatePass = () => {
                 const inp = $("#pass");
                 const val = inp.val();
                 inp.removeClass("is-valid is-invalid");
-                if (val.trim() === "") { showError("pass", "Password is required!"); return false; }
-                if (/\s/.test(val)) { showError("pass", "Spaces are not allowed!"); return false; }
-                if (val.length < 8) { showError("pass", "Password must be at least 8 characters!"); return false; }
-                if (!passPattern.test(val)) { showError("pass", "Must contain uppercase, lowercase, number and special character!"); return false; }
+                if (val.trim() === "") {
+                    showError("pass", "Password is required!");
+                    return false;
+                }
+                if (/\s/.test(val)) {
+                    showError("pass", "Spaces are not allowed!");
+                    return false;
+                }
+                if (val.length < 8) {
+                    showError("pass", "Password must be at least 8 characters!");
+                    return false;
+                }
+                if (!passPattern.test(val)) {
+                    showError("pass", "Must contain uppercase, lowercase, number and special character!");
+                    return false;
+                }
                 clearError("pass");
                 if ($("#cpass").val().trim() !== "") validateCpass();
                 return true;
             };
             $("#pass").on("input", validatePass);
             $("#pass").on("blur", () => { if ($("#pass").val().trim() === "") showError("pass", "Password is required!"); });
+            // confirm password validation
             const validateCpass = () => {
                 const inp = $("#cpass");
                 const cval = inp.val();
@@ -304,20 +376,33 @@
                 const errEl = inp.closest(".input-group").siblings(".error-msg");
                 inp.removeClass("is-valid is-invalid");
                 errEl.removeClass("text-success").addClass("text-danger");
-                if (cval.trim() === "") { showError("cpass", "Please confirm your password!"); return false; }
-                if (/\s/.test(cval)) { showError("cpass", "Spaces are not allowed!"); return false; }
-                if (cval !== pval) { showError("cpass", "Passwords do not match!"); return false; }
+                if (cval.trim() === "") {
+                    showError("cpass", "Please confirm your password!");
+                    return false;
+                }
+                if (/\s/.test(cval)) {
+                    showError("cpass", "Spaces are not allowed!");
+                    return false;
+                }
+                if (cval !== pval) {
+                    showError("cpass", "Passwords do not match!");
+                    return false;
+                }
                 inp.addClass("is-valid");
                 errEl.removeClass("text-danger").addClass("text-success").text("Passwords matched!");
                 return true;
             };
             $("#cpass").on("input", validateCpass);
             $("#cpass").on("blur", () => { if ($("#cpass").val().trim() === "") showError("cpass", "Please confirm your password!"); });
+            // department and role validation
             const validateDept = () => {
                 const val = $("#dept").val();
                 const errEl = $("#dept").closest(".input-group").siblings(".error-msg");
                 $("#dept").removeClass("is-valid is-invalid");
-                if (!val || val === "") { errEl.text("Department is required!"); $("#dept").addClass("is-invalid"); return false; }
+                if (!val || val === "") {
+                    errEl.text("Department is required!");
+                    $("#dept").addClass("is-invalid"); return false;
+                }
                 errEl.text("");
                 $("#dept").addClass("is-valid");
                 return true;
@@ -330,11 +415,15 @@
                 const val = $("#deptrole").val();
                 const errEl = $("#deptrole").closest(".input-group").siblings(".error-msg");
                 $("#deptrole").removeClass("is-valid is-invalid");
-                if (!val || val === "") { errEl.text("Role is required!"); $("#deptrole").addClass("is-invalid"); return false; }
+                if (!val || val === "") {
+                    errEl.text("Role is required!");
+                    $("#deptrole").addClass("is-invalid"); return false;
+                }
                 errEl.text("");
                 $("#deptrole").addClass("is-valid");
                 return true;
             };
+            // location validation
             const validateLocation = () => {
                 const val = $("#location").val();
                 const errEl = $("#location").closest(".col-md-12").find(".error-msg");
@@ -348,9 +437,11 @@
                 $("#location").next(".select2-container--bootstrap4").find(".select2-selection").addClass("is-valid");
                 return true;
             };
+            // populate department dropdown
             Object.keys(deptRoles).forEach((dept) => {
                 $("#dept").append(`<option value="${dept}">${dept}</option>`);
             });
+            // department change event to populate roles
             $("#dept").on("change", function () {
                 const selectedDept = $(this).val();
                 $("#deptrole").html('<option value="">Select Role</option>').removeClass("is-valid is-invalid").prop("disabled", true);
@@ -363,6 +454,7 @@
                 validateDept();
             });
             $("#deptrole").on("change", validateRole);
+            // initialize Select2 for location
             $("#location").select2({
                 theme: "bootstrap4",
                 placeholder: "Select Location",
@@ -372,12 +464,20 @@
                 closeOnSelect: false
             });
             $("#location").on("change", validateLocation);
+            // toggle password visibility
             $(".toggle-password").on("click", function () {
                 const inp = $(this).closest(".input-group").find("input");
                 const icon = $(this).find("i");
-                if (inp.attr("type") === "password") { inp.attr("type", "text"); icon.removeClass("fa-eye").addClass("fa-eye-slash"); }
-                else { inp.attr("type", "password"); icon.removeClass("fa-eye-slash").addClass("fa-eye"); }
+                if (inp.attr("type") === "password") {
+                    inp.attr("type", "text");
+                    icon.removeClass("fa-eye").addClass("fa-eye-slash");
+                }
+                else {
+                    inp.attr("type", "password");
+                    icon.removeClass("fa-eye-slash").addClass("fa-eye");
+                }
             });
+            // reset form when modal is closed
             $("#addEmpModal").on("hidden.bs.modal", () => {
                 $("#fname, #lname, #dob, #email, #contact, #pass, #cpass").val("").removeClass("is-valid is-invalid");
                 $("input[name='gender']").prop("checked", false);
@@ -387,13 +487,14 @@
                 $("#location").next(".select2-container--bootstrap4").find(".select2-selection").removeClass("is-valid is-invalid");
                 $(".error-msg").text("").removeClass("text-success").addClass("text-danger");
             });
+            // function to generate unique employee ID
             const generateId = () => {
                 const employees = JSON.parse(localStorage.getItem("employees") || "[]");
                 const lastId = employees.length > 0 ? employees[employees.length - 1].id : "EMP000";
                 const num = parseInt(lastId.replace("EMP", "")) + 1;
                 return "EMP" + String(num).padStart(3, "0");
             };
-
+            // function to save employee data to localStorage
             const saveEmployee = () => {
                 const fname = $("#fname").val().trim();
                 const lname = $("#lname").val().trim();
@@ -406,7 +507,6 @@
                 const role = $("#deptrole").val();
                 const location = $("#location").val();
                 const joinDate = new Date().toLocaleDateString("en-GB");
-
                 const employee = {
                     id: generateId(),
                     firstname: fname,
@@ -424,11 +524,11 @@
                     enddate: "",
                     status: "Active"
                 };
-
                 const employees = JSON.parse(localStorage.getItem("employees") || "[]");
                 employees.push(employee);
                 localStorage.setItem("employees", JSON.stringify(employees));
             };
+            // add employee button click event
             $("#addEmpBtn").on("click", () => {
                 const results = [
                     validateFname(),
