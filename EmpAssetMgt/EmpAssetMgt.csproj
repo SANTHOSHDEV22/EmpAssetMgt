@@ -72,7 +72,7 @@
     <Content Include="Pages\assetAssign.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
     <Content Include="Pages\EAM_Landing.aspx" />
-    <Content Include="Pages\ViewEmployees.aspx" />
+    <Content Include="Pages\ViewEmployee.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -104,12 +104,12 @@
     <Compile Include="Pages\EAM_Landing.aspx.designer.cs">
       <DependentUpon>EAM_Landing.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ViewEmployees.aspx.cs">
-      <DependentUpon>ViewEmployees.aspx</DependentUpon>
+    <Compile Include="Pages\ViewEmployee.aspx.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ViewEmployees.aspx.designer.cs">
-      <DependentUpon>ViewEmployees.aspx</DependentUpon>
+    <Compile Include="Pages\ViewEmployee.aspx.designer.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

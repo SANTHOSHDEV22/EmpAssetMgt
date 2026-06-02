@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace EmpAssetMgt.Pages
 {
-    public partial class ViewEmployees : System.Web.UI.Page
+    public partial class ViewEmployee : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
