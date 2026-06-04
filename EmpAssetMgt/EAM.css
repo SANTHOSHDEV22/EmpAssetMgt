@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
     padding: 0;
     margin: 0;
 }
@@ -243,7 +243,7 @@ a {
 .dash-count {
     font-size: 5rem;
     font-weight: 600;
-}
+}*/
 
 /*.select2-container--classic {
     flex: 1 1 auto;
@@ -258,7 +258,7 @@ a {
     border-radius: 0 0.25rem 0.25rem 0 !important;
 }
 */
-#empTable,
+/*#empTable,
 #modalUserTable {
     width: 100% !important;
 }
@@ -315,9 +315,7 @@ tr.shown td.dt-control::before {
     font-size: 0.875rem;
 }
 
-.dt-length select {
-    margin-left: 10px !important;
-}
+
 
 .dt-state-btn {
     margin-left: -80px !important;
@@ -399,4 +397,4 @@ div.dtsp-searchPanes {
     .table {
         font-size: 13px;
     }
-}
+}*/
