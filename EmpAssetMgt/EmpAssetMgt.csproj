@@ -70,6 +70,7 @@
     <Content Include="EAM.css" />
     <Content Include="Pages\AddUser.aspx" />
     <Content Include="Pages\assetAssign.aspx" />
+    <Content Include="Pages\assetInventory.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
     <Content Include="Pages\EAM_Landing.aspx" />
     <Content Include="Pages\ViewEmployee.aspx" />
@@ -89,6 +90,13 @@
     </Compile>
     <Compile Include="Pages\assetAssign.aspx.designer.cs">
       <DependentUpon>assetAssign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\assetInventory.aspx.cs">
+      <DependentUpon>assetInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\assetInventory.aspx.designer.cs">
+      <DependentUpon>assetInventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
