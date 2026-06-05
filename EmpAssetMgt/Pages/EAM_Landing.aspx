@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>EAM</title>
-    <link href="/EAM.css" rel="stylesheet" />
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
     <!-- Font Awesome 6 -->
@@ -21,232 +20,231 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <style>
         .navbar-collapse {
-    position: fixed !important;
-    left: -240px;
-    top: 0;
-    width: 240px;
-    height: 100% !important;
-    display: block !important;
-    z-index: 1050;
-    transition: left 300ms ease-in-out !important;
-    overflow-y: auto;
-}
+            position: fixed !important;
+            left: -240px;
+            top: 0;
+            width: 240px;
+            height: 100% !important;
+            display: block !important;
+            z-index: 1050;
+            transition: left 300ms ease-in-out !important;
+            overflow-y: auto;
+        }
 
-.navbar-collapse.collapsing {
-    left: -240px;
-    height: 100% !important;
-    transition: left 300ms ease-in-out !important;
-}
+        .navbar-collapse.collapsing {
+            left: -240px;
+            height: 100% !important;
+            transition: left 300ms ease-in-out !important;
+        }
 
-.navbar-collapse.show {
-    left: 0;
-}
+        .navbar-collapse.show {
+            left: 0;
+        }
 
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.45);
-    z-index: 1049;
-    display: none;
-}
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            z-index: 1049;
+            display: none;
+        }
 
-.sidebar-overlay.active {
-    display: block;
-}
+        .sidebar-overlay.active {
+            display: block;
+        }
 
-.dropdown-menu {
-    display: none;
-    background: #343a40;
-    border: none;
-    padding-left: 1rem;
-    position: static !important;
-    float: none !important;
-}
+        .dropdown-menu {
+            display: none;
+            background: #343a40;
+            border: none;
+            padding-left: 1rem;
+            position: static !important;
+            float: none !important;
+        }
 
-.dropdown-menu.open {
-    display: block;
-}
+        .dropdown-menu.open {
+            display: block;
+        }
 
-.dropdown-menu .dropdown-item {
-    color: #adb5bd;
-    padding: 0.4rem 0.5rem;
-}
+        .dropdown-menu .dropdown-item {
+            color: #adb5bd;
+            padding: 0.4rem 0.5rem;
+        }
 
-.dropdown-menu .dropdown-item:hover {
-    background: #495057;
-    color: #fff;
-}
+        .dropdown-menu .dropdown-item:hover {
+            background: #495057;
+            color: #fff;
+        }
 
-.role-badge {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
+        .role-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
 
-.role-badge.admin {
-    background: #28a745;
-    color: #fff;
-}
+        .role-badge.admin {
+            background: #28a745;
+            color: #fff;
+        }
 
-.role-badge.manager {
-    background: #17a2b8;
-    color: #fff;
-}
+        .role-badge.manager {
+            background: #17a2b8;
+            color: #fff;
+        }
 
-.dash-table {
-    table-layout: fixed;
-    width: 100%;
-}
+        .dash-table {
+            table-layout: fixed;
+            width: 100%;
+        }
 
-.dash-table th,
-.dash-table td {
-    width: 50%;
-    text-align: center;
-    vertical-align: middle;
-}
+        .dash-table th,.dash-table td {
+            width: 50%;
+            text-align: center;
+            vertical-align: middle;
+        }
 
-.dash-table-4 th,
-.dash-table-4 td {
-    width: 25%;
-    text-align: center;
-    vertical-align: middle;
-}
+        .dash-table-4 th,.dash-table-4 td {
+            width: 25%;
+            text-align: center;
+            vertical-align: middle;
+        }
 
-.dash-count {
-    font-size: 5rem;
-    font-weight: 600;
-}
+        .dash-count {
+            font-size: 5rem;
+            font-weight: 600;
+        }
 
-.cat-summary-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 1.5rem;
-}
+        .cat-summary-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
 
-.cat-card {
-    flex: 1 1 160px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 14px 18px;
-    min-width: 150px;
-}
+        .cat-card {
+            flex: 1 1 160px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 14px 18px;
+            min-width: 150px;
+        }
 
-.cat-card .cat-name {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 6px;
-}
+        .cat-card .cat-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
 
-.cat-card .cat-total {
-    font-size: 1.6rem;
-    font-weight: 700;
-}
+        .cat-card .cat-total {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
 
-.cat-card .cat-sub {
-    font-size: 0.78rem;
-    color: #6c757d;
-    margin-top: 4px;
-}
+        .cat-card .cat-sub {
+            font-size: 0.78rem;
+            color: #6c757d;
+            margin-top: 4px;
+        }
 
-.status-active {
-    color: #28a745;
-    font-weight: 600;
-}
+        .status-active {
+            color: #28a745;
+            font-weight: 600;
+        }
 
-.status-inactive {
-    color: #dc3545;
-    font-weight: 600;
-}
+        .status-inactive {
+            color: #dc3545;
+            font-weight: 600;
+        }
 
-.asset-thumb {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid #dee2e6;
-    cursor: pointer;
-}
+        .asset-thumb {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            cursor: pointer;
+        }
 
-.location-wrapper {
-    display: flex;
-    align-items: stretch;
-}
+        .location-wrapper {
+            display: flex;
+            align-items: stretch;
+        }
 
-.location-wrapper .location-label {
-    display: flex;
-    align-items: center;
-    padding: 0 0.75rem;
-    font-size: 1rem;
-    color: #495057;
-    background: #e9ecef;
-    border: 1px solid #ced4da;
-    border-right: none;
-    border-radius: 0.25rem 0 0 0.25rem;
-    white-space: nowrap;
-    min-height: 34px;
-}
+        .location-wrapper .location-label {
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            font-size: 1rem;
+            color: #495057;
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            border-right: none;
+            border-radius: 0.25rem 0 0 0.25rem;
+            white-space: nowrap;
+            min-height: 34px;
+        }
 
-#location + .select2-container--classic,
-#editLocation + .select2-container--classic {
-    flex: 1 1 auto;
-    width: 100% !important;
-}
+        #location + .select2-container--classic,
+        #editLocation + .select2-container--classic {
+            flex: 1 1 auto;
+            width: 100% !important;
+        }
 
-#location + .select2-container--classic .select2-selection--single,
-#editLocation + .select2-container--classic .select2-selection--single {
-    height: 34px !important;
-    border: 1px solid #ced4da !important;
-    border-left: none !important;
-    border-radius: 0 0.25rem 0.25rem 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    background-image: none;
-    padding: 0 8px;
-}
+        #location + .select2-container--classic .select2-selection--single,
+        #editLocation + .select2-container--classic .select2-selection--single {
+            height: 34px !important;
+            border: 1px solid #ced4da !important;
+            border-left: none !important;
+            border-radius: 0 0.25rem 0.25rem 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            background-image: none;
+            padding: 0 8px;
+        }
 
-#location + .select2-container--classic .select2-selection__rendered,
-#editLocation + .select2-container--classic .select2-selection__rendered {
-    padding-left: 4px;
-    color: #495057;
-    line-height: normal;
-    flex: 1;
-}
+        #location + .select2-container--classic .select2-selection__rendered,
+        #editLocation + .select2-container--classic .select2-selection__rendered {
+            padding-left: 4px;
+            color: #495057;
+            line-height: normal;
+            flex: 1;
+        }
 
-#location + .select2-container--classic .select2-selection__arrow,
-#editLocation + .select2-container--classic .select2-selection__arrow {
-    position: relative !important;
-    height: 100% !important;
-    width: 28px;
-    top: 0 !important;
-    border-left: 1px solid #ced4da;
-    background: #e9ecef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        #location + .select2-container--classic .select2-selection__arrow,
+        #editLocation + .select2-container--classic .select2-selection__arrow {
+            position: relative !important;
+            height: 100% !important;
+            width: 28px;
+            top: 0 !important;
+            border-left: 1px solid #ced4da;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-#location + .select2-container--classic .select2-selection__arrow b,
-#editLocation + .select2-container--classic .select2-selection__arrow b {
-    position: static !important;
-    margin: 0 !important;
-    border-color: #555 transparent transparent transparent;
-    border-style: solid;
-    border-width: 5px 4px 0 4px;
-}
+        #location + .select2-container--classic .select2-selection__arrow b,
+        #editLocation + .select2-container--classic .select2-selection__arrow b {
+            position: static !important;
+            margin: 0 !important;
+            border-color: #555 transparent transparent transparent;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+        }
 
-.ui-datepicker {
-    z-index: 9999 !important;
-}
-.dt-length select {
-    margin-left: 10px !important;
-}
+        .ui-datepicker {
+            z-index: 9999 !important;
+        }
+
+        .dt-length select {
+            margin-left: 10px !important;
+        }
     </style>
 </head>
 <body>
@@ -1205,7 +1203,7 @@
             ];
             if (!localStorage.getItem("assets")) saveAssets(seedAssets);
 
-            
+
             // Role — Admin and Manager
             let isAdmin = true;
             const applyRole = () => {
@@ -1587,6 +1585,7 @@
                 $("#" + id).removeClass("is-invalid").addClass("is-valid");
             };
 
+            //validate edit form
             const validateEditFname = () => {
                 const v = $("#editFname").val();
                 if (!v.trim()) {
@@ -1615,8 +1614,7 @@
             };
             const validateEditGender = () => {
                 const errEl = $("input[name='editGender']").closest(".col-md-6").find(".error-msg");
-                if (!$("input[name='editGender']:checked").val())
-                {
+                if (!$("input[name='editGender']:checked").val()) {
                     errEl.text("Select gender!");
                     return false;
                 }
@@ -1954,8 +1952,8 @@
                     buttons: dtButtons,
                     columnDefs: [
                         {
-                        targets: [0, 7, 8],
-                        searchPanes: { show: false }
+                            targets: [0, 7, 8],
+                            searchPanes: { show: false }
                         }
                     ],
                     columns: [
@@ -2013,7 +2011,7 @@
                             render: function (d) {
                                 const cls = d === "Active" ? "status-active" : "status-inactive";
                                 const ico = d === "Active" ? '<i class="fa-solid fa-circle-check mr-1"></i>'
-                                                           : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
+                                    : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
                                 return `<span class="${cls}">${ico}${d || "—"}</span>`;
                             }
                         },
@@ -2155,8 +2153,8 @@
                     });
             });
 
-           // Asset assign Section
-           //load employee and asset details
+            // Asset assign Section
+            //load employee and asset details
             $("#assignModal").on("show.bs.modal", function () {
                 const emps = getEmployees();
                 const assets = getAssets();
@@ -2227,7 +2225,6 @@
                 err.text(""); $("#assignAsset").addClass("is-valid");
                 return true;
             };
-
             $("#assignEmployee").on("change", validateAssignEmp);
             $("#assignCategory").on("change", validateAssignCat);
             $("#assignAsset").on("change", validateAssignAst);
