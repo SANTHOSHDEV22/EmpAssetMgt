@@ -31,15 +31,15 @@
             overflow-y: auto;
         }
 
-        .navbar-collapse.collapsing {
-            left: -240px;
-            height: 100% !important;
-            transition: left 300ms ease-in-out !important;
-        }
+            .navbar-collapse.collapsing {
+                left: -240px;
+                height: 100% !important;
+                transition: left 300ms ease-in-out !important;
+            }
 
-        .navbar-collapse.show {
-            left: 0;
-        }
+            .navbar-collapse.show {
+                left: 0;
+            }
 
         .sidebar-overlay {
             position: fixed;
@@ -52,9 +52,9 @@
             display: none;
         }
 
-        .sidebar-overlay.active {
-            display: block;
-        }
+            .sidebar-overlay.active {
+                display: block;
+            }
 
         .dropdown-menu {
             display: none;
@@ -65,19 +65,19 @@
             float: none !important;
         }
 
-        .dropdown-menu.open {
-            display: block;
-        }
+            .dropdown-menu.open {
+                display: block;
+            }
 
-        .dropdown-menu .dropdown-item {
-            color: #adb5bd;
-            padding: 0.4rem 0.5rem;
-        }
+            .dropdown-menu .dropdown-item {
+                color: #adb5bd;
+                padding: 0.4rem 0.5rem;
+            }
 
-        .dropdown-menu .dropdown-item:hover {
-            background: #495057;
-            color: #fff;
-        }
+                .dropdown-menu .dropdown-item:hover {
+                    background: #495057;
+                    color: #fff;
+                }
 
         .role-badge {
             font-size: 0.7rem;
@@ -87,28 +87,28 @@
             letter-spacing: 0.5px;
         }
 
-        .role-badge.admin {
-            background: #28a745;
-            color: #fff;
-        }
+            .role-badge.admin {
+                background: #28a745;
+                color: #fff;
+            }
 
-        .role-badge.manager {
-            background: #17a2b8;
-            color: #fff;
-        }
+            .role-badge.manager {
+                background: #17a2b8;
+                color: #fff;
+            }
 
         .dash-table {
             table-layout: fixed;
             width: 100%;
         }
 
-        .dash-table th,.dash-table td {
-            width: 50%;
-            text-align: center;
-            vertical-align: middle;
-        }
+            .dash-table th, .dash-table td {
+                width: 50%;
+                text-align: center;
+                vertical-align: middle;
+            }
 
-        .dash-table-4 th,.dash-table-4 td {
+        .dash-table-4 th, .dash-table-4 td {
             width: 25%;
             text-align: center;
             vertical-align: middle;
@@ -135,22 +135,22 @@
             min-width: 150px;
         }
 
-        .cat-card .cat-name {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
+            .cat-card .cat-name {
+                font-weight: 700;
+                font-size: 1rem;
+                margin-bottom: 6px;
+            }
 
-        .cat-card .cat-total {
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
+            .cat-card .cat-total {
+                font-size: 1.6rem;
+                font-weight: 700;
+            }
 
-        .cat-card .cat-sub {
-            font-size: 0.78rem;
-            color: #6c757d;
-            margin-top: 4px;
-        }
+            .cat-card .cat-sub {
+                font-size: 0.78rem;
+                color: #6c757d;
+                margin-top: 4px;
+            }
 
         .status-active {
             color: #28a745;
@@ -176,19 +176,19 @@
             align-items: stretch;
         }
 
-        .location-wrapper .location-label {
-            display: flex;
-            align-items: center;
-            padding: 0 0.75rem;
-            font-size: 1rem;
-            color: #495057;
-            background: #e9ecef;
-            border: 1px solid #ced4da;
-            border-right: none;
-            border-radius: 0.25rem 0 0 0.25rem;
-            white-space: nowrap;
-            min-height: 34px;
-        }
+            .location-wrapper .location-label {
+                display: flex;
+                align-items: center;
+                padding: 0 0.75rem;
+                font-size: 1rem;
+                color: #495057;
+                background: #e9ecef;
+                border: 1px solid #ced4da;
+                border-right: none;
+                border-radius: 0.25rem 0 0 0.25rem;
+                white-space: nowrap;
+                min-height: 34px;
+            }
 
         #location + .select2-container--classic,
         #editLocation + .select2-container--classic {
@@ -196,47 +196,47 @@
             width: 100% !important;
         }
 
-        #location + .select2-container--classic .select2-selection--single,
-        #editLocation + .select2-container--classic .select2-selection--single {
-            height: 34px !important;
-            border: 1px solid #ced4da !important;
-            border-left: none !important;
-            border-radius: 0 0.25rem 0.25rem 0 !important;
-            display: flex !important;
-            align-items: center !important;
-            background-image: none;
-            padding: 0 8px;
-        }
+            #location + .select2-container--classic .select2-selection--single,
+            #editLocation + .select2-container--classic .select2-selection--single {
+                height: 34px !important;
+                border: 1px solid #ced4da !important;
+                border-left: none !important;
+                border-radius: 0 0.25rem 0.25rem 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                background-image: none;
+                padding: 0 8px;
+            }
 
-        #location + .select2-container--classic .select2-selection__rendered,
-        #editLocation + .select2-container--classic .select2-selection__rendered {
-            padding-left: 4px;
-            color: #495057;
-            line-height: normal;
-            flex: 1;
-        }
+            #location + .select2-container--classic .select2-selection__rendered,
+            #editLocation + .select2-container--classic .select2-selection__rendered {
+                padding-left: 4px;
+                color: #495057;
+                line-height: normal;
+                flex: 1;
+            }
 
-        #location + .select2-container--classic .select2-selection__arrow,
-        #editLocation + .select2-container--classic .select2-selection__arrow {
-            position: relative !important;
-            height: 100% !important;
-            width: 28px;
-            top: 0 !important;
-            border-left: 1px solid #ced4da;
-            background: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+            #location + .select2-container--classic .select2-selection__arrow,
+            #editLocation + .select2-container--classic .select2-selection__arrow {
+                position: relative !important;
+                height: 100% !important;
+                width: 28px;
+                top: 0 !important;
+                border-left: 1px solid #ced4da;
+                background: #e9ecef;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-        #location + .select2-container--classic .select2-selection__arrow b,
-        #editLocation + .select2-container--classic .select2-selection__arrow b {
-            position: static !important;
-            margin: 0 !important;
-            border-color: #555 transparent transparent transparent;
-            border-style: solid;
-            border-width: 5px 4px 0 4px;
-        }
+                #location + .select2-container--classic .select2-selection__arrow b,
+                #editLocation + .select2-container--classic .select2-selection__arrow b {
+                    position: static !important;
+                    margin: 0 !important;
+                    border-color: #555 transparent transparent transparent;
+                    border-style: solid;
+                    border-width: 5px 4px 0 4px;
+                }
 
         .ui-datepicker {
             z-index: 9999 !important;
@@ -244,6 +244,16 @@
 
         .dt-length select {
             margin-left: 10px !important;
+        }
+
+        .dt-button-collection {
+            position: absolute !important;
+            z-index: 2000 !important;
+        }
+
+        .dt-filter-btn .btn, .dt-export-btn .btn,
+        .dt-state-btn .btn, .dt-load-btn .btn {
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -288,7 +298,6 @@
                     <li class="nav-item dropdown pb-3">
                         <a href="#" class="nav-link sideNavToggle text-light">
                             <i class="fa-solid fa-user fa-sm mr-2"></i>Employees
-                           
                             <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
                         </a>
                         <div class="dropdown-menu">
@@ -937,7 +946,7 @@
                 </div>
                 <!-- Edit Asset Modal -->
                 <div class="modal fade" id="editAssetModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Asset</h5>
@@ -945,9 +954,39 @@
                             </div>
                             <div class="modal-body p-4">
                                 <input type="hidden" id="editAssetId" />
-                                <!-- Status -->
+
+                                <!-- Category and Name -->
                                 <div class="row mb-2">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="editAssetCategory">Category</label>
+                                            </div>
+                                            <select class="custom-select" id="editAssetCategory">
+                                                <option value="">Select Category</option>
+                                                <option value="Laptop">Laptop</option>
+                                                <option value="Monitor">Monitor</option>
+                                                <option value="Keyboard">Keyboard</option>
+                                                <option value="Mouse">Mouse</option>
+                                                <option value="Headset">Headset</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Asset Name</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="editAssetName" placeholder="Enter asset name" />
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
+                                </div>
+
+                                <!-- Status and Assigned To -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text" for="editAssetStatus">Status</label>
@@ -960,22 +999,57 @@
                                         </div>
                                         <small class="text-danger error-msg d-block"></small>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="editAssetAssignedTo">Assigned To</label>
+                                            </div>
+                                            <select class="custom-select" id="editAssetAssignedTo">
+                                                <option value="">— Not Assigned —</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
-                                <!-- Return Date -->
+
+                                <!-- Return Date only -->
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
-                                            <div class="input-group-prepend"><span class="input-group-text">Return Date</span></div>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Return Date</span>
+                                            </div>
                                             <input type="text" class="form-control datepicker" id="editAssetReturnDate" placeholder="DD/MM/YYYY" autocomplete="off" />
                                         </div>
                                         <small class="text-danger error-msg d-block"></small>
                                     </div>
                                 </div>
+
+                                <!-- Multiple Image Upload -->
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa-solid fa-images mr-1"></i>Images</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple />
+                                                <label class="custom-file-label" for="editAssetImages">Choose images (multiple allowed)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Image preview strip -->
+                                <div id="editAssetImagePreviewWrap" class="d-flex flex-wrap" style="gap: 8px; margin-top: 6px;"></div>
+
                             </div>
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success admin-only" id="updateAssetBtn"><i class="fa-solid fa-check mr-2"></i>Update</button>
+                                    <button type="button" class="btn btn-success admin-only" id="updateAssetBtn">
+                                        <i class="fa-solid fa-check mr-2"></i>Update
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -983,7 +1057,7 @@
                 </div>
                 <!-- Asset Image Carousel Modal -->
                 <div class="modal fade" id="assetCarouselModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-images mr-2"></i>Asset Images</h5>
@@ -1475,6 +1549,7 @@
 
             // department dropdown
             Object.keys(deptRoles).forEach(d => $("#dept").append(`<option value="${d}">${d}</option>`));
+
             // role dropdown
             $("#dept").on("change", function () {
                 const sel = $(this).val();
@@ -1532,7 +1607,8 @@
                     validateCpass(),
                     validateDept(),
                     validateRole(),
-                    validateLocation()];
+                    validateLocation()
+                ];
                 if (!ok.every(Boolean)) return;
                 const emp = {
                     id: generateEmpId(),
@@ -1596,9 +1672,14 @@
                     showEditError("editFname", "No spaces!");
                     return false;
                 }
+                if (!fnamePattern.test(v)) {
+                    showEditError("editFname", "Only letters and apostrophe allowed!");
+                    return false;
+                }
                 clearEditError("editFname");
                 return true;
             };
+
             const validateEditLname = () => {
                 const v = $("#editLname").val();
                 if (!v.trim()) {
@@ -1607,6 +1688,10 @@
                 }
                 if (/\s/.test(v)) {
                     showEditError("editLname", "No spaces!");
+                    return false;
+                }
+                if (!fnamePattern.test(v)) {
+                    showEditError("editLname", "Only letters and apostrophe allowed!");
                     return false;
                 }
                 clearEditError("editLname");
@@ -1870,7 +1955,7 @@
                 },
                 {
                     extend: "collection",
-                    text: '<i class="fa-solid fa-download mr-1"></i> Export',
+                    text: '<i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i> Export',
                     className: "btn btn-sm mb-3",
                     buttons: [
                         {
@@ -2284,7 +2369,8 @@
 
             //asset id generation
             const generateAssetId = () => {
-                const assets = getAssets(); const last = assets.length > 0 ? assets[assets.length - 1].id : "AST000";
+                const assets = getAssets();
+                const last = assets.length > 0 ? assets[assets.length - 1].id : "AST000";
                 return "AST" + String(parseInt(last.replace("AST", "")) + 1).padStart(3, "0");
             };
 
@@ -2416,13 +2502,12 @@
                             searchPanes: { show: false },
                             className: "text-center align-middle",
                             render: function (d, type, row) {
-                                if (d && d !== "") return `<img src="${d}" class="asset-thumb viewImgBtn" data-id="${row.id}" alt="img" />`;
+
                                 return `<button type="button" class="btn btn-sm btn-outline-secondary viewImgBtn" data-id="${row.id}">
                                             <i class="fa-solid fa-image"></i>
                                         </button>`;
                             }
                         },
-                        // Action column — edit button
                         {
                             data: null,
                             orderable: false,
@@ -2437,6 +2522,7 @@
                         }
                     ],
                     initComplete: function () {
+                        rebuildTableHeader();
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
                         c.find(".dt-filter-btn").append(b.eq(0).detach());
@@ -2453,17 +2539,35 @@
                 const id = $(this).data("id");
                 const asset = getAssets().find(a => a.id === id);
                 if (!asset) return;
+
+                const imgs = Array.isArray(asset.images)
+                    ? asset.images.filter(s => s && s !== "")
+                    : (asset.image ? [asset.image] : []);
+
                 let slides = "";
-                if (asset.image && asset.image !== "") {
-                    slides = `<div class="carousel-item active">
-                                <img src="${asset.image}" class="d-block w-100" alt="${asset.name}" style="max-height:400px;object-fit:contain;" />
-                            </div>`;
-                } else {
-                    slides = `<div class="carousel-item active text-center py-5">
-                                <i class="fa-solid fa-image fa-5x text-muted"></i>
-                                    <p class="mt-3 text-muted">No image available for ${asset.name}</p>
-                            </div>`;
+
+                if (imgs.length > 0) {
+                    imgs.forEach(function (src, i) {
+                        slides += `
+                        <div class="carousel-item ${i === 0 ? "active" : ""}">
+                            <img src="${src}"
+                                 class="d-block w-100"
+                                 alt="${asset.name} image ${i + 1}"
+                                 style="max-height:400px; object-fit:contain;" />
+                            <div class="carousel-caption d-none d-md-block" style="background:rgba(0,0,0,0.4); border-radius:4px;">
+                                <small>${i + 1} / ${imgs.length}</small>
+                            </div>
+                        </div>`;
+                    });
                 }
+                else {
+                    slides = `
+                        <div class="carousel-item active text-center py-5">
+                            <i class="fa-solid fa-image fa-5x text-muted"></i>
+                            <p class="mt-3 text-muted">No image available for ${asset.name}</p>
+                        </div>`;
+                }
+
                 $("#carouselInner").html(slides);
                 $("#assetCarouselModal").modal("show");
             });
@@ -2501,9 +2605,34 @@
                 err.text(""); $("#assetStatus").addClass("is-valid");
                 return true;
             };
+            const validateEditAssetCat = () => {
+                const v = $("#editAssetCategory").val();
+                const err = $("#editAssetCategory").closest(".input-group").siblings(".error-msg");
+                $("#editAssetCategory").removeClass("is-valid is-invalid");
+                if (!v) {
+                    err.text("Category required!");
+                    $("#editAssetCategory").addClass("is-invalid");
+                    return false;
+                }
+                err.text("");
+                $("#editAssetCategory").addClass("is-valid");
+                return true;
+            };
+
+            const validateEditAssetName = () => {
+                const v = $("#editAssetName").val().trim();
+                if (!v) {
+                    showError("editAssetName", "Asset name required!");
+                    return false;
+                }
+                clearError("editAssetName");
+                return true;
+            };
             $("#assetCategory").on("change", validateAssetCat);
             $("#assetName").on("input", validateAssetName);
             $("#assetStatus").on("change", validateAssetStat);
+            $("#editAssetCategory").on("change", validateEditAssetCat);
+            $("#editAssetName").on("input", validateEditAssetName);
 
             //image carousel apply
             $("#assetImage").on("change", function () {
@@ -2569,23 +2698,108 @@
             $("#assetTable").on("click", ".editAssetBtn", function () {
                 const asset = getAssets().find(a => a.id === $(this).data("id"));
                 if (!asset) return;
+
                 $("#editAssetId").val(asset.id);
+                $("#editAssetCategory").val(asset.category);
+                $("#editAssetName").val(asset.name);
                 $("#editAssetStatus").val(asset.status);
                 $("#editAssetReturnDate").val(asset.returnDate === "—" ? "" : asset.returnDate);
+                const empDropdown = $("#editAssetAssignedTo");
+                empDropdown.html('<option value="">— Not Assigned —</option>');
+
+                getEmployees().forEach(function (emp) {
+                    empDropdown.append(
+                        `<option value="${emp.fullname}">${emp.fullname} — ${emp.department} (${emp.id})</option>`
+                    );
+                });
+                const currentAssigned = asset.assignedTo === "—" ? "" : asset.assignedTo;
+                empDropdown.val(currentAssigned);
+                const editPreviewWrap = $("#editAssetImagePreviewWrap");
+                editPreviewWrap.empty();
+
+                const imgs = Array.isArray(asset.images) ? asset.images : (asset.image ? [asset.image] : []);
+
+                imgs.forEach(function (src, i) {
+                    if (!src) return;
+                    editPreviewWrap.append(`
+                    <div class="position-relative" style="display:inline-block;">
+                        <img src="${src}"
+                             style="width:70px; height:70px; object-fit:cover;
+                                    border-radius:4px; border:1px solid #dee2e6;" />
+                        <button type="button"
+                                class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
+                                data-index="${i}"
+                                style="top:-6px; right:-6px; padding:1px 5px; font-size:0.65rem; line-height:1;">
+                            &times;
+                        </button>
+                    </div>`);
+                });
+
                 $("#editAssetModal").modal("show");
             });
 
-            // save asset edit
+            $("#editAssetImages").on("change", function () {
+                const files = Array.from(this.files);
+                const label = $(this).siblings(".custom-file-label");
+                label.text(files.length > 0 ? `${files.length} image(s) selected` : "Choose images");
+
+                if (!files.length) return;
+                const wrap = $("#editAssetImagePreviewWrap");
+                files.forEach(function (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const totalImgs = wrap.find("img").length;
+                        wrap.append(`
+                            <div class="position-relative" style="display:inline-block;">
+                                <img src="${e.target.result}"
+                                     style="width:70px; height:70px; object-fit:cover;
+                                            border-radius:4px; border:1px solid #dee2e6;" />
+                                <button type="button"
+                                        class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
+                                        data-index="${totalImgs}"
+                                        style="top:-6px; right:-6px; padding:1px 5px; font-size:0.65rem; line-height:1;">
+                                    &times;
+                                </button>
+                            </div>
+                        `);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            $(document).on("click", ".removeEditImgBtn", function () {
+                $(this).closest("div").remove();
+                $("#editAssetImagePreviewWrap > div").each(function (i) {
+                    $(this).find(".removeEditImgBtn").attr("data-index", i);
+                });
+            });
+
             $("#updateAssetBtn").on("click", function () {
+                const ok = [
+                    validateEditAssetCat(),
+                    validateEditAssetName()
+                ];
+                if (!ok.every(Boolean)) return;
+
                 const id = $("#editAssetId").val();
                 const assets = getAssets();
                 const idx = assets.findIndex(a => a.id === id);
                 if (idx === -1) return;
+                const finalImages = [];
+                $("#editAssetImagePreviewWrap img").each(function () {
+                    finalImages.push($(this).attr("src"));
+                });
+                assets[idx].category = $("#editAssetCategory").val();
+                assets[idx].name = $("#editAssetName").val().trim();
                 assets[idx].status = $("#editAssetStatus").val();
+                assets[idx].assignedTo = $("#editAssetAssignedTo").val().trim() || "—";
                 assets[idx].returnDate = $("#editAssetReturnDate").val().trim() || "—";
+                assets[idx].images = finalImages;
+                assets[idx].image = finalImages.length > 0 ? finalImages[0] : "";
                 saveAssets(assets);
                 $("#editAssetModal").modal("hide");
                 loadAssetTable();
+
                 Swal.fire({
                     icon: "success",
                     title: "Updated!",
@@ -2593,11 +2807,19 @@
                 });
             });
 
-            // Reset edit asset form on close
             $("#editAssetModal").on("hidden.bs.modal", function () {
                 $("#editAssetId").val("");
+                $("#editAssetCategory").val("");
+                $("#editAssetName").val("");
                 $("#editAssetStatus").val("A");
+
+                $("#editAssetAssignedTo").html('<option value="">— Not Assigned —</option>');
+
                 $("#editAssetReturnDate").val("");
+                $("#editAssetImages").val("");
+                $(".custom-file-label").text("Choose images");
+                $("#editAssetImagePreviewWrap").empty();
+                $("#editAssetCategory,#editAssetName").removeClass("is-valid is-invalid");
                 $(".error-msg").text("");
             });
 
