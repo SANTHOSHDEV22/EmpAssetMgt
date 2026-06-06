@@ -10,13 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css" />
+    <!-- DataTables Button-->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap4.min.css" />
+    <!-- DataTables SearchPanes-->
     <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/2.3.1/css/searchPanes.bootstrap4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap4.min.css" />
+    <!-- DataTables State-->
     <link rel="stylesheet" href="https://cdn.datatables.net/staterestore/1.4.3/css/stateRestore.dataTables.min.css" />
     <!-- Select2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <!-- jQuery UI (datepicker) -->
+    <!-- datepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <style>
         .navbar-collapse {
@@ -30,17 +33,14 @@
             transition: left 300ms ease-in-out !important;
             overflow-y: auto;
         }
-
-            .navbar-collapse.collapsing {
-                left: -240px;
-                height: 100% !important;
-                transition: left 300ms ease-in-out !important;
-            }
-
-            .navbar-collapse.show {
-                left: 0;
-            }
-
+        .navbar-collapse.collapsing {
+            left: -240px;
+            height: 100% !important;
+            transition: left 300ms ease-in-out !important;
+        }
+        .navbar-collapse.show {
+            left: 0;
+        }
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -51,11 +51,9 @@
             z-index: 1049;
             display: none;
         }
-
-            .sidebar-overlay.active {
-                display: block;
-            }
-
+        .sidebar-overlay.active {
+            display: block;
+        }
         .dropdown-menu {
             display: none;
             background: #343a40;
@@ -64,21 +62,17 @@
             position: static !important;
             float: none !important;
         }
-
-            .dropdown-menu.open {
-                display: block;
-            }
-
-            .dropdown-menu .dropdown-item {
-                color: #adb5bd;
-                padding: 0.4rem 0.5rem;
-            }
-
-                .dropdown-menu .dropdown-item:hover {
-                    background: #495057;
-                    color: #fff;
-                }
-
+        .dropdown-menu.open {
+            display: block;
+        }
+        .dropdown-menu .dropdown-item {
+            color: #adb5bd;
+            padding: 0.4rem 0.5rem;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            background: #495057;
+            color: #fff;
+        }
         .role-badge {
             font-size: 0.7rem;
             padding: 2px 8px;
@@ -86,46 +80,38 @@
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-
-            .role-badge.admin {
-                background: #28a745;
-                color: #fff;
-            }
-
-            .role-badge.manager {
-                background: #17a2b8;
-                color: #fff;
-            }
-
+        .role-badge.admin {
+            background: #28a745;
+            color: #fff;
+        }
+        .role-badge.manager {
+            background: #17a2b8;
+            color: #fff;
+        }
         .dash-table {
             table-layout: fixed;
             width: 100%;
         }
-
-            .dash-table th, .dash-table td {
-                width: 50%;
-                text-align: center;
-                vertical-align: middle;
-            }
-
+        .dash-table th, .dash-table td {
+            width: 50%;
+            text-align: center;
+            vertical-align: middle;
+        }
         .dash-table-4 th, .dash-table-4 td {
             width: 25%;
             text-align: center;
             vertical-align: middle;
         }
-
         .dash-count {
             font-size: 5rem;
             font-weight: 600;
         }
-
         .cat-summary-wrap {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 1.5rem;
         }
-
         .cat-card {
             flex: 1 1 160px;
             background: #fff;
@@ -134,34 +120,28 @@
             padding: 14px 18px;
             min-width: 150px;
         }
-
-            .cat-card .cat-name {
-                font-weight: 700;
-                font-size: 1rem;
-                margin-bottom: 6px;
-            }
-
-            .cat-card .cat-total {
-                font-size: 1.6rem;
-                font-weight: 700;
-            }
-
-            .cat-card .cat-sub {
-                font-size: 0.78rem;
-                color: #6c757d;
-                margin-top: 4px;
-            }
-
+        .cat-card .cat-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .cat-card .cat-total {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .cat-card .cat-sub {
+            font-size: 0.78rem;
+            color: #6c757d;
+            margin-top: 4px;
+        }
         .status-active {
             color: #28a745;
             font-weight: 600;
         }
-
         .status-inactive {
             color: #dc3545;
             font-weight: 600;
         }
-
         .asset-thumb {
             width: 36px;
             height: 36px;
@@ -170,87 +150,76 @@
             border: 1px solid #dee2e6;
             cursor: pointer;
         }
-
         .location-wrapper {
             display: flex;
             align-items: stretch;
         }
-
-            .location-wrapper .location-label {
-                display: flex;
-                align-items: center;
-                padding: 0 0.75rem;
-                font-size: 1rem;
-                color: #495057;
-                background: #e9ecef;
-                border: 1px solid #ced4da;
-                border-right: none;
-                border-radius: 0.25rem 0 0 0.25rem;
-                white-space: nowrap;
-                min-height: 34px;
-            }
-
+        .location-wrapper .location-label {
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            font-size: 1rem;
+            color: #495057;
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            border-right: none;
+            border-radius: 0.25rem 0 0 0.25rem;
+            white-space: nowrap;
+            min-height: 34px;
+        }
         #location + .select2-container--classic,
         #editLocation + .select2-container--classic {
             flex: 1 1 auto;
             width: 100% !important;
         }
-
-            #location + .select2-container--classic .select2-selection--single,
-            #editLocation + .select2-container--classic .select2-selection--single {
-                height: 34px !important;
-                border: 1px solid #ced4da !important;
-                border-left: none !important;
-                border-radius: 0 0.25rem 0.25rem 0 !important;
-                display: flex !important;
-                align-items: center !important;
-                background-image: none;
-                padding: 0 8px;
-            }
-
-            #location + .select2-container--classic .select2-selection__rendered,
-            #editLocation + .select2-container--classic .select2-selection__rendered {
-                padding-left: 4px;
-                color: #495057;
-                line-height: normal;
-                flex: 1;
-            }
-
-            #location + .select2-container--classic .select2-selection__arrow,
-            #editLocation + .select2-container--classic .select2-selection__arrow {
-                position: relative !important;
-                height: 100% !important;
-                width: 28px;
-                top: 0 !important;
-                border-left: 1px solid #ced4da;
-                background: #e9ecef;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-                #location + .select2-container--classic .select2-selection__arrow b,
-                #editLocation + .select2-container--classic .select2-selection__arrow b {
-                    position: static !important;
-                    margin: 0 !important;
-                    border-color: #555 transparent transparent transparent;
-                    border-style: solid;
-                    border-width: 5px 4px 0 4px;
-                }
-
+        #location + .select2-container--classic .select2-selection--single,
+        #editLocation + .select2-container--classic .select2-selection--single {
+            height: 34px !important;
+            border: 1px solid #ced4da !important;
+            border-left: none !important;
+            border-radius: 0 0.25rem 0.25rem 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            background-image: none;
+            padding: 0 8px;
+        }
+        #location + .select2-container--classic .select2-selection__rendered,
+        #editLocation + .select2-container--classic .select2-selection__rendered {
+            padding-left: 4px;
+            color: #495057;
+            line-height: normal;
+            flex: 1;
+        }
+        #location + .select2-container--classic .select2-selection__arrow,
+        #editLocation + .select2-container--classic .select2-selection__arrow {
+            position: relative !important;
+            height: 100% !important;
+            width: 28px;
+            top: 0 !important;
+            border-left: 1px solid #ced4da;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #location + .select2-container--classic .select2-selection__arrow b,
+        #editLocation + .select2-container--classic .select2-selection__arrow b {
+            position: static !important;
+            margin: 0 !important;
+            border-color: #555 transparent transparent transparent;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+        }
         .ui-datepicker {
             z-index: 9999 !important;
         }
-
         .dt-length select {
             margin-left: 10px !important;
         }
-
         .dt-button-collection {
             position: absolute !important;
             z-index: 2000 !important;
         }
-
         .dt-filter-btn .btn, .dt-export-btn .btn,
         .dt-state-btn .btn, .dt-load-btn .btn {
             white-space: nowrap;
@@ -301,11 +270,9 @@
                             <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <!-- Add Employee -->
                             <a href="#" id="addEmployeeId" class="dropdown-item">
                                 <i class="fa-solid fa-plus fa-xs mr-2"></i>Add
                             </a>
-                            <!-- View Employee -->
                             <a href="#" id="viewEmployeeId" class="dropdown-item">
                                 <i class="fa-solid fa-eye fa-xs mr-2"></i>View
                             </a>
@@ -319,15 +286,12 @@
                             <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <!-- Asset Assign -->
                             <a href="#" id="assetAssignId" class="dropdown-item">
                                 <i class="fa-solid fa-user-check fa-xs mr-2"></i>Assign
                             </a>
-                            <!-- Asset Inventory -->
                             <a href="#" id="assetInventoryId" class="dropdown-item">
                                 <i class="fa-solid fa-suitcase fa-xs mr-2"></i>Inventory
                             </a>
-                            <!-- Asset History -->
                             <a href="#" id="assetHistoryId" class="dropdown-item">
                                 <i class="fa-solid fa-clock-rotate-left fa-xs mr-2"></i>History
                             </a>
@@ -352,8 +316,7 @@
         <!-- Sidebar overlay backdrop -->
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
         <div id="pageScreen" class="container-fluid">
-
-            <!-- DASHBOARD -->
+            <!-- Dashnoard Section -->
             <div id="section-dashboard" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded">
                     <h3><i class="fa-solid fa-gauge-high mr-2"></i>Dashboard</h3>
@@ -396,7 +359,7 @@
                 </table>
             </div>
 
-            <!-- ADD EMPLOYEE -->
+            <!-- Add EMployee section -->
             <div id="section-addEmp" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-user mr-2"></i>Add Employee</span>
@@ -405,7 +368,6 @@
                    
                     </button>
                 </div>
-                <!-- Add Employee Modal -->
                 <div class="modal fade" id="addEmpModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
@@ -552,7 +514,7 @@
                 </div>
             </div>
 
-            <!-- VIEW EMPLOYEE -->
+            <!-- View Employee section -->
             <div id="section-viewEmp" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-users mr-2"></i>View Employees</span>
@@ -578,8 +540,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Edit Employee Modal -->
             <div class="modal fade" id="editEmpModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content border-0 shadow">
@@ -750,7 +710,7 @@
                 </div>
             </div>
 
-            <!-- ASSET ASSIGN -->
+            <!-- Asset Assign section -->
             <div id="section-assign" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-user-check mr-2"></i>Asset Assign</span>
@@ -759,7 +719,6 @@
                    
                     </button>
                 </div>
-                <!-- Assign Modal -->
                 <div class="modal fade" id="assignModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
@@ -796,7 +755,7 @@
                                         <small class="text-danger error-msg d-block"></small>
                                     </div>
                                 </div>
-                                <!-- Asset Name dropdown (loads on category change) -->
+                                <!-- Asset Name dropdown -->
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
@@ -837,7 +796,7 @@
                 </div>
             </div>
 
-            <!-- ASSET INVENTORY -->
+            <!-- Asset Inventory section -->
             <div id="section-inventory" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-suitcase mr-2"></i>Asset Inventory</span>
@@ -869,7 +828,6 @@
                         </table>
                     </div>
                 </div>
-                <!-- Add Asset Modal -->
                 <div class="modal fade" id="addAssetModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
@@ -1039,8 +997,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Image preview strip -->
                                 <div id="editAssetImagePreviewWrap" class="d-flex flex-wrap" style="gap: 8px; margin-top: 6px;"></div>
 
                             </div>
@@ -1055,7 +1011,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Asset Image Carousel Modal -->
                 <div class="modal fade" id="assetCarouselModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content border-0 shadow">
@@ -1079,7 +1034,7 @@
                 </div>
             </div>
 
-            <!-- ASSET HISTORY -->
+            <!-- Asset History Modal -->
             <div id="section-history" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-clock-rotate-left mr-2"></i>Asset History</span>
@@ -1115,7 +1070,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <!-- DataTables core + Bootstrap4 theme -->
+    <!-- DataTables core and Bootstrap4 theme -->
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
     <!-- DataTables Buttons -->
@@ -1137,7 +1092,8 @@
 
     <script>
         $(document).ready(function () {
-
+            // ------------ Data Definied ----------
+            // Data for depaatment and role
             const deptRoles = {
                 "IT": ["Software Engineer", "QA Engineer", "DevOps Engineer", "Frontend Developer", "Backend Developer"],
                 "HR": ["HR Manager", "Recruiter", "Payroll Specialist", "HR Coordinator"],
@@ -1247,7 +1203,7 @@
             const getHistory = () => JSON.parse(localStorage.getItem("assetHistory") || "[]");
             const saveHistory = (d) => localStorage.setItem("assetHistory", JSON.stringify(d));
 
-            //  asset data 
+            // asset data 
             const seedAssets = [
                 { id: "AST001", category: "Laptop", name: "Dell Inspiron 15", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
                 { id: "AST002", category: "Laptop", name: "HP EliteBook 840", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
@@ -1277,7 +1233,7 @@
             ];
             if (!localStorage.getItem("assets")) saveAssets(seedAssets);
 
-
+            // ------------ Nav and Side bar and Role change ----------
             // Role — Admin and Manager
             let isAdmin = true;
             const applyRole = () => {
@@ -1336,14 +1292,21 @@
                 hideSidebar();
                 if (onShow) onShow();
             };
-            $("#dashboardId").on("click", () => showSection($("#dashboardId"), "section-dashboard", loadDashboard));
-            $("#addEmployeeId").on("click", () => showSection($("#addEmployeeId"), "section-addEmp"));
-            $("#viewEmployeeId").on("click", () => showSection($("#viewEmployeeId"), "section-viewEmp", loadTable));
-            $("#assetAssignId").on("click", () => showSection($("#assetAssignId"), "section-assign"));
-            $("#assetInventoryId").on("click", () => showSection($("#assetInventoryId"), "section-inventory", loadAssetTable));
-            $("#assetHistoryId").on("click", () => showSection($("#assetHistoryId"), "section-history", loadHistory));
+            $("#dashboardId").on("click",
+                () => showSection($("#dashboardId"), "section-dashboard", loadDashboard));
+            $("#addEmployeeId").on("click",
+                () => showSection($("#addEmployeeId"), "section-addEmp"));
+            $("#viewEmployeeId").on("click",
+                () => showSection($("#viewEmployeeId"), "section-viewEmp", loadTable));
+            $("#assetAssignId").on("click",
+                () => showSection($("#assetAssignId"), "section-assign"));
+            $("#assetInventoryId").on("click",
+                () => showSection($("#assetInventoryId"), "section-inventory", loadAssetTable));
+            $("#assetHistoryId").on("click",
+                () => showSection($("#assetHistoryId"), "section-history", loadHistory));
             showSection($("#dashboardId"), "section-dashboard", loadDashboard);
 
+            // ------------ Datapicker for all input fields with date ----------
             // datepicker
             const initDatepickers = () => {
                 $(".datepicker").not(".hasDatepicker").datepicker({
@@ -1358,6 +1321,7 @@
             });
             initDatepickers();
 
+            // ------------ Error messagage for employee sections input fields ----------
             //validation error show/hide function
             const showError = (fieldId, msg) => {
                 $("#" + fieldId).closest(".input-group").siblings(".error-msg").text(msg);
@@ -1368,6 +1332,7 @@
                 $("#" + fieldId).removeClass("is-invalid").addClass("is-valid");
             };
 
+            // ------------ Dashboard section ----------
             //dashboard page
             function loadDashboard() {
                 const employees = getEmployees();
@@ -1380,7 +1345,7 @@
                 $("#unassignedAssets").text(assets.filter(a => a.status === "NA").length);
             }
 
-            // addUser Section
+            // ------------ addEmployee section ----------
             //validation on input
             const fnamePattern = /^[A-Za-z]+(['][A-Za-z]+)*'?$/;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1547,9 +1512,9 @@
             $("#cpass").on("input", validateCpass);
             $("#location").on("change", validateLocation);
 
+            // ------------ Department and role Multilevel dropdown ----------
             // department dropdown
             Object.keys(deptRoles).forEach(d => $("#dept").append(`<option value="${d}">${d}</option>`));
-
             // role dropdown
             $("#dept").on("change", function () {
                 const sel = $(this).val();
@@ -1564,6 +1529,7 @@
             });
             $("#deptrole").on("change", validateRole);
 
+            // ------------ select2 ----------
             // Select2 for location dropdown
             $("#location").select2({
                 theme: "classic",
@@ -1587,6 +1553,7 @@
                 }
             });
 
+            // ------------ Generate ID asset ----------
             // id function for emp
             const generateEmpId = () => {
                 const emps = getEmployees();
