@@ -33,14 +33,17 @@
             transition: left 300ms ease-in-out !important;
             overflow-y: auto;
         }
-        .navbar-collapse.collapsing {
-            left: -240px;
-            height: 100% !important;
-            transition: left 300ms ease-in-out !important;
-        }
-        .navbar-collapse.show {
-            left: 0;
-        }
+
+            .navbar-collapse.collapsing {
+                left: -240px;
+                height: 100% !important;
+                transition: left 300ms ease-in-out !important;
+            }
+
+            .navbar-collapse.show {
+                left: 0;
+            }
+
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -51,9 +54,11 @@
             z-index: 1049;
             display: none;
         }
-        .sidebar-overlay.active {
-            display: block;
-        }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
         .dropdown-menu {
             display: none;
             background: #343a40;
@@ -62,17 +67,21 @@
             position: static !important;
             float: none !important;
         }
-        .dropdown-menu.open {
-            display: block;
-        }
-        .dropdown-menu .dropdown-item {
-            color: #adb5bd;
-            padding: 0.4rem 0.5rem;
-        }
-        .dropdown-menu .dropdown-item:hover {
-            background: #495057;
-            color: #fff;
-        }
+
+            .dropdown-menu.open {
+                display: block;
+            }
+
+            .dropdown-menu .dropdown-item {
+                color: #adb5bd;
+                padding: 0.4rem 0.5rem;
+            }
+
+                .dropdown-menu .dropdown-item:hover {
+                    background: #495057;
+                    color: #fff;
+                }
+
         .role-badge {
             font-size: 0.7rem;
             padding: 2px 8px;
@@ -80,68 +89,128 @@
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        .role-badge.admin {
-            background: #28a745;
-            color: #fff;
-        }
-        .role-badge.manager {
-            background: #17a2b8;
-            color: #fff;
-        }
+
+            .role-badge.admin {
+                background: #28a745;
+                color: #fff;
+            }
+
+            .role-badge.manager {
+                background: #17a2b8;
+                color: #fff;
+            }
+
         .dash-table {
             table-layout: fixed;
             width: 100%;
         }
-        .dash-table th, .dash-table td {
-            width: 50%;
-            text-align: center;
-            vertical-align: middle;
-        }
+
+            .dash-table th, .dash-table td {
+                width: 50%;
+                text-align: center;
+                vertical-align: middle;
+            }
+
         .dash-table-4 th, .dash-table-4 td {
             width: 25%;
             text-align: center;
             vertical-align: middle;
         }
+
         .dash-count {
             font-size: 5rem;
             font-weight: 600;
         }
+
         .cat-summary-wrap {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-bottom: 1.5rem;
         }
+
         .cat-card {
-            flex: 1 1 160px;
+            flex: 1 1 170px;
+            min-width: 160px;
             background: #fff;
+            border: 1px solid #ced4da;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 14px 18px;
-            min-width: 150px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            padding: 12px 14px 12px;
+            box-sizing: border-box;
         }
-        .cat-card .cat-name {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
-        .cat-card .cat-total {
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
-        .cat-card .cat-sub {
-            font-size: 0.78rem;
-            color: #6c757d;
-            margin-top: 4px;
-        }
+
+            .cat-card .cat-name {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: #212529;
+                margin: 0 0 8px 0;
+                padding-bottom: 6px;
+                border-bottom: 2px solid #343a40;
+                letter-spacing: 0.2px;
+            }
+
+            .cat-card .cat-top-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin-bottom: 2px;
+            }
+
+            .cat-card .cat-top-label {
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: #6c757d;
+                padding-bottom: 1px;
+            }
+
+            .cat-card .cat-top-val {
+                font-size: 1.9rem;
+                font-weight: 700;
+                color: #212529;
+                line-height: 1.05;
+                margin-bottom: 8px;
+            }
+
+            .cat-card .cat-divider {
+                border: none;
+                border-top: 1px solid #dee2e6;
+                margin: 6px 0 8px;
+            }
+
+            .cat-card .cat-detail-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 2px 0;
+            }
+
+            .cat-card .cat-detail-label {
+                font-size: 0.76rem;
+                color: #495057;
+                white-space: nowrap;
+                padding-right: 10px;
+            }
+
+            .cat-card .cat-detail-val {
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: #212529;
+                min-width: 20px;
+                text-align: right;
+            }
+
         .status-active {
             color: #28a745;
             font-weight: 600;
         }
+
         .status-inactive {
             color: #dc3545;
             font-weight: 600;
         }
+
         .asset-thumb {
             width: 36px;
             height: 36px;
@@ -150,76 +219,87 @@
             border: 1px solid #dee2e6;
             cursor: pointer;
         }
+
         .location-wrapper {
             display: flex;
             align-items: stretch;
         }
-        .location-wrapper .location-label {
-            display: flex;
-            align-items: center;
-            padding: 0 0.75rem;
-            font-size: 1rem;
-            color: #495057;
-            background: #e9ecef;
-            border: 1px solid #ced4da;
-            border-right: none;
-            border-radius: 0.25rem 0 0 0.25rem;
-            white-space: nowrap;
-            min-height: 34px;
-        }
+
+            .location-wrapper .location-label {
+                display: flex;
+                align-items: center;
+                padding: 0 0.75rem;
+                font-size: 1rem;
+                color: #495057;
+                background: #e9ecef;
+                border: 1px solid #ced4da;
+                border-right: none;
+                border-radius: 0.25rem 0 0 0.25rem;
+                white-space: nowrap;
+                min-height: 34px;
+            }
+
         #location + .select2-container--classic,
         #editLocation + .select2-container--classic {
             flex: 1 1 auto;
             width: 100% !important;
         }
-        #location + .select2-container--classic .select2-selection--single,
-        #editLocation + .select2-container--classic .select2-selection--single {
-            height: 34px !important;
-            border: 1px solid #ced4da !important;
-            border-left: none !important;
-            border-radius: 0 0.25rem 0.25rem 0 !important;
-            display: flex !important;
-            align-items: center !important;
-            background-image: none;
-            padding: 0 8px;
-        }
-        #location + .select2-container--classic .select2-selection__rendered,
-        #editLocation + .select2-container--classic .select2-selection__rendered {
-            padding-left: 4px;
-            color: #495057;
-            line-height: normal;
-            flex: 1;
-        }
-        #location + .select2-container--classic .select2-selection__arrow,
-        #editLocation + .select2-container--classic .select2-selection__arrow {
-            position: relative !important;
-            height: 100% !important;
-            width: 28px;
-            top: 0 !important;
-            border-left: 1px solid #ced4da;
-            background: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #location + .select2-container--classic .select2-selection__arrow b,
-        #editLocation + .select2-container--classic .select2-selection__arrow b {
-            position: static !important;
-            margin: 0 !important;
-            border-color: #555 transparent transparent transparent;
-            border-style: solid;
-            border-width: 5px 4px 0 4px;
-        }
+
+            #location + .select2-container--classic .select2-selection--single,
+            #editLocation + .select2-container--classic .select2-selection--single {
+                height: 34px !important;
+                border: 1px solid #ced4da !important;
+                border-left: none !important;
+                border-radius: 0 0.25rem 0.25rem 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                background-image: none;
+                padding: 0 8px;
+            }
+
+            #location + .select2-container--classic .select2-selection__rendered,
+            #editLocation + .select2-container--classic .select2-selection__rendered {
+                padding-left: 4px;
+                color: #495057;
+                line-height: normal;
+                flex: 1;
+            }
+
+            #location + .select2-container--classic .select2-selection__arrow,
+            #editLocation + .select2-container--classic .select2-selection__arrow {
+                position: relative !important;
+                height: 100% !important;
+                width: 28px;
+                top: 0 !important;
+                border-left: 1px solid #ced4da;
+                background: #e9ecef;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                #location + .select2-container--classic .select2-selection__arrow b,
+                #editLocation + .select2-container--classic .select2-selection__arrow b {
+                    position: static !important;
+                    margin: 0 !important;
+                    border-color: #555 transparent transparent transparent;
+                    border-style: solid;
+                    border-width: 5px 4px 0 4px;
+                }
+
         .ui-datepicker {
             z-index: 9999 !important;
         }
+
         .dt-length select {
             margin-left: 10px !important;
         }
+
         .dt-button-collection {
             position: absolute !important;
             z-index: 2000 !important;
         }
+
         .dt-filter-btn .btn, .dt-export-btn .btn,
         .dt-state-btn .btn, .dt-load-btn .btn {
             white-space: nowrap;
@@ -991,18 +1071,20 @@
                                                 <span class="input-group-text"><i class="fa-solid fa-images mr-1"></i>Images</span>
                                             </div>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple />
+                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple="multiple" />
                                                 <label class="custom-file-label" for="editAssetImages">Choose images (multiple allowed)</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="editAssetImagePreviewWrap" class="d-flex flex-wrap" style="gap: 8px; margin-top: 6px;"></div>
-
                             </div>
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger mr-2 admin-only" id="deleteAssetBtn">
+                                        <i class="fa-solid fa-trash mr-2"></i>Delete
+                                    </button>
                                     <button type="button" class="btn btn-success admin-only" id="updateAssetBtn">
                                         <i class="fa-solid fa-check mr-2"></i>Update
                                     </button>
@@ -1033,7 +1115,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Asset History Modal -->
             <div id="section-history" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
@@ -1092,8 +1173,7 @@
 
     <script>
         $(document).ready(function () {
-            // ------------ Data Definied ----------
-            // Data for depaatment and role
+            // department and role data
             const deptRoles = {
                 "IT": ["Software Engineer", "QA Engineer", "DevOps Engineer", "Frontend Developer", "Backend Developer"],
                 "HR": ["HR Manager", "Recruiter", "Payroll Specialist", "HR Coordinator"],
@@ -1101,146 +1181,131 @@
                 "Marketing": ["Marketing Manager", "Content Writer", "SEO Specialist", "Brand Strategist"],
                 "Operations": ["Operations Manager", "Logistics Coordinator", "Supply Chain Analyst", "Warehouse Supervisor"]
             };
-
-            // Location dropdown 
+            //location data
             const locationData = [
                 {
                     text: "Tamil Nadu",
-                    children: [
-                        {
-                            id: "Chennai",
-                            text: "Chennai"
-                        },
-                        {
-                            id: "Coimbatore",
-                            text: "Coimbatore"
-                        },
-                        {
-                            id: "Madurai",
-                            text: "Madurai"
-                        },
-                        {
-                            id: "Salem",
-                            text: "Salem"
-                        }
-                    ]
+                    children: [{ id: "Chennai", text: "Chennai" }, { id: "Coimbatore", text: "Coimbatore" }, { id: "Madurai", text: "Madurai" }, { id: "Salem", text: "Salem" }]
                 },
                 {
                     text: "Karnataka",
-                    children: [
-                        {
-                            id: "Bangalore",
-                            text: "Bangalore"
-                        },
-                        {
-                            id: "Mysore",
-                            text: "Mysore"
-                        },
-                        {
-                            id: "Mangalore",
-                            text: "Mangalore"
-                        }
-                    ]
+                    children: [{ id: "Bangalore", text: "Bangalore" }, { id: "Mysore", text: "Mysore" }, { id: "Mangalore", text: "Mangalore" }]
                 },
                 {
                     text: "Maharashtra",
-                    children: [
-                        {
-                            id: "Mumbai",
-                            text: "Mumbai"
-                        },
-                        {
-                            id: "Pune",
-                            text: "Pune"
-                        },
-                        {
-                            id: "Nagpur",
-                            text: "Nagpur"
-                        }
-                    ]
+                    children: [{ id: "Mumbai", text: "Mumbai" }, { id: "Pune", text: "Pune" }, { id: "Nagpur", text: "Nagpur" }]
                 },
                 {
                     text: "Delhi",
-                    children: [
-                        {
-                            id: "New Delhi",
-                            text: "New Delhi"
-                        },
-                        {
-                            id: "Dwarka",
-                            text: "Dwarka"
-                        },
-                        {
-                            id: "Rohini",
-                            text: "Rohini"
-                        }
-                    ]
+                    children: [{ id: "New Delhi", text: "New Delhi" }, { id: "Dwarka", text: "Dwarka" }, { id: "Rohini", text: "Rohini" }]
                 },
                 {
                     text: "Telangana",
-                    children: [
-                        {
-                            id: "Hyderabad",
-                            text: "Hyderabad"
-                        },
-                        {
-                            id: "Warangal",
-                            text: "Warangal"
-                        },
-                        {
-                            id: "Nizamabad",
-                            text: "Nizamabad"
-                        }
-                    ]
+                    children: [{ id: "Hyderabad", text: "Hyderabad" }, { id: "Warangal", text: "Warangal" }, { id: "Nizamabad", text: "Nizamabad" }]
                 }
             ];
 
-            // localStorage functions
+            // localStorage function
             const getEmployees = () => JSON.parse(localStorage.getItem("employees") || "[]");
-            const saveEmployees = (d) => localStorage.setItem("employees", JSON.stringify(d));
+            const saveEmployees = d => localStorage.setItem("employees", JSON.stringify(d));
             const getAssets = () => JSON.parse(localStorage.getItem("assets") || "[]");
-            const saveAssets = (d) => localStorage.setItem("assets", JSON.stringify(d));
+            const saveAssets = d => localStorage.setItem("assets", JSON.stringify(d));
             const getHistory = () => JSON.parse(localStorage.getItem("assetHistory") || "[]");
-            const saveHistory = (d) => localStorage.setItem("assetHistory", JSON.stringify(d));
+            const saveHistory = d => localStorage.setItem("assetHistory", JSON.stringify(d));
 
-            // asset data 
+            // assets data
             const seedAssets = [
-                { id: "AST001", category: "Laptop", name: "Dell Inspiron 15", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST002", category: "Laptop", name: "HP EliteBook 840", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST003", category: "Laptop", name: "Lenovo ThinkPad E14", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST004", category: "Laptop", name: "Apple MacBook Air M2", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST005", category: "Laptop", name: "Asus VivoBook 15", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST006", category: "Monitor", name: "LG 24\" Full HD", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST007", category: "Monitor", name: "Dell UltraSharp 27\"", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST008", category: "Monitor", name: "Samsung 32\" Curved", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST009", category: "Monitor", name: "Acer Nitro 24\" FHD", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST010", category: "Monitor", name: "BenQ GW2480 24\"", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST011", category: "Keyboard", name: "Logitech MK270 Wireless", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST012", category: "Keyboard", name: "HP K1000 Wired", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST013", category: "Keyboard", name: "Dell KB216 Wired", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST014", category: "Keyboard", name: "Redragon K552 Mechanical", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST015", category: "Keyboard", name: "Logitech K380 Bluetooth", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST016", category: "Mouse", name: "HP X200 Wireless", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST017", category: "Mouse", name: "Logitech M185 Wireless", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST018", category: "Mouse", name: "Dell MS116 Wired", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST019", category: "Mouse", name: "Redragon M711 Gaming", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST020", category: "Mouse", name: "Razer DeathAdder V2", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST021", category: "Headset", name: "Jabra Evolve2 30", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST022", category: "Headset", name: "Sony WH-1000XM5", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST023", category: "Headset", name: "Logitech H390 USB", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST024", category: "Headset", name: "HP DHE-8009 Gaming", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" },
-                { id: "AST025", category: "Headset", name: "JBL Quantum 100", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "" }
+                { id: "AST001", category: "Laptop", name: "Dell Inspiron 15", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST002", category: "Laptop", name: "HP EliteBook 840", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST003", category: "Laptop", name: "Lenovo ThinkPad E14", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST004", category: "Laptop", name: "Apple MacBook Air M2", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST005", category: "Laptop", name: "Asus VivoBook 15", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST006", category: "Monitor", name: "LG 24\" Full HD", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST007", category: "Monitor", name: "Dell UltraSharp 27\"", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST008", category: "Monitor", name: "Samsung 32\" Curved", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST009", category: "Monitor", name: "Acer Nitro 24\" FHD", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST010", category: "Monitor", name: "BenQ GW2480 24\"", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST011", category: "Keyboard", name: "Logitech MK270 Wireless", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST012", category: "Keyboard", name: "HP K1000 Wired", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST013", category: "Keyboard", name: "Dell KB216 Wired", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST014", category: "Keyboard", name: "Redragon K552 Mechanical", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST015", category: "Keyboard", name: "Logitech K380 Bluetooth", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST016", category: "Mouse", name: "HP X200 Wireless", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST017", category: "Mouse", name: "Logitech M185 Wireless", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST018", category: "Mouse", name: "Dell MS116 Wired", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST019", category: "Mouse", name: "Redragon M711 Gaming", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST020", category: "Mouse", name: "Razer DeathAdder V2", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST021", category: "Headset", name: "Jabra Evolve2 30", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST022", category: "Headset", name: "Sony WH-1000XM5", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST023", category: "Headset", name: "Logitech H390 USB", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST024", category: "Headset", name: "HP DHE-8009 Gaming", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
+                { id: "AST025", category: "Headset", name: "JBL Quantum 100", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] }
             ];
             if (!localStorage.getItem("assets")) saveAssets(seedAssets);
 
-            // ------------ Nav and Side bar and Role change ----------
-            // Role — Admin and Manager
+            // generate id data
+            const generateEmpId = () => {
+                const maxNum = getEmployees().reduce((max, e) => {
+                    const n = parseInt((e.id || "EMP000").replace("EMP", ""), 10);
+                    return isNaN(n) ? max : Math.max(max, n);
+                }, 0);
+                return "EMP" + String(maxNum + 1).padStart(3, "0");
+            };
+            const generateAssetId = () => {
+                const maxNum = getAssets().reduce((max, a) => {
+                    const n = parseInt((a.id || "AST000").replace("AST", ""), 10);
+                    return isNaN(n) ? max : Math.max(max, n);
+                }, 0);
+                return "AST" + String(maxNum + 1).padStart(3, "0");
+            };
+
+            // date funtion
+            const parseDMY = (str) => {
+                if (!str || str === "—") return null;
+                const p = str.split("/");
+                if (p.length !== 3) return null;
+                const d = new Date(+p[2], +p[1] - 1, +p[0]);
+                return isNaN(d.getTime()) ? null : d;
+            };
+
+            // age verfication function
+            const calcAge = (dob) => {
+                const today = new Date();
+                let age = today.getFullYear() - dob.getFullYear();
+                const m = today.getMonth() - dob.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+                return age;
+            };
+            const getMax18Date = () => {
+                const d = new Date();
+                d.setFullYear(d.getFullYear() - 18);
+                return d;
+            };
+
+            // Datepicker
+            const initOrUpdateDatepicker = (selector, opts) => {
+                $(selector).each(function () {
+                    if ($(this).hasClass("hasDatepicker")) {
+                        $.each(opts, (k, v) => $(this).datepicker("option", k, v));
+                    } else {
+                        $(this).datepicker($.extend({
+                            dateFormat: "dd/mm/yy",
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: "1950:+10"
+                        }, opts));
+                    }
+                });
+            };
+
+            // Role toggle addmin and manager
             let isAdmin = true;
             const applyRole = () => {
                 if (isAdmin) {
                     $(".admin-only").show();
                     $("#roleLabel").text("ADMIN").removeClass("manager").addClass("admin");
-                } else {
+                }
+                else {
                     $(".admin-only").hide();
                     $("#roleLabel").text("MANAGER").removeClass("admin").addClass("manager");
                 }
@@ -1251,22 +1316,18 @@
             });
             applyRole();
 
-            // side nav
+            // sidebar
             const overlay = $("#sidebarOverlay");
-            $("#sidebarToggleBtn").on("click", function () {
+            const closeSidebar = () => {
+                $("#sidenav").removeClass("show");
+                overlay.removeClass("active");
+            };
+            $("#sidebarToggleBtn").on("click", () => {
                 $("#sidenav").addClass("show");
                 overlay.addClass("active");
             });
-            $("#closeSidebarBtn").on("click", function () {
-                $("#sidenav").removeClass("show");
-                overlay.removeClass("active");
-            });
-            overlay.on("click", function () {
-                $("#sidenav").removeClass("show");
-                overlay.removeClass("active");
-            });
-
-            // nav dropdown items
+            $("#closeSidebarBtn").on("click", closeSidebar);
+            overlay.on("click", closeSidebar);
             $(".sideNavToggle").on("click", function (e) {
                 e.preventDefault();
                 const menu = $(this).closest(".nav-item").find(".dropdown-menu");
@@ -1275,21 +1336,21 @@
                 if (!isOpen) menu.addClass("open");
             });
 
-            // display each page section
+            // sidebar navigations
             const allNavLinks = [
-                $("#dashboardId"), $("#addEmployeeId"), $("#viewEmployeeId"),
-                $("#assetAssignId"), $("#assetInventoryId"), $("#assetHistoryId")
+                $("#dashboardId"),
+                $("#addEmployeeId"),
+                $("#viewEmployeeId"),
+                $("#assetAssignId"),
+                $("#assetInventoryId"),
+                $("#assetHistoryId")
             ];
-            const hideSidebar = () => {
-                $("#sidenav").removeClass("show");
-                overlay.removeClass("active");
-            };
             const showSection = (activeLink, sectionId, onShow) => {
                 allNavLinks.forEach(l => l.removeClass("text-muted").addClass("text-light"));
                 activeLink.removeClass("text-light").addClass("text-muted");
                 $(".page-section").hide();
                 $("#" + sectionId).show();
-                hideSidebar();
+                closeSidebar();
                 if (onShow) onShow();
             };
             $("#dashboardId").on("click",
@@ -1297,7 +1358,7 @@
             $("#addEmployeeId").on("click",
                 () => showSection($("#addEmployeeId"), "section-addEmp"));
             $("#viewEmployeeId").on("click",
-                () => showSection($("#viewEmployeeId"), "section-viewEmp", loadTable));
+                () => showSection($("#viewEmployeeId"), "section-viewEmp", loadEmpTable));
             $("#assetAssignId").on("click",
                 () => showSection($("#assetAssignId"), "section-assign"));
             $("#assetInventoryId").on("click",
@@ -1306,53 +1367,59 @@
                 () => showSection($("#assetHistoryId"), "section-history", loadHistory));
             showSection($("#dashboardId"), "section-dashboard", loadDashboard);
 
-            // ------------ Datapicker for all input fields with date ----------
-            // datepicker
-            const initDatepickers = () => {
-                $(".datepicker").not(".hasDatepicker").datepicker({
-                    dateFormat: "dd/mm/yy",
-                    changeMonth: true,
-                    changeYear: true,
-                    yearRange: "1950:+0"
+            // init date picker on modal 
+            $(document).on("shown.bs.modal", "#addEmpModal", function () {
+                initOrUpdateDatepicker("#dob", {
+                    maxDate: getMax18Date(),
+                    yearRange: "1950:-18"
                 });
-            };
-            $(document).on("shown.bs.modal", function () {
-                initDatepickers();
             });
-            initDatepickers();
+            $(document).on("shown.bs.modal", "#editEmpModal", function () {
+                initOrUpdateDatepicker("#editDob", {
+                    maxDate: getMax18Date(),
+                    yearRange: "1950:-18"
+                });
+            });
+            $(document).on("shown.bs.modal", "#assignModal", function () {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                initOrUpdateDatepicker("#assignReturnDate", {
+                    minDate: tomorrow
+                });
+            });
+            $(document).on("shown.bs.modal", "#editAssetModal", function () {
+                initOrUpdateDatepicker("#editAssetReturnDate", {
+                    minDate: new Date()
+                });
+            });
 
-            // ------------ Error messagage for employee sections input fields ----------
-            //validation error show/hide function
-            const showError = (fieldId, msg) => {
-                $("#" + fieldId).closest(".input-group").siblings(".error-msg").text(msg);
-                $("#" + fieldId).removeClass("is-valid").addClass("is-invalid");
-            };
-            const clearError = (fieldId) => {
-                $("#" + fieldId).closest(".input-group").siblings(".error-msg").text("");
-                $("#" + fieldId).removeClass("is-invalid").addClass("is-valid");
-            };
-
-            // ------------ Dashboard section ----------
-            //dashboard page
-            function loadDashboard() {
-                const employees = getEmployees();
-                const assets = getAssets();
-                $("#totalEmp").text(employees.length);
-                $("#totalAssets").text(assets.length);
-                $("#activeEmp").text(employees.filter(e => e.status === "Active").length);
-                $("#inactiveEmp").text(employees.filter(e => e.status === "Inactive").length);
-                $("#assignedAssets").text(assets.filter(a => a.status === "A").length);
-                $("#unassignedAssets").text(assets.filter(a => a.status === "NA").length);
-            }
-
-            // ------------ addEmployee section ----------
-            //validation on input
+            // regex patterns
             const fnamePattern = /^[A-Za-z]+(['][A-Za-z]+)*'?$/;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!$%&])[A-Za-z\d@!$%&]{8,}$/;
+
+            //error functions
+            const showError = (id, msg) => {
+                $("#" + id).closest(".input-group").siblings(".error-msg").text(msg);
+                $("#" + id).removeClass("is-valid").addClass("is-invalid");
+            };
+            const clearError = (id) => {
+                $("#" + id).closest(".input-group").siblings(".error-msg").text("");
+                $("#" + id).removeClass("is-invalid").addClass("is-valid");
+            };
+            const showEditError = (id, msg) => {
+                $("#" + id).closest(".input-group").siblings(".error-msg").text(msg);
+                $("#" + id).removeClass("is-valid").addClass("is-invalid");
+            };
+            const clearEditError = (id) => {
+                $("#" + id).closest(".input-group").siblings(".error-msg").text("");
+                $("#" + id).removeClass("is-invalid").addClass("is-valid");
+            };
+
+            // add employee section ------------------------------------------------------------------
+            // add employee input validations
             const validateFname = () => {
                 const v = $("#fname").val();
-                $("#fname").removeClass("is-valid is-invalid");
                 if (!v.trim()) {
                     showError("fname", "Firstname is required!");
                     return false;
@@ -1370,7 +1437,6 @@
             };
             const validateLname = () => {
                 const v = $("#lname").val();
-                $("#lname").removeClass("is-valid is-invalid");
                 if (!v.trim()) {
                     showError("lname", "Lastname is required!");
                     return false;
@@ -1396,16 +1462,29 @@
                 return true;
             };
             const validateDob = () => {
-                const v = $("#dob").val().trim(); $("#dob").removeClass("is-valid is-invalid");
+                const v = $("#dob").val().trim();
                 if (!v) {
                     showError("dob", "Date of Birth is required!");
                     return false;
                 }
-                clearError("dob");
-                return true;
+                const dob = parseDMY(v);
+                if (!dob) {
+                    showError("dob", "Enter a valid date (DD/MM/YYYY)!");
+                    return false;
+                }
+                const age = calcAge(dob);
+                if (age < 18) {
+                    showError("dob", `Must be at least 18 years old. Entered age: ${age}.`);
+                    return false;
+                }
+                if (age > 60) {
+                    showError("dob", `Age ${age} exceeds the maximum allowed age of 60.`);
+                    return false;
+                }
+                clearError("dob"); return true;
             };
             const validateEmail = () => {
-                const v = $("#email").val(); $("#email").removeClass("is-valid is-invalid");
+                const v = $("#email").val();
                 if (!v.trim()) {
                     showError("email", "Email is required!");
                     return false;
@@ -1414,11 +1493,16 @@
                     showError("email", "Enter a valid email!");
                     return false;
                 }
+                const exists = getEmployees().some(e => e.email.toLowerCase() === v.trim().toLowerCase());
+                if (exists) {
+                    showError("email", "This email is already registered!");
+                    return false;
+                }
                 clearError("email");
                 return true;
             };
             const validateContact = () => {
-                const v = $("#contact").val(); $("#contact").removeClass("is-valid is-invalid");
+                const v = $("#contact").val();
                 if (!v.trim()) {
                     showError("contact", "Contact is required!");
                     return false;
@@ -1427,10 +1511,16 @@
                     showError("contact", "Enter a valid 10-digit number!");
                     return false;
                 }
-                clearError("contact"); return true;
+                const exists = getEmployees().some(e => e.contact === v.trim());
+                if (exists) {
+                    showError("contact", "This contact number is already registered!");
+                    return false;
+                }
+                clearError("contact");
+                return true;
             };
             const validatePass = () => {
-                const v = $("#pass").val(); $("#pass").removeClass("is-valid is-invalid");
+                const v = $("#pass").val();
                 if (!v.trim()) {
                     showError("pass", "Password is required!");
                     return false;
@@ -1468,12 +1558,13 @@
             const validateDept = () => {
                 const v = $("#dept").val();
                 const errEl = $("#dept").closest(".input-group").siblings(".error-msg");
-                $("#dept").removeClass("is-valid is-invalid");
                 if (!v) {
-                    errEl.text("Department is required!"); $("#dept").addClass("is-invalid");
+                    errEl.text("Department is required!");
+                    $("#dept").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                errEl.text(""); $("#dept").addClass("is-valid");
+                errEl.text("");
+                $("#dept").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateRole = () => {
@@ -1481,14 +1572,14 @@
                     $("#deptrole").closest(".input-group").siblings(".error-msg").text("Select a department first!");
                     return false;
                 }
-                const v = $("#deptrole").val(); const errEl = $("#deptrole").closest(".input-group").siblings(".error-msg");
-                $("#deptrole").removeClass("is-valid is-invalid");
+                const v = $("#deptrole").val();
+                const errEl = $("#deptrole").closest(".input-group").siblings(".error-msg");
                 if (!v) {
-                    errEl.text("Role is required!"); $("#deptrole").addClass("is-invalid");
+                    errEl.text("Role is required!");
+                    $("#deptrole").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                errEl.text(""); $("#deptrole").addClass("is-valid");
-                return true;
+                errEl.text(""); $("#deptrole").removeClass("is-invalid").addClass("is-valid"); return true;
             };
             const validateLocation = () => {
                 const v = $("#location").val();
@@ -1497,7 +1588,8 @@
                     errEl.text("Location is required!");
                     return false;
                 }
-                errEl.text(""); return true;
+                errEl.text("");
+                return true;
             };
             $("#fname").on("input", validateFname);
             $("#lname").on("input", validateLname);
@@ -1512,13 +1604,12 @@
             $("#cpass").on("input", validateCpass);
             $("#location").on("change", validateLocation);
 
-            // ------------ Department and role Multilevel dropdown ----------
-            // department dropdown
+            // multilevel dropdown
             Object.keys(deptRoles).forEach(d => $("#dept").append(`<option value="${d}">${d}</option>`));
-            // role dropdown
             $("#dept").on("change", function () {
                 const sel = $(this).val();
                 $("#deptrole").html('<option value="">Select Role</option>').prop("disabled", true).removeClass("is-valid is-invalid");
+                $("#deptrole").closest(".input-group").siblings(".error-msg").text("");
                 if (!sel) {
                     validateDept();
                     return;
@@ -1529,8 +1620,7 @@
             });
             $("#deptrole").on("change", validateRole);
 
-            // ------------ select2 ----------
-            // Select2 for location dropdown
+            // Select2 
             $("#location").select2({
                 theme: "classic",
                 placeholder: "Select Location",
@@ -1539,7 +1629,7 @@
                 dropdownParent: $("#addEmpModal")
             });
 
-            // toggle for password
+            // Password toggle
             $(document).on("click", ".toggle-password", function () {
                 const inp = $(this).closest(".input-group").find("input");
                 const ico = $(this).find("i");
@@ -1553,15 +1643,7 @@
                 }
             });
 
-            // ------------ Generate ID asset ----------
-            // id function for emp
-            const generateEmpId = () => {
-                const emps = getEmployees();
-                const last = emps.length > 0 ? emps[emps.length - 1].id : "EMP000";
-                return "EMP" + String(parseInt(last.replace("EMP", "")) + 1).padStart(3, "0");
-            };
-
-            // addUser submit
+            // add employee submit
             $("#addEmpBtn").on("click", function () {
                 const ok = [
                     validateFname(),
@@ -1577,11 +1659,13 @@
                     validateLocation()
                 ];
                 if (!ok.every(Boolean)) return;
+                const fn = $("#fname").val().trim();
+                const ln = $("#lname").val().trim();
                 const emp = {
                     id: generateEmpId(),
-                    firstname: $("#fname").val().trim(),
-                    lastname: $("#lname").val().trim(),
-                    fullname: `${$("#fname").val().trim()} ${$("#lname").val().trim()}`,
+                    firstname: fn,
+                    lastname: ln,
+                    fullname: `${fn} ${ln}`,
                     gender: $("input[name='gender']:checked").val(),
                     dob: $("#dob").val().trim(),
                     email: $("#email").val().trim(),
@@ -1597,15 +1681,11 @@
                 const emps = getEmployees();
                 emps.push(emp);
                 saveEmployees(emps);
-                Swal.fire({
-                    title: "Success",
-                    icon: "success",
-                    text: `${emp.fullname} added successfully!`
-                });
+                Swal.fire({ title: "Success", icon: "success", text: `${emp.fullname} added successfully!` });
                 $("#addEmpModal").modal("hide");
             });
 
-            // reset input fields on modal close
+            // reset input field on modal close
             $("#addEmpModal").on("hidden.bs.modal", function () {
                 $("#fname,#lname,#dob,#email,#contact,#pass,#cpass").val("").removeClass("is-valid is-invalid");
                 $("input[name='gender']").prop("checked", false);
@@ -1613,22 +1693,23 @@
                 $("#deptrole").html('<option value="">Select Role</option>').prop("disabled", true).removeClass("is-valid is-invalid");
                 $("#location").val(null).trigger("change");
                 $(".error-msg").text("").removeClass("text-success").addClass("text-danger");
+                $("#pass,#cpass").attr("type", "password");
+                $(".toggle-password i").removeClass("fa-eye-slash").addClass("fa-eye");
             });
 
-            //view employee section
-            let table = null;
+            // dashboard section -----------------------------------------------------------------------
+            function loadDashboard() {
+                const employees = getEmployees();
+                const assets = getAssets();
+                $("#totalEmp").text(employees.length);
+                $("#totalAssets").text(assets.length);
+                $("#activeEmp").text(employees.filter(e => e.status === "Active").length);
+                $("#inactiveEmp").text(employees.filter(e => e.status === "Inactive").length);
+                $("#assignedAssets").text(assets.filter(a => a.status === "A").length);
+                $("#unassignedAssets").text(assets.filter(a => a.status === "NA").length);
+            }
 
-            // validate edit error show/hide function
-            const showEditError = (id, msg) => {
-                $("#" + id).closest(".input-group").siblings(".error-msg").text(msg);
-                $("#" + id).removeClass("is-valid").addClass("is-invalid");
-            };
-            const clearEditError = (id) => {
-                $("#" + id).closest(".input-group").siblings(".error-msg").text("");
-                $("#" + id).removeClass("is-invalid").addClass("is-valid");
-            };
-
-            //validate edit form
+            // edit employee validators
             const validateEditFname = () => {
                 const v = $("#editFname").val();
                 if (!v.trim()) {
@@ -1643,10 +1724,8 @@
                     showEditError("editFname", "Only letters and apostrophe allowed!");
                     return false;
                 }
-                clearEditError("editFname");
-                return true;
+                clearEditError("editFname"); return true;
             };
-
             const validateEditLname = () => {
                 const v = $("#editLname").val();
                 if (!v.trim()) {
@@ -1679,12 +1758,27 @@
                     showEditError("editDob", "DOB required!");
                     return false;
                 }
+                const dob = parseDMY(v);
+                if (!dob) {
+                    showEditError("editDob", "Enter a valid date!");
+                    return false;
+                }
+                const age = calcAge(dob);
+                if (age < 18) {
+                    showEditError("editDob", `Must be at least 18. Entered age: ${age}.`);
+                    return false;
+                }
+                if (age > 60) {
+                    showEditError("editDob", `Age ${age} exceeds maximum of 60.`);
+                    return false;
+                }
                 clearEditError("editDob");
                 return true;
             };
             const validateEditEmail = () => {
-                const v = $("#editEmail").val();
-                if (!v.trim()) {
+                const v = $("#editEmail").val().trim();
+                const id = $("#editEmpId").val();
+                if (!v) {
                     showEditError("editEmail", "Email required!");
                     return false;
                 }
@@ -1692,17 +1786,28 @@
                     showEditError("editEmail", "Invalid email!");
                     return false;
                 }
+                const exists = getEmployees().some(e => e.id !== id && e.email.toLowerCase() === v.toLowerCase());
+                if (exists) {
+                    showEditError("editEmail", "Email already in use by another employee!");
+                    return false;
+                }
                 clearEditError("editEmail");
                 return true;
             };
             const validateEditContact = () => {
-                const v = $("#editContact").val();
-                if (!v.trim()) {
+                const v = $("#editContact").val().trim();
+                const id = $("#editEmpId").val();
+                if (!v) {
                     showEditError("editContact", "Contact required!");
                     return false;
                 }
                 if (!/^[0-9]{10}$/.test(v)) {
                     showEditError("editContact", "Enter 10 digits!");
+                    return false;
+                }
+                const exists = getEmployees().some(e => e.id !== id && e.contact === v);
+                if (exists) {
+                    showEditError("editContact", "Contact already in use!");
                     return false;
                 }
                 clearEditError("editContact");
@@ -1742,12 +1847,13 @@
             const validateEditDept = () => {
                 const v = $("#editDept").val();
                 const errEl = $("#editDept").closest(".input-group").siblings(".error-msg");
-                $("#editDept").removeClass("is-valid is-invalid");
                 if (!v) {
-                    errEl.text("Department required!"); $("#editDept").addClass("is-invalid");
+                    errEl.text("Department required!");
+                    $("#editDept").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                errEl.text(""); $("#editDept").addClass("is-valid");
+                errEl.text("");
+                $("#editDept").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateEditRole = () => {
@@ -1757,12 +1863,11 @@
                 }
                 const v = $("#editRole").val();
                 const errEl = $("#editRole").closest(".input-group").siblings(".error-msg");
-                $("#editRole").removeClass("is-valid is-invalid");
                 if (!v) {
-                    errEl.text("Role required!"); $("#editRole").addClass("is-invalid");
+                    errEl.text("Role required!"); $("#editRole").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                errEl.text(""); $("#editRole").addClass("is-valid");
+                errEl.text(""); $("#editRole").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateEditLoc = () => {
@@ -1788,7 +1893,7 @@
             $("#editCpass").on("input", validateEditCpass);
             $("#editLocation").on("change", validateEditLoc);
 
-            // Select2 for edit location dropdown
+            // edit form multilevel dropdown
             Object.keys(deptRoles).forEach(d => $("#editDept").append(`<option value="${d}">${d}</option>`));
             $("#editDept").on("change", function () {
                 validateEditDept();
@@ -1799,17 +1904,14 @@
                 $("#editRole").prop("disabled", false);
             });
             $("#editRole").on("change", validateEditRole);
-            $("#editLocation").select2({
-                theme: "classic",
-                placeholder: "Select Location",
-                allowClear: true,
-                data: locationData,
-                dropdownParent: $("#editEmpModal")
-            });
 
-            // fill edit form with data
+            // Select2
+            $("#editLocation").select2({ theme: "classic", placeholder: "Select Location", allowClear: true, data: locationData, dropdownParent: $("#editEmpModal") });
+
+            // fill edit form input fields
             const populateEditModal = (emp, mode) => {
-                $("#editEmpId").val(emp.id); $("#editMode").val(mode);
+                $("#editEmpId").val(emp.id);
+                $("#editMode").val(mode);
                 const isChild = mode === "child";
                 const isParent = mode === "parent";
                 $("#editFname").val(emp.firstname || "").prop("disabled", isChild);
@@ -1837,6 +1939,10 @@
                 $("#editLocation").val(loc).trigger("change").prop("disabled", isParent);
                 $("#editJoinDate").val(emp.joindate || "");
                 $("#editEndDate").val(emp.enddate || "").prop("disabled", isParent);
+                const joinDateObj = parseDMY(emp.joindate);
+                const minRelieve = joinDateObj ? new Date(joinDateObj.getTime() + 86400000) : new Date();
+                initOrUpdateDatepicker("#editEndDate", { minDate: minRelieve });
+
                 if (isParent) {
                     $("#editDept,#editRole").addClass("opacity-50");
                     $("#editLocation + .select2-container").css("opacity", "0.5");
@@ -1850,15 +1956,17 @@
                 }
             };
 
-            // reset input fields on modal close
+            // reset edit input field on modal close
             $("#editEmpModal").on("hidden.bs.modal", function () {
-                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass,#editJoinDate,#editEndDate").val("").prop("disabled", false);
+                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass,#editJoinDate,#editEndDate")
+                    .val("").prop("disabled", false).removeClass("is-valid is-invalid");
                 $("input[name='editGender']").prop("checked", false).prop("disabled", false);
-                $("#editDept").val("").prop("disabled", false);
-                $("#editRole").html('<option value="">Select Role</option>').prop("disabled", true);
+                $("#editDept").val("").prop("disabled", false).removeClass("is-valid is-invalid");
+                $("#editRole").html('<option value="">Select Role</option>').prop("disabled", true).removeClass("is-valid is-invalid");
                 $("#editLocation").val(null).trigger("change").prop("disabled", false);
-                $(".error-msg").text("");
-                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass").closest(".input-group").css("opacity", "1");
+                $(".error-msg").text("").removeClass("text-success").addClass("text-danger");
+                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass")
+                    .closest(".input-group").css("opacity", "1");
                 $("input[name='editGender']").closest(".row").css("opacity", "1");
                 $("#editDept,#editRole").removeClass("opacity-50");
                 $("#editLocation + .select2-container").css("opacity", "1");
@@ -1867,62 +1975,48 @@
                 $("#editStatus").val("Active").prop("disabled", false);
             });
 
-            // format for child row
+            // child row format
             const childFormat = (d) => {
                 const loc = Array.isArray(d.location) ? d.location[0] || "—" : (d.location || "—");
                 return `<table class="table table-sm table-bordered table-striped child-table">
-                    <thead class="thead-dark text-center">
-                        <tr>
-                            <th rowspan="2" class="text-center align-middle">Location</th>
-                            <th colspan="2" class="text-center align-middle">Position</th>
-                            <th rowspan="2" class="text-center align-middle">Join Date</th>
-                            <th rowspan="2" class="text-center align-middle">Relieve Date</th>
-                            <th rowspan="2" class="text-center align-middle">Action</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center align-middle">Department</th>
-                            <th class="text-center align-middle">Role</th>
-                        </tr>
-                    </thead>
-                    <tbody><tr class="text-center">
-                        <td>${loc}</td><td>${d.department || "—"}</td><td>${d.role || "—"}</td>
-                        <td>${d.joindate || "—"}</td><td>${d.enddate || "—"}</td>
-                        <td><button type="button" class="btn btn-sm btn-outline-primary childEditBtn" data-id="${d.id}"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                    </tr></tbody>
-                </table>`;
-            };
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th rowspan="2" class="text-center align-middle">Location</th>
+                                    <th colspan="2" class="text-center align-middle">Position</th>
+                                    <th rowspan="2" class="text-center align-middle">Join Date</th>
+                                    <th rowspan="2" class="text-center align-middle">Relieve Date</th>
+                                    <th rowspan="2" class="text-center align-middle">Action</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center align-middle">Department</th>
+                                    <th class="text-center align-middle">Role</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr class="text-center">
+                                <td>${loc}</td><td>${d.department || "—"}</td><td>${d.role || "—"}</td>
+                                <td>${d.joindate || "—"}</td><td>${d.enddate || "—"}</td>
+                                <td><button type="button" class="btn btn-sm btn-outline-primary childEditBtn" data-id="${d.id}">
+                                    <i class="fa-solid fa-pen-to-square"></i></button></td>
+                            </tr></tbody>
+                        </table>`;
+                };
 
-            // table re draw
-            const rebuildTableHeader = () => {
-                $("#empTable thead").empty().append(`
-                    <tr class="text-center">
-                        <th style="width:40px"></th>
-                        <th rowspan="2">Full Name</th><th rowspan="2">Gender</th><th rowspan="2">DOB</th>
-                        <th rowspan="2">Email</th><th rowspan="2">Contact</th>
-                        <th rowspan="2">Status</th><th rowspan="2">Action</th><th rowspan="2">Profile</th>
-                    </tr>`);
-                $("#empTable thead").addClass("thead-dark");
-            };
-
-            // DT top control allignment
+            // dom layout
             const dtDom =
                 '<"row"<"col-12"<"dt-filter-btn">>>' +
                 '<"row"<"col-md-12 mb-2"P>>' +
                 '<"row align-items-center mb-2"<"col-md-2 mt-n3"l><"col-md-1"<"dt-state-btn">><"col-md-1"<"dt-load-btn">><"col-md-8 d-flex justify-content-end"<"dt-export-btn">f>>' +
                 '<"d-none"B>t<"d-flex justify-content-between align-items-center pt-2"ip>';
 
-            //DT button 
             const dtButtons = [
                 {
                     text: '<i class="fa-solid fa-filter mr-1"></i> Filters',
                     className: "btn btn-sm mb-2",
-                    action: function () {
-                        $(".dtsp-panesContainer").slideToggle(200);
-                    }
+                    action: () => $(".dtsp-panesContainer").slideToggle(200)
                 },
                 {
                     extend: "collection",
-                    text: '<i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i> Export',
+                    text: '<i class="fa-solid fa-bars" style="color:#fff;"></i> Export',
                     className: "btn btn-sm mb-3",
                     buttons: [
                         {
@@ -1964,19 +2058,31 @@
                 }
             ];
 
-            // Load employee DT
-            function loadTable() {
+            // rebuild table for child row
+            let empTable = null;
+            const rebuildEmpTableHeader = () => {
+                $("#empTable thead").empty().append(`
+                <tr class="text-center thead-dark">
+                    <th style="width:40px"></th>
+                    <th>Full Name</th><th>Gender</th><th>DOB</th>
+                    <th>Email</th><th>Contact</th>
+                    <th>Status</th><th>Action</th><th>Profile</th>
+                </tr>`);
+            };
+
+            //load table
+            function loadEmpTable() {
                 const employees = getEmployees();
-                if (table && $.fn.DataTable.isDataTable("#empTable")) {
-                    table.clear().rows.add(employees).draw();
-                    rebuildTableHeader();
+                if (empTable && $.fn.DataTable.isDataTable("#empTable")) {
+                    empTable.clear().rows.add(employees).draw();
+                    rebuildEmpTableHeader();
                     return;
                 }
                 if ($.fn.DataTable.isDataTable("#empTable")) {
                     $("#empTable").DataTable().destroy();
                     $("#empTable tbody").empty();
                 }
-                table = $("#empTable").DataTable({
+                empTable = $("#empTable").DataTable({
                     data: employees,
                     pageLength: 10,
                     ordering: true,
@@ -2002,12 +2108,10 @@
                     },
                     dom: dtDom,
                     buttons: dtButtons,
-                    columnDefs: [
-                        {
-                            targets: [0, 7, 8],
-                            searchPanes: { show: false }
-                        }
-                    ],
+                    columnDefs: [{
+                        targets: [0, 7, 8],
+                        searchPanes: { show: false }
+                    }],
                     columns: [
                         {
                             className: "dt-control text-center align-middle",
@@ -2060,10 +2164,9 @@
                             className: "text-center align-middle",
                             defaultContent: "—",
                             searchPanes: { show: true },
-                            render: function (d) {
+                            render: d => {
                                 const cls = d === "Active" ? "status-active" : "status-inactive";
-                                const ico = d === "Active" ? '<i class="fa-solid fa-circle-check mr-1"></i>'
-                                    : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
+                                const ico = d === "Active" ? '<i class="fa-solid fa-circle-check mr-1"></i>' : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
                                 return `<span class="${cls}">${ico}${d || "—"}</span>`;
                             }
                         },
@@ -2073,10 +2176,9 @@
                             searchable: false,
                             searchPanes: { show: false },
                             className: "text-center align-middle",
-                            render: function (d) {
-                                return `<button type="button" class="btn btn-sm btn-outline-primary parentEditBtn" data-id="${d.id}">
-                                <i class="fa-solid fa-pen-to-square"></i></button>`;
-                            }
+                            render: d => `<button type="button" class="btn btn-sm btn-outline-primary parentEditBtn" data-id="${d.id}">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>`
                         },
                         {
                             data: null,
@@ -2084,14 +2186,13 @@
                             searchable: false,
                             searchPanes: { show: false },
                             className: "text-center align-middle",
-                            render: function (d) {
-                                return `<button type="button" class="btn btn-sm btn-outline-info profileBtn" data-id="${d.id}">
-                                <i class="fa-solid fa-user"></i></button>`;
-                            }
+                            render: d => `<button type="button" class="btn btn-sm btn-outline-info profileBtn" data-id="${d.id}">
+                                            <i class="fa-solid fa-user"></i>
+                                        </button>`
                         }
                     ],
                     initComplete: function () {
-                        rebuildTableHeader();
+                        rebuildEmpTableHeader();
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
                         c.find(".dt-filter-btn").append(b.eq(0).detach());
@@ -2101,32 +2202,58 @@
                         $(".dtsp-panesContainer").hide();
                     }
                 });
-                table.on("click", "tbody td.dt-control", function (e) {
+
+                empTable.on("click", "tbody td.dt-control", function (e) {
                     const tr = e.target.closest("tr");
-                    const row = table.row(tr);
-                    if (row.child.isShown()) {
-                        row.child.hide();
-                        $(tr).removeClass("shown");
-                    }
-                    else {
-                        row.child(childFormat(row.data())).show();
-                        $(tr).addClass("shown");
-                    }
+                    const row = empTable.row(tr);
+                    if (row.child.isShown()) { row.child.hide(); $(tr).removeClass("shown"); }
+                    else { row.child(childFormat(row.data())).show(); $(tr).addClass("shown"); }
                 });
             }
 
-            //prent row edit
+            // parent row edit
             $("#empTable").on("click", ".parentEditBtn", function () {
                 const emp = getEmployees().find(e => e.id === $(this).data("id"));
                 if (!emp) return;
-                populateEditModal(emp, "parent"); $("#editEmpModal").modal("show");
+                populateEditModal(emp, "parent");
+                $("#editEmpModal").modal("show");
             });
 
             // child row edit
             $(document).on("click", ".childEditBtn", function () {
                 const emp = getEmployees().find(e => e.id === $(this).data("id"));
                 if (!emp) return;
-                populateEditModal(emp, "child"); $("#editEmpModal").modal("show");
+                populateEditModal(emp, "child");
+                $("#editEmpModal").modal("show");
+            });
+
+            // profile button to show user profile
+            $("#empTable").on("click", ".profileBtn", function () {
+                const emp = getEmployees().find(e => e.id === $(this).data("id"));
+                if (!emp) return;
+                const loc = Array.isArray(emp.location) ? emp.location[0] || "—" : (emp.location || "—");
+                // Calculate age from stored DOB
+                const dobDate = parseDMY(emp.dob);
+                const ageStr = dobDate ? `${calcAge(dobDate)} years` : "—";
+                Swal.fire({
+                    title: emp.fullname,
+                    icon: "info",
+                    width: 520,
+                    html: `<table class="table table-sm table-bordered text-left mt-2">
+                                <tr><th style="width:40%">Employee ID</th><td>${emp.id}</td></tr>
+                                <tr><th>Gender</th><td>${emp.gender || "—"}</td></tr>
+                                <tr><th>Date of Birth</th><td>${emp.dob || "—"} (${ageStr})</td></tr>
+                                <tr><th>Email</th><td>${emp.email || "—"}</td></tr>
+                                <tr><th>Contact</th><td>${emp.contact || "—"}</td></tr>
+                                <tr><th>Department</th><td>${emp.department || "—"}</td></tr>
+                                <tr><th>Role</th><td>${emp.role || "—"}</td></tr>
+                                <tr><th>Location</th><td>${loc}</td></tr>
+                                <tr><th>Join Date</th><td>${emp.joindate || "—"}</td></tr>
+                                <tr><th>Relieve Date</th><td>${emp.enddate || "—"}</td></tr>
+                                <tr><th>Status</th><td>${emp.status || "—"}</td></tr>
+                            </table>`,
+                    confirmButtonText: "Close"
+                });
             });
 
             // Update employee
@@ -2138,14 +2265,8 @@
                 if (idx === -1) return;
                 if (mode === "parent") {
                     const ok = [
-                        validateEditFname(),
-                        validateEditLname(),
-                        validateEditGender(),
-                        validateEditDob(),
-                        validateEditEmail(),
-                        validateEditContact(),
-                        validateEditPass(),
-                        validateEditCpass()
+                        validateEditFname(), validateEditLname(), validateEditGender(), validateEditDob(),
+                        validateEditEmail(), validateEditContact(), validateEditPass(), validateEditCpass()
                     ];
                     if (!ok.every(Boolean)) return;
                     emps[idx].firstname = $("#editFname").val().trim();
@@ -2158,10 +2279,7 @@
                     emps[idx].password = $("#editPassword").val().trim();
                     emps[idx].status = $("#editStatus").val();
                 } else {
-                    const ok = [
-                        validateEditDept(),
-                        validateEditRole(),
-                        validateEditLoc()];
+                    const ok = [validateEditDept(), validateEditRole(), validateEditLoc()];
                     if (!ok.every(Boolean)) return;
                     emps[idx].department = $("#editDept").val();
                     emps[idx].role = $("#editRole").val();
@@ -2170,12 +2288,9 @@
                     emps[idx].status = $("#editStatus").val();
                 }
                 saveEmployees(emps);
-                $("#editEmpModal").modal("hide"); loadTable();
-                Swal.fire({
-                    icon: "success",
-                    title: "Updated!",
-                    text: `${emps[idx].fullname}'s updated successfully.`
-                });
+                $("#editEmpModal").modal("hide");
+                loadEmpTable();
+                Swal.fire({ icon: "success", title: "Updated!", text: `${emps[idx].fullname} updated successfully.` });
             });
 
             // Delete employee
@@ -2184,18 +2299,31 @@
                 const emps = getEmployees();
                 const emp = emps.find(e => e.id === id);
                 if (!emp) return;
+                const blockedAssets = getAssets().filter(a =>
+                    (a.status === "A" || a.status === "UM") && a.assignedTo === emp.fullname
+                );
+                const assetList = blockedAssets.map(a => `${a.name} (${a.id}) — ${a.status === "A" ? "Assigned" : "Under Maintenance"}`).join("\n");
+
+                Swal.fire({
+                    icon: "warning",
+                    title: "Cannot Delete",
+                    html: `<b>${emp.fullname}</b> still has assets linked to them:<br><br>
+                           <pre style="text-align:left;font-size:0.85rem">${assetList}</pre>
+                           Please return or reassign all assets before deleting.`
+                });
                 Swal.fire({
                     title: "Delete Employee?",
-                    text: `Delete ${emp.fullname}?`,
+                    text: `Delete ${emp.fullname}? This action cannot be undone.`,
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#dc3545",
                     confirmButtonText: "Delete"
                 })
-                    .then(function (r) {
+                    .then(r => {
                         if (r.isConfirmed) {
                             saveEmployees(emps.filter(e => e.id !== id));
-                            $("#editEmpModal").modal("hide"); loadTable();
+                            $("#editEmpModal").modal("hide");
+                            loadEmpTable();
                             Swal.fire({
                                 icon: "success",
                                 title: "Deleted!",
@@ -2205,22 +2333,20 @@
                     });
             });
 
-            // Asset assign Section
-            //load employee and asset details
+            // asset assign
             $("#assignModal").on("show.bs.modal", function () {
                 const emps = getEmployees();
                 const assets = getAssets();
-
                 $("#assignEmployee").html('<option value="">Select Employee</option>');
-                emps.filter(e => e.status === "Active").forEach(function (emp) {
-                    $("#assignEmployee").append(`<option value="${emp.id}">${emp.fullname} — ${emp.department} (${emp.id})</option>`);
-                });
-
+                emps.filter(e => e.status === "Active").forEach(emp =>
+                    $("#assignEmployee").append(`<option value="${emp.id}">${emp.fullname} — ${emp.department} (${emp.id})</option>`)
+                );
                 const cats = [...new Set(assets.filter(a => a.status === "NA").map(a => a.category))];
                 $("#assignCategory").html('<option value="">Select Category</option>');
                 cats.forEach(c => $("#assignCategory").append(`<option value="${c}">${c}</option>`));
                 $("#assignAsset").html('<option value="">Select Asset</option>').prop("disabled", true);
                 $("#assignStartDate").val(new Date().toLocaleDateString("en-GB"));
+                $("#assignReturnDate").val("");
             });
 
             $("#assignCategory").on("change", function () {
@@ -2238,28 +2364,40 @@
                 $("#assignAsset").prop("disabled", false);
             });
 
-            // validate assign asset
+            // asset check limit
+            $("#assignEmployee").on("change", function () {
+                validateAssignEmp();
+                const empId = $(this).val();
+                const assets = getAssets();
+                const empName = $(this).find("option:selected").text().split(" — ")[0];
+                const count = assets.filter(a => a.assignedTo === empName && a.status === "A").length;
+                const warnEl = $(this).closest(".input-group").siblings(".error-msg");
+                if (empId && count >= 3) {
+                    warnEl.removeClass("text-danger").addClass("text-warning")
+                        .text(`Warning: ${empName} already has ${count} asset(s) assigned.`);
+                }
+            });
+
+            // asset validation
             const validateAssignEmp = () => {
                 const v = $("#assignEmployee").val();
                 const err = $("#assignEmployee").closest(".input-group").siblings(".error-msg");
-                $("#assignEmployee").removeClass("is-valid is-invalid");
                 if (!v) {
-                    err.text("Select an employee!");
-                    $("#assignEmployee").addClass("is-invalid");
+                    err.text("Select an employee!").removeClass("text-warning").addClass("text-danger");
+                    $("#assignEmployee").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text("");
-                $("#assignEmployee").addClass("is-valid");
+                $("#assignEmployee").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateAssignCat = () => {
                 const v = $("#assignCategory").val();
-                const err = $("#assignCategory").closest(".input-group").siblings(".error-msg"); $("#assignCategory").removeClass("is-valid is-invalid");
+                const err = $("#assignCategory").closest(".input-group").siblings(".error-msg");
                 if (!v) {
-                    err.text("Select a category!"); $("#assignCategory").addClass("is-invalid");
+                    err.text("Select a category!"); $("#assignCategory").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assignCategory").addClass("is-valid");
+                err.text(""); $("#assignCategory").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateAssignAst = () => {
@@ -2269,19 +2407,15 @@
                 }
                 const v = $("#assignAsset").val();
                 const err = $("#assignAsset").closest(".input-group").siblings(".error-msg");
-                $("#assignAsset").removeClass("is-valid is-invalid");
                 if (!v) {
-                    err.text("Select an asset!"); $("#assignAsset").addClass("is-invalid");
+                    err.text("Select an asset!"); $("#assignAsset").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assignAsset").addClass("is-valid");
+                err.text(""); $("#assignAsset").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
-            $("#assignEmployee").on("change", validateAssignEmp);
             $("#assignCategory").on("change", validateAssignCat);
             $("#assignAsset").on("change", validateAssignAst);
-
-            //assign btn
             $("#confirmAssignBtn").on("click", function () {
                 const ok = [
                     validateAssignEmp(),
@@ -2295,18 +2429,26 @@
                 const assets = getAssets();
                 const idx = assets.findIndex(a => a.id === assetId);
                 if (idx === -1 || !emp) return;
+                const startDate = $("#assignStartDate").val().trim();
+                const returnDate = $("#assignReturnDate").val().trim();
                 assets[idx].status = "A";
                 assets[idx].assignedTo = emp.fullname;
-                assets[idx].startDate = $("#assignStartDate").val().trim();
-                assets[idx].returnDate = $("#assignReturnDate").val().trim() || "—";
+                assets[idx].startDate = startDate;
+                assets[idx].returnDate = returnDate || "—";
                 saveAssets(assets);
                 const hist = getHistory();
                 const today = new Date().toLocaleDateString("en-GB");
-                hist.push({
-                    msg: `${assets[idx].name} assigned to ${emp.fullname} on ${today}`
+                hist.unshift({
+                    type: "assign",
+                    msg: `${assets[idx].name} (${assets[idx].id}) assigned to ${emp.fullname} (${emp.id}) on ${today}`,
+                    asset: assets[idx].name,
+                    assetId: assets[idx].id,
+                    employee: emp.fullname,
+                    empId: emp.id,
+                    date: today,
+                    returnDate: returnDate || "—"
                 });
                 saveHistory(hist);
-
                 $("#assignModal").modal("hide");
                 Swal.fire({
                     icon: "success",
@@ -2315,57 +2457,81 @@
                 });
             });
 
-            // Reset assign form on close
             $("#assignModal").on("hidden.bs.modal", function () {
                 $("#assignEmployee,#assignCategory").val("");
                 $("#assignAsset").html('<option value="">Select Asset</option>').prop("disabled", true);
                 $("#assignReturnDate").val("");
                 $("#assignStartDate").val(new Date().toLocaleDateString("en-GB"));
                 $("#assignEmployee,#assignCategory,#assignAsset").removeClass("is-valid is-invalid");
-                $(".error-msg").text("");
+                $(".error-msg").text("").removeClass("text-warning").addClass("text-danger");
             });
 
-            // asset inventory section
+           
             let assetTable = null;
+            // asset status
             const renderStatus = (s) => {
                 if (s === "A") return `<span class="status-active"><i class="fa-solid fa-circle-check mr-1"></i>A</span>`;
                 if (s === "NA") return `<span class="status-inactive"><i class="fa-solid fa-circle-xmark mr-1"></i>NA</span>`;
                 if (s === "UM") return `<span class="text-warning font-weight-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>UM</span>`;
                 return s || "—";
             };
-
-            //asset id generation
-            const generateAssetId = () => {
-                const assets = getAssets();
-                const last = assets.length > 0 ? assets[assets.length - 1].id : "AST000";
-                return "AST" + String(parseInt(last.replace("AST", "")) + 1).padStart(3, "0");
-            };
-
-            // asset details
+            // status list of asset 
             const buildCatSummary = () => {
                 const assets = getAssets();
                 const cats = [...new Set(assets.map(a => a.category))];
                 let html = "";
-                cats.forEach(function (cat) {
-                    const catAssets = assets.filter(a => a.category === cat);
-                    const total = catAssets.length;
-                    const assigned = catAssets.filter(a => a.status === "A").length;
-                    const notAssigned = catAssets.filter(a => a.status === "NA").length;
-                    const underMaint = catAssets.filter(a => a.status === "UM").length;
-                    html += `<div class="cat-card">
-                        <div class="cat-name">${cat}</div>
-                        <div class="cat-total">${total}</div>
-                        <div class="cat-sub">
-                            <span class="text-success mr-2"><i class="fa-solid fa-circle-check mr-1"></i>${assigned} Assigned</span>
-                            <span class="text-danger mr-2"><i class="fa-solid fa-circle-xmark mr-1"></i>${notAssigned} Not Assigned</span>
-                            <span class="text-warning"><i class="fa-solid fa-triangle-exclamation mr-1"></i>${underMaint} UM</span>
+                cats.forEach(cat => {
+                    const ca = assets.filter(a => a.category === cat);
+                    const total = ca.length;
+                    const assigned = ca.filter(a => a.status === "A").length;
+                    const notAssig = ca.filter(a => a.status === "NA").length;
+                    const underM = ca.filter(a => a.status === "UM").length;
+                    const remaining = notAssig;
+
+                    html += `
+                        <div class="cat-card">
+                            <div class="cat-name">${cat}</div>
+
+                            <div class="cat-top-row">
+                                <div class="cat-top-label">Total</div>
+                                <div class="cat-top-label">Remaining</div>
+                            </div>
+                            <div class="cat-top-row">
+                                <div class="cat-top-val">${total}</div>
+                                <div class="cat-top-val">${remaining}</div>
+                            </div>
+
+                            <hr class="cat-divider" />
+
+                            <div class="cat-detail-row">
+                                <span class="cat-detail-label">Assigned</span>
+                                <span class="cat-detail-val">${assigned}</span>
+                            </div>
+                            <div class="cat-detail-row">
+                                <span class="cat-detail-label">Not Assigned</span>
+                                <span class="cat-detail-val">${notAssig}</span>
+                            </div>
+                            <div class="cat-detail-row">
+                                <span class="cat-detail-label">Under Maintenance</span>
+                                <span class="cat-detail-val">${underM}</span>
+                            </div>
                         </div>
-                    </div>`;
+                    `;
                 });
                 $("#catSummaryWrap").html(html);
             };
 
-            // asset DT
+            // rebuld asset table
+            const rebuildAssetTableHeader = () => {
+                $("#assetTable thead").empty().append(`
+                <tr class="text-center thead-dark">
+                    <th>ID</th><th>Category</th><th>Asset Name</th><th>Status</th>
+                    <th>Assigned To</th><th>Start Date</th><th>Return Date</th>
+                    <th>Image</th><th>Action</th>
+                </tr>`);
+            };
+
+            // load asset taable
             function loadAssetTable() {
                 buildCatSummary();
                 const assets = getAssets();
@@ -2404,12 +2570,10 @@
                     },
                     dom: dtDom,
                     buttons: dtButtons,
-                    columnDefs: [
-                        {
-                            targets: [0, 7, 8],
-                            searchPanes: { show: false }
-                        }
-                    ],
+                    columnDefs: [{
+                        targets: [7, 8],
+                        searchPanes: { show: false }
+                    }],
                     columns: [
                         {
                             data: "id",
@@ -2437,9 +2601,7 @@
                             className: "text-center align-middle",
                             defaultContent: "—",
                             searchPanes: { show: true },
-                            render: function (d) {
-                                return renderStatus(d);
-                            }
+                            render: d => renderStatus(d)
                         },
                         {
                             data: "assignedTo",
@@ -2468,12 +2630,9 @@
                             searchable: false,
                             searchPanes: { show: false },
                             className: "text-center align-middle",
-                            render: function (d, type, row) {
-
-                                return `<button type="button" class="btn btn-sm btn-outline-secondary viewImgBtn" data-id="${row.id}">
-                                            <i class="fa-solid fa-image"></i>
-                                        </button>`;
-                            }
+                            render: (d, type, row) => `<button type="button" class="btn btn-sm btn-outline-secondary viewImgBtn" data-id="${row.id}">
+                                                            <i class="fa-solid fa-image"></i>
+                                                        </button>`
                         },
                         {
                             data: null,
@@ -2481,15 +2640,13 @@
                             searchable: false,
                             searchPanes: { show: false },
                             className: "text-center align-middle",
-                            render: function (d) {
-                                return `<button type="button" class="btn btn-sm btn-outline-primary editAssetBtn" data-id="${d.id}">
+                            render: d => `<button type="button" class="btn btn-sm btn-outline-primary editAssetBtn" data-id="${d.id}">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>`;
-                            }
+                                        </button>`
                         }
                     ],
                     initComplete: function () {
-                        rebuildTableHeader();
+                        rebuildAssetTableHeader();
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
                         c.find(".dt-filter-btn").append(b.eq(0).detach());
@@ -2501,91 +2658,81 @@
                 });
             }
 
-            //image carousel for asset
+            // image modal for asset
             $("#assetTable").on("click", ".viewImgBtn", function () {
-                const id = $(this).data("id");
-                const asset = getAssets().find(a => a.id === id);
+                const asset = getAssets().find(a => a.id === $(this).data("id"));
                 if (!asset) return;
-
-                const imgs = Array.isArray(asset.images)
-                    ? asset.images.filter(s => s && s !== "")
-                    : (asset.image ? [asset.image] : []);
-
+                const imgs = Array.isArray(asset.images) ? asset.images.filter(s => s) : (asset.image ? [asset.image] : []);
                 let slides = "";
-
                 if (imgs.length > 0) {
-                    imgs.forEach(function (src, i) {
-                        slides += `
-                        <div class="carousel-item ${i === 0 ? "active" : ""}">
-                            <img src="${src}"
-                                 class="d-block w-100"
-                                 alt="${asset.name} image ${i + 1}"
-                                 style="max-height:400px; object-fit:contain;" />
-                            <div class="carousel-caption d-none d-md-block" style="background:rgba(0,0,0,0.4); border-radius:4px;">
+                    imgs.forEach((src, i) => {
+                        slides += `<div class="carousel-item ${i === 0 ? "active" : ""}">
+                            <img src="${src}" class="d-block w-100" alt="${asset.name} image ${i + 1}" style="max-height:400px;object-fit:contain;" />
+                            <div class="carousel-caption d-none d-md-block" style="background:rgba(0,0,0,0.4);border-radius:4px;">
                                 <small>${i + 1} / ${imgs.length}</small>
                             </div>
                         </div>`;
                     });
+                } else {
+                    slides = `<div class="carousel-item active text-center py-5">
+                        <i class="fa-solid fa-image fa-5x text-muted"></i>
+                        <p class="mt-3 text-muted">No image available for ${asset.name}</p>
+                    </div>`;
                 }
-                else {
-                    slides = `
-                        <div class="carousel-item active text-center py-5">
-                            <i class="fa-solid fa-image fa-5x text-muted"></i>
-                            <p class="mt-3 text-muted">No image available for ${asset.name}</p>
-                        </div>`;
-                }
-
                 $("#carouselInner").html(slides);
                 $("#assetCarouselModal").modal("show");
             });
 
-            //validate asset details
+            // Asset validate functions
             const validateAssetCat = () => {
                 const v = $("#assetCategory").val();
                 const err = $("#assetCategory").closest(".input-group").siblings(".error-msg");
-                $("#assetCategory").removeClass("is-valid is-invalid");
                 if (!v) {
-                    err.text("Category required!"); $("#assetCategory").addClass("is-invalid");
+                    err.text("Category required!");
+                    $("#assetCategory").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assetCategory").addClass("is-valid");
+                err.text("");
+                $("#assetCategory").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateAssetName = () => {
                 const v = $("#assetName").val().trim();
+                const cat = $("#assetCategory").val();
                 if (!v) {
                     showError("assetName", "Asset name required!");
                     return false;
                 }
-                clearError("assetName");
-                return true;
+                const dup = getAssets().some(a => a.name.toLowerCase() === v.toLowerCase() && a.category === cat);
+                if (dup) {
+                    showError("assetName", "Asset with this name already exists in this category!");
+                    return false;
+                }
+                clearError("assetName"); return true;
             };
             const validateAssetStat = () => {
                 const v = $("#assetStatus").val();
                 const err = $("#assetStatus").closest(".input-group").siblings(".error-msg");
-                $("#assetStatus").removeClass("is-valid is-invalid");
                 if (!v) {
                     err.text("Status required!");
-                    $("#assetStatus").addClass("is-invalid");
+                    $("#assetStatus").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assetStatus").addClass("is-valid");
+                err.text(""); $("#assetStatus").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateEditAssetCat = () => {
                 const v = $("#editAssetCategory").val();
                 const err = $("#editAssetCategory").closest(".input-group").siblings(".error-msg");
-                $("#editAssetCategory").removeClass("is-valid is-invalid");
                 if (!v) {
                     err.text("Category required!");
-                    $("#editAssetCategory").addClass("is-invalid");
+                    $("#editAssetCategory").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
                 err.text("");
-                $("#editAssetCategory").addClass("is-valid");
+                $("#editAssetCategory").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
-
             const validateEditAssetName = () => {
                 const v = $("#editAssetName").val().trim();
                 if (!v) {
@@ -2601,18 +2748,24 @@
             $("#editAssetCategory").on("change", validateEditAssetCat);
             $("#editAssetName").on("input", validateEditAssetName);
 
-            //image carousel apply
+            // image preview
             $("#assetImage").on("change", function () {
                 const file = this.files[0];
                 const label = $(this).siblings(".custom-file-label");
-                if (!file) { label.text("Choose image"); $("#assetImagePreview").hide().attr("src", ""); return; }
+                if (!file) {
+                    label.text("Choose image");
+                    $("#assetImagePreview").hide().attr("src", "");
+                    return;
+                }
                 label.text(file.name);
                 const reader = new FileReader();
-                reader.onload = (e) => { $("#assetImagePreview").attr("src", e.target.result).show(); };
+                reader.onload = e => {
+                    $("#assetImagePreview").attr("src", e.target.result).show();
+                };
                 reader.readAsDataURL(file);
             });
 
-            // add asset
+            // save asset
             $("#saveAssetBtn").on("click", function () {
                 const ok = [
                     validateAssetCat(),
@@ -2630,7 +2783,8 @@
                         assignedTo: "—",
                         startDate: "—",
                         returnDate: "—",
-                        image: img
+                        image: img,
+                        images: img ? [img] : []
                     };
                     const assets = getAssets();
                     assets.push(asset);
@@ -2645,90 +2799,71 @@
                 };
                 if (file) {
                     const r = new FileReader();
-                    r.onload = (e) => doSave(e.target.result);
+                    r.onload = e => doSave(e.target.result);
                     r.readAsDataURL(file);
                 }
                 else doSave("");
             });
 
-            // Reset add asset form on close
+            // reset input field on modal close
             $("#addAssetModal").on("hidden.bs.modal", function () {
                 $("#assetCategory,#assetStatus").val("");
                 $("#assetName").val("");
                 $("#assetCategory,#assetStatus,#assetName").removeClass("is-valid is-invalid");
-                $("#assetImage").val(""); $(".custom-file-label").text("Choose image");
+                $("#assetImage").val("");
+                $(".custom-file-label").text("Choose image");
                 $("#assetImagePreview").hide().attr("src", "");
                 $(".error-msg").text("");
             });
 
-            // edit asset button
+            // edit asset
             $("#assetTable").on("click", ".editAssetBtn", function () {
                 const asset = getAssets().find(a => a.id === $(this).data("id"));
                 if (!asset) return;
-
                 $("#editAssetId").val(asset.id);
                 $("#editAssetCategory").val(asset.category);
                 $("#editAssetName").val(asset.name);
                 $("#editAssetStatus").val(asset.status);
-                $("#editAssetReturnDate").val(asset.returnDate === "—" ? "" : asset.returnDate);
+                const existingReturn = (asset.returnDate && asset.returnDate !== "—") ? asset.returnDate : "";
+                $("#editAssetReturnDate").val(existingReturn);
                 const empDropdown = $("#editAssetAssignedTo");
                 empDropdown.html('<option value="">— Not Assigned —</option>');
-
-                getEmployees().forEach(function (emp) {
-                    empDropdown.append(
-                        `<option value="${emp.fullname}">${emp.fullname} — ${emp.department} (${emp.id})</option>`
-                    );
+                getEmployees().forEach(emp => {
+                    empDropdown.append(`<option value="${emp.fullname}">${emp.fullname} — ${emp.department} (${emp.id})</option>`);
                 });
-                const currentAssigned = asset.assignedTo === "—" ? "" : asset.assignedTo;
+                const currentAssigned = (asset.assignedTo === "—") ? "" : asset.assignedTo;
                 empDropdown.val(currentAssigned);
                 const editPreviewWrap = $("#editAssetImagePreviewWrap");
                 editPreviewWrap.empty();
-
                 const imgs = Array.isArray(asset.images) ? asset.images : (asset.image ? [asset.image] : []);
-
-                imgs.forEach(function (src, i) {
+                imgs.forEach((src, i) => {
                     if (!src) return;
                     editPreviewWrap.append(`
                     <div class="position-relative" style="display:inline-block;">
-                        <img src="${src}"
-                             style="width:70px; height:70px; object-fit:cover;
-                                    border-radius:4px; border:1px solid #dee2e6;" />
-                        <button type="button"
-                                class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
-                                data-index="${i}"
-                                style="top:-6px; right:-6px; padding:1px 5px; font-size:0.65rem; line-height:1;">
-                            &times;
-                        </button>
+                        <img src="${src}" style="width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid #dee2e6;" />
+                        <button type="button" class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
+                            data-index="${i}" style="top:-6px;right:-6px;padding:1px 5px;font-size:0.65rem;line-height:1;">&times;</button>
                     </div>`);
                 });
-
                 $("#editAssetModal").modal("show");
             });
 
+            // edit asset image
             $("#editAssetImages").on("change", function () {
                 const files = Array.from(this.files);
-                const label = $(this).siblings(".custom-file-label");
-                label.text(files.length > 0 ? `${files.length} image(s) selected` : "Choose images");
-
+                $(this).siblings(".custom-file-label").text(files.length > 0 ? `${files.length} image(s) selected` : "Choose images");
                 if (!files.length) return;
                 const wrap = $("#editAssetImagePreviewWrap");
-                files.forEach(function (file) {
+                files.forEach(file => {
                     const reader = new FileReader();
                     reader.onload = function (e) {
-                        const totalImgs = wrap.find("img").length;
+                        const total = wrap.find("img").length;
                         wrap.append(`
-                            <div class="position-relative" style="display:inline-block;">
-                                <img src="${e.target.result}"
-                                     style="width:70px; height:70px; object-fit:cover;
-                                            border-radius:4px; border:1px solid #dee2e6;" />
-                                <button type="button"
-                                        class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
-                                        data-index="${totalImgs}"
-                                        style="top:-6px; right:-6px; padding:1px 5px; font-size:0.65rem; line-height:1;">
-                                    &times;
-                                </button>
-                            </div>
-                        `);
+                        <div class="position-relative" style="display:inline-block;">
+                            <img src="${e.target.result}" style="width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid #dee2e6;" />
+                            <button type="button" class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
+                                data-index="${total}" style="top:-6px;right:-6px;padding:1px 5px;font-size:0.65rem;line-height:1;">&times;</button>
+                        </div>`);
                     };
                     reader.readAsDataURL(file);
                 });
@@ -2741,32 +2876,78 @@
                 });
             });
 
+            // update asset
             $("#updateAssetBtn").on("click", function () {
-                const ok = [
-                    validateEditAssetCat(),
-                    validateEditAssetName()
-                ];
+                const ok = [validateEditAssetCat(), validateEditAssetName()];
                 if (!ok.every(Boolean)) return;
 
                 const id = $("#editAssetId").val();
                 const assets = getAssets();
                 const idx = assets.findIndex(a => a.id === id);
                 if (idx === -1) return;
+
+                let newStatus = $("#editAssetStatus").val();
+                const newAssigned = $("#editAssetAssignedTo").val().trim();
+                const returnDateVal = $("#editAssetReturnDate").val().trim();
+                const returnDateObj = parseDMY(returnDateVal);
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (newStatus === "A" && !newAssigned) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Assign Required",
+                        text: "Status 'Assigned' requires selecting an employee."
+                    });
+                    return;
+                }
+                if (returnDateVal && returnDateObj && returnDateObj <= today && newStatus === "A") {
+                    newStatus = "NA";
+                    Swal.fire({
+                        icon: "info",
+                        title: "Status Auto-Updated",
+                        text: "Return date has been reached. Status changed from Assigned to Not Assigned.",
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                }
+                if (newStatus === "NA" || newStatus === "UM") {
+                    const wasAssigned = assets[idx].assignedTo && assets[idx].assignedTo !== "—";
+                    if (wasAssigned && newStatus === "NA") {
+                        const hist = getHistory();
+                        const todayStr = new Date().toLocaleDateString("en-GB");
+                        hist.unshift({
+                            type: "return",
+                            msg: `${assets[idx].name} (${assets[idx].id}) returned from ${assets[idx].assignedTo} on ${todayStr}`,
+                            asset: assets[idx].name,
+                            assetId: assets[idx].id,
+                            employee: assets[idx].assignedTo,
+                            date: todayStr
+                        });
+                        saveHistory(hist);
+                    }
+                    assets[idx].assignedTo = "—";
+                    assets[idx].startDate = "—";
+                    assets[idx].returnDate = "—";
+                } else {
+                    assets[idx].assignedTo = newAssigned || "—";
+                    assets[idx].returnDate = returnDateVal || "—";
+                }
+
                 const finalImages = [];
                 $("#editAssetImagePreviewWrap img").each(function () {
                     finalImages.push($(this).attr("src"));
                 });
+
                 assets[idx].category = $("#editAssetCategory").val();
                 assets[idx].name = $("#editAssetName").val().trim();
-                assets[idx].status = $("#editAssetStatus").val();
-                assets[idx].assignedTo = $("#editAssetAssignedTo").val().trim() || "—";
-                assets[idx].returnDate = $("#editAssetReturnDate").val().trim() || "—";
+                assets[idx].status = newStatus;
                 assets[idx].images = finalImages;
                 assets[idx].image = finalImages.length > 0 ? finalImages[0] : "";
+
                 saveAssets(assets);
                 $("#editAssetModal").modal("hide");
                 loadAssetTable();
-
                 Swal.fire({
                     icon: "success",
                     title: "Updated!",
@@ -2774,15 +2955,13 @@
                 });
             });
 
+            // reset input field on modal close
             $("#editAssetModal").on("hidden.bs.modal", function () {
-                $("#editAssetId").val("");
+                $("#editAssetId,#editAssetReturnDate").val("");
                 $("#editAssetCategory").val("");
                 $("#editAssetName").val("");
                 $("#editAssetStatus").val("A");
-
                 $("#editAssetAssignedTo").html('<option value="">— Not Assigned —</option>');
-
-                $("#editAssetReturnDate").val("");
                 $("#editAssetImages").val("");
                 $(".custom-file-label").text("Choose images");
                 $("#editAssetImagePreviewWrap").empty();
@@ -2790,19 +2969,73 @@
                 $(".error-msg").text("");
             });
 
-            // assest history section
-            // load asset history
+            // delete asset
+            $("#deleteAssetBtn").on("click", function () {
+                const id = $("#editAssetId").val();
+                const assets = getAssets();
+                const asset = assets.find(a => a.id === id);
+                if (!asset) return;
+
+                if (asset.status === "A") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Cannot Delete",
+                        text: `"${asset.name}" is currently assigned to ${asset.assignedTo}. Return the asset before deleting.`
+                    });
+                    return;
+                }
+
+                Swal.fire({
+                    title: "Delete Asset?",
+                    html: `Delete <b>${asset.name}</b> (${asset.id})? This cannot be undone.`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Delete"
+                }).then(r => {
+                    if (!r.isConfirmed) return;
+                    saveAssets(assets.filter(a => a.id !== id));
+                    const hist = getHistory();
+                    const today = new Date().toLocaleDateString("en-GB");
+                    hist.unshift({
+                        type: "delete",
+                        msg: `${asset.name} (${asset.id}) deleted from inventory on ${today}`,
+                        asset: asset.name,
+                        assetId: asset.id,
+                        date: today
+                    });
+                    saveHistory(hist);
+                    $("#editAssetModal").modal("hide");
+                    loadAssetTable();
+                    Swal.fire({
+                        icon: "success",
+                        title: "Deleted!",
+                        text: `${asset.name} removed from inventory.`
+                    });
+                });
+            });
+
+            // asset history section
             function loadHistory() {
                 const hist = getHistory();
                 $("#historyBody").empty();
                 if (!hist.length) {
-                    $("#historyBody").html('<tr><td colspan="2" class="text-muted text-center">No history yet. Assign an asset to see records here.</td></tr>');
+                    $("#historyBody").html(
+                        '<tr><td colspan="2" class="text-muted text-center py-3">No history yet. Assign or return an asset to see records here.</td></tr>'
+                    );
                     return;
                 }
-                hist.forEach(function (item, i) {
-                    $("#historyBody").append(`<tr><td>${i + 1}</td><td>${item.msg}</td></tr>`);
+                hist.forEach((item, i) => {
+                    const badge = item.type === "return" ? '<span class="badge badge-danger mr-2">Returned</span>'
+                        : item.type === "delete" ? '<span class="badge badge-dark mr-2">Deleted</span>'
+                            : '<span class="badge badge-success mr-2">Assigned</span>';
+                    $("#historyBody").append(`<tr>
+                        <td class="text-center align-middle">${i + 1}</td>
+                        <td class="text-left">${badge}${item.msg}</td>
+                    </tr>`);
                 });
             }
+
         });
     </script>
 </body>
