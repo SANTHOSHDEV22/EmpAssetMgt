@@ -1709,6 +1709,7 @@
                 $("#unassignedAssets").text(assets.filter(a => a.status === "NA").length);
             }
 
+            // view employee section -------------------------------------------------------------------
             // edit employee validators
             const validateEditFname = () => {
                 const v = $("#editFname").val();
@@ -1906,7 +1907,13 @@
             $("#editRole").on("change", validateEditRole);
 
             // Select2
-            $("#editLocation").select2({ theme: "classic", placeholder: "Select Location", allowClear: true, data: locationData, dropdownParent: $("#editEmpModal") });
+            $("#editLocation").select2({
+                theme: "classic",
+                placeholder: "Select Location",
+                allowClear: true,
+                data: locationData,
+                dropdownParent: $("#editEmpModal")
+            });
 
             // fill edit form input fields
             const populateEditModal = (emp, mode) => {
@@ -2299,18 +2306,25 @@
                 const emps = getEmployees();
                 const emp = emps.find(e => e.id === id);
                 if (!emp) return;
+
                 const blockedAssets = getAssets().filter(a =>
                     (a.status === "A" || a.status === "UM") && a.assignedTo === emp.fullname
                 );
-                const assetList = blockedAssets.map(a => `${a.name} (${a.id}) — ${a.status === "A" ? "Assigned" : "Under Maintenance"}`).join("\n");
 
-                Swal.fire({
-                    icon: "warning",
-                    title: "Cannot Delete",
-                    html: `<b>${emp.fullname}</b> still has assets linked to them:<br><br>
-                           <pre style="text-align:left;font-size:0.85rem">${assetList}</pre>
-                           Please return or reassign all assets before deleting.`
-                });
+                if (blockedAssets.length > 0) {
+                    const assetList = blockedAssets
+                        .map(a => `${a.name} (${a.id}) — ${a.status === "A" ? "Assigned" : "Under Maintenance"}`)
+                        .join("\n");
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Cannot Delete",
+                        html: `<b>${emp.fullname}</b> still has assets linked to them:<br><br>
+                   <pre style="text-align:left;font-size:0.85rem">${assetList}</pre>
+                   Please return or reassign all assets before deleting.`
+                    });
+                    return;
+                }
+
                 Swal.fire({
                     title: "Delete Employee?",
                     text: `Delete ${emp.fullname}? This action cannot be undone.`,
@@ -2318,21 +2332,21 @@
                     showCancelButton: true,
                     confirmButtonColor: "#dc3545",
                     confirmButtonText: "Delete"
-                })
-                    .then(r => {
-                        if (r.isConfirmed) {
-                            saveEmployees(emps.filter(e => e.id !== id));
-                            $("#editEmpModal").modal("hide");
-                            loadEmpTable();
-                            Swal.fire({
-                                icon: "success",
-                                title: "Deleted!",
-                                text: `${emp.fullname} removed.`
-                            });
-                        }
-                    });
+                }).then(r => {
+                    if (r.isConfirmed) {
+                        saveEmployees(emps.filter(e => e.id !== id));
+                        $("#editEmpModal").modal("hide");
+                        loadEmpTable();
+                        Swal.fire({
+                            icon: "success",
+                            title: "Deleted!",
+                            text: `${emp.fullname} removed.`
+                        });
+                    }
+                });
             });
 
+            // asset assign section -------------------------------------------------------------
             // asset assign
             $("#assignModal").on("show.bs.modal", function () {
                 const emps = getEmployees();
@@ -2466,7 +2480,7 @@
                 $(".error-msg").text("").removeClass("text-warning").addClass("text-danger");
             });
 
-           
+            // asset inventory section -----------------------------------------------------------------------
             let assetTable = null;
             // asset status
             const renderStatus = (s) => {
@@ -3015,7 +3029,7 @@
                 });
             });
 
-            // asset history section
+            // asset history section------------------------------------------------------------
             function loadHistory() {
                 const hist = getHistory();
                 $("#historyBody").empty();
