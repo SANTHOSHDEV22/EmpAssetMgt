@@ -4,22 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>EAM</title>
-    <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css" />
-    <!-- DataTables Button-->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap4.min.css" />
-    <!-- DataTables SearchPanes-->
     <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/2.3.1/css/searchPanes.bootstrap4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap4.min.css" />
-    <!-- DataTables State-->
     <link rel="stylesheet" href="https://cdn.datatables.net/staterestore/1.4.3/css/stateRestore.dataTables.min.css" />
-    <!-- Select2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <!-- datepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <style>
         .navbar-collapse {
@@ -100,6 +92,10 @@
                 color: #fff;
             }
 
+        #roleToggle, #roleToggle + .custom-control-label {
+            cursor: pointer;
+        }
+
         .dash-table {
             table-layout: fixed;
             width: 100%;
@@ -130,13 +126,13 @@
         }
 
         .cat-card {
-            flex: 1 1 170px;
-            min-width: 160px;
+            flex: 1 1 200px;
+            min-width: 180px;
             background: #fff;
             border: 1px solid #ced4da;
             border-radius: 8px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-            padding: 12px 14px 12px;
+            padding: 12px 14px;
             box-sizing: border-box;
         }
 
@@ -150,56 +146,62 @@
                 letter-spacing: 0.2px;
             }
 
-            .cat-card .cat-top-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                margin-bottom: 2px;
-            }
+        .cat-stat-header {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom: 2px;
+        }
 
-            .cat-card .cat-top-label {
-                font-size: 0.7rem;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                color: #6c757d;
-                padding-bottom: 1px;
-            }
+        .cat-stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom: 4px;
+        }
 
-            .cat-card .cat-top-val {
-                font-size: 1.9rem;
-                font-weight: 700;
-                color: #212529;
-                line-height: 1.05;
-                margin-bottom: 8px;
-            }
+        .cat-sh-cell {
+            font-size: 0.68rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #6c757d;
+            text-align: center;
+        }
 
-            .cat-card .cat-divider {
-                border: none;
-                border-top: 1px solid #dee2e6;
-                margin: 6px 0 8px;
-            }
+        .cat-sv-cell {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #212529;
+            text-align: center;
+            line-height: 1.1;
+        }
 
-            .cat-card .cat-detail-row {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 2px 0;
-            }
+        .cat-card .cat-divider {
+            border: none;
+            border-top: 1px solid #dee2e6;
+            margin: 6px 0 8px;
+        }
 
-            .cat-card .cat-detail-label {
-                font-size: 0.76rem;
-                color: #495057;
-                white-space: nowrap;
-                padding-right: 10px;
-            }
+        .cat-card .cat-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2px 0;
+        }
 
-            .cat-card .cat-detail-val {
-                font-size: 0.82rem;
-                font-weight: 700;
-                color: #212529;
-                min-width: 20px;
-                text-align: right;
-            }
+        .cat-card .cat-detail-label {
+            font-size: 0.76rem;
+            color: #495057;
+            white-space: nowrap;
+            padding-right: 10px;
+        }
+
+        .cat-card .cat-detail-val {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #212529;
+            min-width: 20px;
+            text-align: right;
+        }
 
         .status-active {
             color: #28a745;
@@ -209,15 +211,6 @@
         .status-inactive {
             color: #dc3545;
             font-weight: 600;
-        }
-
-        .asset-thumb {
-            width: 36px;
-            height: 36px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid #dee2e6;
-            cursor: pointer;
         }
 
         .location-wrapper {
@@ -239,53 +232,36 @@
                 min-height: 34px;
             }
 
-        #location + .select2-container--classic,
-        #editLocation + .select2-container--classic {
+        #location + .select2-container--classic, #editLocation + .select2-container--classic {
             flex: 1 1 auto;
             width: 100% !important;
         }
 
-            #location + .select2-container--classic .select2-selection--single,
-            #editLocation + .select2-container--classic .select2-selection--single {
-                height: 34px !important;
+            #location + .select2-container--classic .select2-selection--multiple,
+            #editLocation + .select2-container--classic .select2-selection--multiple {
+                min-height: 34px !important;
                 border: 1px solid #ced4da !important;
                 border-left: none !important;
                 border-radius: 0 0.25rem 0.25rem 0 !important;
-                display: flex !important;
-                align-items: center !important;
                 background-image: none;
-                padding: 0 8px;
+                padding: 2px 4px;
             }
 
-            #location + .select2-container--classic .select2-selection__rendered,
-            #editLocation + .select2-container--classic .select2-selection__rendered {
-                padding-left: 4px;
-                color: #495057;
-                line-height: normal;
-                flex: 1;
+            #location + .select2-container--classic .select2-selection__choice,
+            #editLocation + .select2-container--classic .select2-selection__choice {
+                background-color: #343a40;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                padding: 1px 6px;
+                font-size: 0.8rem;
             }
 
-            #location + .select2-container--classic .select2-selection__arrow,
-            #editLocation + .select2-container--classic .select2-selection__arrow {
-                position: relative !important;
-                height: 100% !important;
-                width: 28px;
-                top: 0 !important;
-                border-left: 1px solid #ced4da;
-                background: #e9ecef;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            #location + .select2-container--classic .select2-selection__choice__remove,
+            #editLocation + .select2-container--classic .select2-selection__choice__remove {
+                color: #adb5bd;
+                margin-right: 4px;
             }
-
-                #location + .select2-container--classic .select2-selection__arrow b,
-                #editLocation + .select2-container--classic .select2-selection__arrow b {
-                    position: static !important;
-                    margin: 0 !important;
-                    border-color: #555 transparent transparent transparent;
-                    border-style: solid;
-                    border-width: 5px 4px 0 4px;
-                }
 
         .ui-datepicker {
             z-index: 9999 !important;
@@ -300,8 +276,7 @@
             z-index: 2000 !important;
         }
 
-        .dt-filter-btn .btn, .dt-export-btn .btn,
-        .dt-state-btn .btn, .dt-load-btn .btn {
+        .dt-filter-btn .btn, .dt-export-btn .btn, .dt-state-btn .btn, .dt-load-btn .btn {
             white-space: nowrap;
         }
     </style>
@@ -311,9 +286,7 @@
         <header>
             <nav class="navbar navbar-light bg-dark d-flex align-items-center px-3">
                 <a href="#" class="navbar-brand h2 text-light mb-0">EAM</a>
-
                 <div class="ml-auto d-flex align-items-center">
-                    <!-- Role toggle switch -->
                     <div class="d-flex align-items-center mr-3">
                         <span id="roleLabel" class="role-badge admin mr-2">ADMIN</span>
                         <div class="custom-control custom-switch mb-0">
@@ -321,82 +294,41 @@
                             <label class="custom-control-label text-light" for="roleToggle"></label>
                         </div>
                     </div>
-                    <!-- Hamburger -->
-                    <button type="button" class="navbar-toggler" id="sidebarToggleBtn"
-                        aria-label="Toggle navigation">
+                    <button type="button" class="navbar-toggler" id="sidebarToggleBtn" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
             </nav>
-
-            <!-- Sidebar -->
             <div id="sidenav" class="navbar-collapse bg-dark pt-4">
                 <div class="d-flex justify-content-end px-3 mb-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary text-light" id="closeSidebarBtn">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary text-light" id="closeSidebarBtn"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <ul class="navbar-nav ml-3">
-                    <!-- Dashboard -->
-                    <li class="nav-item pb-3 pt-1">
-                        <a href="#" id="dashboardId" class="nav-link text-light">
-                            <i class="fa-solid fa-gauge-high mr-2"></i>Dashboard
-                        </a>
-                    </li>
-                    <!-- Employees dropdown -->
+                    <li class="nav-item pb-3 pt-1"><a href="#" id="dashboardId" class="nav-link text-light"><i class="fa-solid fa-gauge-high mr-2"></i>Dashboard</a></li>
                     <li class="nav-item dropdown pb-3">
-                        <a href="#" class="nav-link sideNavToggle text-light">
-                            <i class="fa-solid fa-user fa-sm mr-2"></i>Employees
-                            <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
-                        </a>
+                        <a href="#" class="nav-link sideNavToggle text-light"><i class="fa-solid fa-user fa-sm mr-2"></i>Employees<i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#" id="addEmployeeId" class="dropdown-item">
-                                <i class="fa-solid fa-plus fa-xs mr-2"></i>Add
-                            </a>
-                            <a href="#" id="viewEmployeeId" class="dropdown-item">
-                                <i class="fa-solid fa-eye fa-xs mr-2"></i>View
-                            </a>
+                            <a href="#" id="addEmployeeId" class="dropdown-item"><i class="fa-solid fa-plus fa-xs mr-2"></i>Add</a>
+                            <a href="#" id="viewEmployeeId" class="dropdown-item"><i class="fa-solid fa-eye fa-xs mr-2"></i>View</a>
                         </div>
                     </li>
-                    <!-- Assets dropdown -->
                     <li class="nav-item dropdown pb-3">
-                        <a href="#" class="nav-link sideNavToggle text-light">
-                            <i class="fa-solid fa-suitcase fa-sm mr-2"></i>Assets
-                           
-                            <i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i>
-                        </a>
+                        <a href="#" class="nav-link sideNavToggle text-light"><i class="fa-solid fa-suitcase fa-sm mr-2"></i>Assets<i class="fa-solid fa-chevron-down fa-xs ml-2 toggleIcon"></i></a>
                         <div class="dropdown-menu">
-                            <a href="#" id="assetAssignId" class="dropdown-item">
-                                <i class="fa-solid fa-user-check fa-xs mr-2"></i>Assign
-                            </a>
-                            <a href="#" id="assetInventoryId" class="dropdown-item">
-                                <i class="fa-solid fa-suitcase fa-xs mr-2"></i>Inventory
-                            </a>
-                            <a href="#" id="assetHistoryId" class="dropdown-item">
-                                <i class="fa-solid fa-clock-rotate-left fa-xs mr-2"></i>History
-                            </a>
+                            <a href="#" id="assetAssignId" class="dropdown-item"><i class="fa-solid fa-user-check fa-xs mr-2"></i>Assign</a>
+                            <a href="#" id="assetInventoryId" class="dropdown-item"><i class="fa-solid fa-suitcase fa-xs mr-2"></i>Inventory</a>
+                            <a href="#" id="assetHistoryId" class="dropdown-item"><i class="fa-solid fa-clock-rotate-left fa-xs mr-2"></i>History</a>
                         </div>
                     </li>
-                    <!-- Reports -->
-                    <li class="nav-item pb-3">
-                        <a href="#" class="nav-link text-light">
-                            <i class="fa-solid fa-file fa-sm mr-2"></i>Reports
-                        </a>
-                    </li>
-                    <!-- Settings -->
-                    <li class="nav-item pb-3">
-                        <a href="#" class="nav-link text-light">
-                            <i class="fa-solid fa-gear fa-sm mr-2"></i>Settings
-                        </a>
-                    </li>
+                    <li class="nav-item pb-3"><a href="#" class="nav-link text-light"><i class="fa-solid fa-file fa-sm mr-2"></i>Reports</a></li>
+                    <li class="nav-item pb-3"><a href="#" class="nav-link text-light"><i class="fa-solid fa-gear fa-sm mr-2"></i>Settings</a></li>
                 </ul>
             </div>
         </header>
-
-        <!-- Sidebar overlay backdrop -->
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
         <div id="pageScreen" class="container-fluid">
-            <!-- Dashnoard Section -->
+
+            <!-- Dashboard -->
             <div id="section-dashboard" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded">
                     <h3><i class="fa-solid fa-gauge-high mr-2"></i>Dashboard</h3>
@@ -439,42 +371,32 @@
                 </table>
             </div>
 
-            <!-- Add EMployee section -->
+            <!-- Add Employee -->
             <div id="section-addEmp" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-user mr-2"></i>Add Employee</span>
-                    <button type="button" class="btn btn-success admin-only" data-toggle="modal" data-target="#addEmpModal">
-                        <i class="fa-solid fa-plus mr-2"></i>Add
-                   
-                    </button>
+                    <button type="button" class="btn btn-success admin-only" data-toggle="modal" data-target="#addEmpModal"><i class="fa-solid fa-plus mr-2"></i>Add</button>
                 </div>
                 <div class="modal fade" id="addEmpModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title"><i class="fa-solid fa-user mr-2"></i>Add Employee</h5>
-                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                            </div>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
                             <div class="modal-body">
                                 <div class="container-fluid">
-                                    <!-- Firstname and Lastname -->
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Firstname</span></div>
-                                                <input type="text" class="form-control" id="fname" placeholder="Enter firstname" />
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                <input type="text" class="form-control" id="fname" placeholder="Enter firstname" /></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Lastname</span></div>
-                                                <input type="text" class="form-control" id="lname" placeholder="Enter lastname" />
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                <input type="text" class="form-control" id="lname" placeholder="Enter lastname" /></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                     </div>
-                                    <!-- Gender and DOB -->
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="d-flex align-items-center mb-2">
@@ -482,123 +404,93 @@
                                                 <div class="input-group mr-3" style="max-width: 140px">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="radio" name="gender" id="genderMale" value="Male" />
-                                                        </div>
+                                                            <input type="radio" name="gender" id="genderMale" value="Male" /></div>
                                                     </div>
-                                                    <label class="form-control mb-0" for="genderMale">Male</label>
-                                                </div>
+                                                    <label class="form-control mb-0" for="genderMale">Male</label></div>
                                                 <div class="input-group" style="max-width: 160px">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="radio" name="gender" id="genderFemale" value="Female" />
-                                                        </div>
+                                                            <input type="radio" name="gender" id="genderFemale" value="Female" /></div>
                                                     </div>
-                                                    <label class="form-control mb-0" for="genderFemale">Female</label>
-                                                </div>
+                                                    <label class="form-control mb-0" for="genderFemale">Female</label></div>
                                             </div>
                                             <small class="text-danger error-msg d-block"></small>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">DOB</span></div>
-                                                <input type="text" class="form-control datepicker" id="dob" placeholder="DD/MM/YYYY" autocomplete="off" />
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                <input type="text" class="form-control datepicker" id="dob" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                     </div>
-                                    <!-- Email and Contact -->
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-                                                <input type="text" class="form-control" id="email" placeholder="Enter email address" />
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                <input type="text" class="form-control" id="email" placeholder="Enter email address" /></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Contact</span></div>
-                                                <input type="text" class="form-control" id="contact" placeholder="Enter 10-digit number" />
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                <input type="text" class="form-control" id="contact" placeholder="Enter 10-digit number" minlength="10" maxlength="10" /></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                     </div>
-                                    <!-- Password and Confirm Password -->
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Password</span></div>
-                                                <input type="password" class="form-control" id="pass" placeholder="Enter password" />
-                                                <div class="input-group-append">
+                                                <input type="password" class="form-control" id="pass" placeholder="Enter password" /><div class="input-group-append">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button"><i class="fas fa-eye"></i></button>
                                                 </div>
                                             </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Confirm Password</span></div>
-                                                <input type="password" class="form-control" id="cpass" placeholder="Confirm password" />
-                                                <div class="input-group-append">
+                                                <input type="password" class="form-control" id="cpass" placeholder="Confirm password" /><div class="input-group-append">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button"><i class="fas fa-eye"></i></button>
                                                 </div>
                                             </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                     </div>
-                                    <!-- Department and Role -->
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="dept">Department</label>
-                                                </div>
+                                                    <label class="input-group-text" for="dept">Department</label></div>
                                                 <select class="custom-select" id="dept">
                                                     <option value="">Select Department</option>
-                                                </select>
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                </select></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="deptrole">Role</label>
-                                                </div>
+                                                    <label class="input-group-text" for="deptrole">Role</label></div>
                                                 <select class="custom-select" id="deptrole" disabled="disabled">
                                                     <option value="">Select Role</option>
-                                                </select>
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                </select></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                     </div>
-                                    <!-- Location -->
                                     <div class="row mb-2">
                                         <div class="col-md-12">
                                             <div class="location-wrapper mb-2">
-                                                <label class="location-label font-weight-bold" for="location">Location :</label>
-                                                <select id="location" style="width: 100%"></select>
-                                            </div>
-                                            <small class="text-danger error-msg d-block"></small>
-                                        </div>
+                                                <label class="location-label font-weight-bold" for="location">Location :</label><select id="location" style="width: 100%" multiple="multiple"></select></div>
+                                            <small class="text-danger error-msg d-block"></small></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="addEmpBtn">Add</button>
-                                </div>
+                                    <button type="button" class="btn btn-success" id="addEmpBtn">Add</button></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- View Employee section -->
+            <!-- View Employee -->
             <div id="section-viewEmp" class="page-section mt-4" style="display: none;">
-                <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
-                    <span><i class="fa-solid fa-users mr-2"></i>View Employees</span>
-                </div>
+                <div class="shadow p-3 mb-4 bg-white rounded"><span><i class="fa-solid fa-users mr-2"></i>View Employees</span></div>
                 <div class="card">
                     <div class="card-body">
                         <table id="empTable" class="table table-bordered table-striped table-hover" style="width: 100%">
@@ -611,7 +503,7 @@
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th class="emp-action-col">Action</th>
                                     <th>Profile</th>
                                 </tr>
                             </thead>
@@ -620,34 +512,27 @@
                     </div>
                 </div>
             </div>
+            <!-- Edit Employee Modal -->
             <div class="modal fade" id="editEmpModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content border-0 shadow">
                         <div class="modal-header bg-dark text-white">
                             <h5 class="modal-title"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Employee</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-                        </div>
+                            <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
                         <div class="modal-body p-4">
-                            <input type="hidden" id="editEmpId" />
-                            <input type="hidden" id="editMode" />
-                            <!-- Firstname and Lastname -->
+                            <input type="hidden" id="editEmpId" /><input type="hidden" id="editMode" />
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Firstname</span></div>
-                                        <input type="text" class="form-control" id="editFname" />
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <input type="text" class="form-control" id="editFname" /></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Lastname</span></div>
-                                        <input type="text" class="form-control" id="editLname" />
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <input type="text" class="form-control" id="editLname" /></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
-                            <!-- Gender and DOB -->
                             <div class="row align-items-center mb-2">
                                 <div class="col-md-6">
                                     <div class="d-flex align-items-center">
@@ -655,48 +540,36 @@
                                         <div class="input-group mr-3" style="max-width: 140px">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <input type="radio" name="editGender" id="editMale" value="Male" />
-                                                </div>
+                                                    <input type="radio" name="editGender" id="editMale" value="Male" /></div>
                                             </div>
-                                            <label class="form-control mb-0" for="editMale">Male</label>
-                                        </div>
+                                            <label class="form-control mb-0" for="editMale">Male</label></div>
                                         <div class="input-group" style="max-width: 160px">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <input type="radio" name="editGender" id="editFemale" value="Female" />
-                                                </div>
+                                                    <input type="radio" name="editGender" id="editFemale" value="Female" /></div>
                                             </div>
-                                            <label class="form-control mb-0" for="editFemale">Female</label>
-                                        </div>
+                                            <label class="form-control mb-0" for="editFemale">Female</label></div>
                                     </div>
                                     <small class="text-danger error-msg d-block mt-1"></small>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">DOB</span></div>
-                                        <input type="text" class="form-control datepicker" id="editDob" placeholder="DD/MM/YYYY" autocomplete="off" />
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <input type="text" class="form-control datepicker" id="editDob" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
-                            <!-- Email and Contact -->
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-                                        <input type="text" class="form-control" id="editEmail" />
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <input type="text" class="form-control" id="editEmail" /></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Contact</span></div>
-                                        <input type="text" class="form-control" id="editContact" maxlength="10" />
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <input type="text" class="form-control" id="editContact" minlength="10" maxlength="10" /></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
-                            <!-- Password and Confirm -->
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
@@ -705,8 +578,7 @@
                                             <button type="button" class="btn btn-outline-secondary toggle-password"><i class="fas fa-eye"></i></button>
                                         </div>
                                     </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Confirm Password</span></div>
@@ -714,35 +586,26 @@
                                             <button type="button" class="btn btn-outline-secondary toggle-password"><i class="fas fa-eye"></i></button>
                                         </div>
                                     </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
-                            <!-- Department and Role -->
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="editDept">Department</label>
-                                        </div>
+                                            <label class="input-group-text" for="editDept">Department</label></div>
                                         <select class="custom-select" id="editDept">
                                             <option value="">Select Department</option>
-                                        </select>
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        </select></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="editRole">Role</label>
-                                        </div>
+                                            <label class="input-group-text" for="editRole">Role</label></div>
                                         <select class="custom-select" id="editRole" disabled="disabled">
                                             <option value="">Select Role</option>
-                                        </select>
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        </select></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
-                            <!-- Status and Location -->
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
@@ -750,33 +613,24 @@
                                         <select class="custom-select" id="editStatus">
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
-                                        </select>
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        </select></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                                 <div class="col-md-6">
                                     <div class="location-wrapper mb-2">
-                                        <label class="location-label" for="editLocation">Location</label>
-                                        <select id="editLocation" style="width: 100%"></select>
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <label class="location-label" for="editLocation">Location</label><select id="editLocation" style="width: 100%" multiple="multiple"></select></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
-                            <!-- Join and Relieve Date -->
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Join Date</span></div>
-                                        <input type="text" class="form-control" id="editJoinDate" readonly="readonly" />
-                                    </div>
+                                        <input type="text" class="form-control" id="editJoinDate" readonly="readonly" /></div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Relieve Date</span></div>
-                                        <input type="text" class="form-control datepicker" id="editEndDate" placeholder="DD/MM/YYYY" autocomplete="off" />
-                                    </div>
-                                    <small class="text-danger error-msg d-block"></small>
-                                </div>
+                                        <input type="text" class="form-control datepicker" id="editEndDate" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
+                                    <small class="text-danger error-msg d-block"></small></div>
                             </div>
                         </div>
                         <div class="modal-footer border-0">
@@ -790,104 +644,98 @@
                 </div>
             </div>
 
-            <!-- Asset Assign section -->
+            <!-- Asset Assign -->
             <div id="section-assign" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-user-check mr-2"></i>Asset Assign</span>
-                    <button type="button" class="btn btn-success admin-only" data-toggle="modal" data-target="#assignModal">
-                        <i class="fa-solid fa-plus mr-2"></i>Assign
-                   
-                    </button>
+                    <button type="button" class="btn btn-success admin-only" data-toggle="modal" data-target="#assignModal"><i class="fa-solid fa-plus mr-2"></i>Assign</button>
                 </div>
+                <!-- Assigned Assets DataTable -->
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white"><i class="fa-solid fa-list mr-2"></i>Currently Assigned Assets</div>
+                    <div class="card-body">
+                        <table id="assignedTable" class="table table-bordered table-striped table-hover" style="width: 100%">
+                            <thead class="thead-dark">
+                                <tr class="text-center">
+                                    <th>Asset Name</th>
+                                    <th>Employee Name</th>
+                                    <th>Start Date</th>
+                                    <th>Return Date</th>
+                                    <th>Return</th>
+                                </tr>
+                            </thead>
+                            <tbody id="assignedBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Assign Modal -->
                 <div class="modal fade" id="assignModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-user-check mr-2"></i>Assign Asset to Employee</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-                            </div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
                             <div class="modal-body p-4">
-                                <!-- Employee dropdown -->
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assignEmployee"><i class="fa-solid fa-user mr-2"></i>Employee</label>
-                                            </div>
+                                                <label class="input-group-text" for="assignEmployee"><i class="fa-solid fa-user mr-2"></i>Employee</label></div>
                                             <select class="custom-select" id="assignEmployee">
                                                 <option value="">Select Employee</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                 </div>
-                                <!-- Asset Category dropdown -->
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assignCategory"><i class="fa-solid fa-layer-group mr-2"></i>Category</label>
-                                            </div>
+                                                <label class="input-group-text" for="assignCategory"><i class="fa-solid fa-layer-group mr-2"></i>Category</label></div>
                                             <select class="custom-select" id="assignCategory">
                                                 <option value="">Select Category</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                 </div>
-                                <!-- Asset Name dropdown -->
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assignAsset"><i class="fa-solid fa-suitcase mr-2"></i>Asset</label>
-                                            </div>
+                                                <label class="input-group-text" for="assignAsset"><i class="fa-solid fa-suitcase mr-2"></i>Asset</label></div>
                                             <select class="custom-select" id="assignAsset" disabled="disabled">
                                                 <option value="">Select Asset</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                 </div>
-                                <!-- Dates -->
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Start Date</span></div>
-                                            <input type="text" class="form-control" id="assignStartDate" readonly="readonly" />
-                                        </div>
+                                            <input type="text" class="form-control" id="assignStartDate" readonly="readonly" /></div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Return Date</span></div>
-                                            <input type="text" class="form-control datepicker" id="assignReturnDate" placeholder="DD/MM/YYYY" autocomplete="off" />
-                                        </div>
+                                            <input type="text" class="form-control datepicker" id="assignReturnDate" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="confirmAssignBtn"><i class="fa-solid fa-check mr-2"></i>Assign</button>
-                                </div>
+                                    <button type="button" class="btn btn-success" id="confirmAssignBtn"><i class="fa-solid fa-check mr-2"></i>Assign</button></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Asset Inventory section -->
+            <!-- Asset Inventory -->
             <div id="section-inventory" class="page-section mt-4" style="display: none;">
                 <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
                     <span><i class="fa-solid fa-suitcase mr-2"></i>Asset Inventory</span>
-                    <button type="button" class="btn btn-success admin-only" data-toggle="modal" data-target="#addAssetModal">
-                        <i class="fa-solid fa-plus mr-2"></i>Add Asset
-                   
-                    </button>
+                    <button type="button" class="btn btn-success admin-only" data-toggle="modal" data-target="#addAssetModal"><i class="fa-solid fa-plus mr-2"></i>Add Asset</button>
                 </div>
-                <!-- Category summary cards -->
                 <div id="catSummaryWrap" class="cat-summary-wrap"></div>
-                <!-- DataTable -->
                 <div class="card">
                     <div class="card-body">
                         <table id="assetTable" class="table table-bordered table-striped table-hover" style="width: 100%">
@@ -897,32 +745,28 @@
                                     <th>Category</th>
                                     <th>Asset Name</th>
                                     <th>Status</th>
-                                    <th>Assigned To</th>
-                                    <th>Start Date</th>
-                                    <th>Return Date</th>
                                     <th>Image</th>
-                                    <th>Action</th>
+                                    <th class="asset-action-col">Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
                     </div>
                 </div>
+
+                <!-- Add Asset Modal -->
                 <div class="modal fade" id="addAssetModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-plus mr-2"></i>Add Asset</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-                            </div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
                             <div class="modal-body p-4">
-                                <!-- Category and Name -->
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assetCategory">Category</label>
-                                            </div>
+                                                <label class="input-group-text" for="assetCategory">Category</label></div>
                                             <select class="custom-select" id="assetCategory">
                                                 <option value="">Select Category</option>
                                                 <option value="Laptop">Laptop</option>
@@ -930,76 +774,58 @@
                                                 <option value="Keyboard">Keyboard</option>
                                                 <option value="Mouse">Mouse</option>
                                                 <option value="Headset">Headset</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Asset Name</span></div>
-                                            <input type="text" class="form-control" id="assetName" placeholder="Enter asset name" />
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            <input type="text" class="form-control" id="assetName" placeholder="Enter asset name" /></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                 </div>
-                                <!-- Status and Image upload -->
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assetStatus">Status</label>
-                                            </div>
+                                                <label class="input-group-text" for="assetStatus">Status</label></div>
                                             <select class="custom-select" id="assetStatus">
                                                 <option value="">Select Status</option>
                                                 <option value="A">A — Assigned</option>
                                                 <option value="NA">NA — Not Assigned</option>
                                                 <option value="UM">UM — Under Maintenance</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                     <div class="col-md-6">
-                                        <!-- Image file upload -->
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-image mr-1"></i>Image</span></div>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="assetImage" accept="image/*" />
-                                                <label class="custom-file-label" for="assetImage">Choose image</label>
-                                            </div>
+                                                <input type="file" class="custom-file-input" id="assetImage" accept="image/*" /><label class="custom-file-label" for="assetImage">Choose image</label></div>
                                         </div>
-                                        <!-- Image preview -->
-                                        <img id="assetImagePreview" src="" alt="Preview" style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #dee2e6; margin-top: 6px;" />
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                        <img id="assetImagePreview" src="" alt="Preview" style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #dee2e6; margin-top: 6px;" /><small class="text-danger error-msg d-block"></small></div>
                                 </div>
                             </div>
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="saveAssetBtn">Add</button>
-                                </div>
+                                    <button type="button" class="btn btn-success" id="saveAssetBtn">Add</button></div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- Edit Asset Modal -->
                 <div class="modal fade" id="editAssetModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Asset</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-                            </div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
                             <div class="modal-body p-4">
                                 <input type="hidden" id="editAssetId" />
-
-                                <!-- Category and Name -->
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="editAssetCategory">Category</label>
-                                            </div>
+                                                <label class="input-group-text" for="editAssetCategory">Category</label></div>
                                             <select class="custom-select" id="editAssetCategory">
                                                 <option value="">Select Category</option>
                                                 <option value="Laptop">Laptop</option>
@@ -1007,73 +833,32 @@
                                                 <option value="Keyboard">Keyboard</option>
                                                 <option value="Mouse">Mouse</option>
                                                 <option value="Headset">Headset</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Asset Name</span>
-                                            </div>
-                                            <input type="text" class="form-control" id="editAssetName" placeholder="Enter asset name" />
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            <div class="input-group-prepend"><span class="input-group-text">Asset Name</span></div>
+                                            <input type="text" class="form-control" id="editAssetName" placeholder="Enter asset name" /></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                 </div>
-
-                                <!-- Status and Assigned To -->
                                 <div class="row mb-2">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="editAssetStatus">Status</label>
-                                            </div>
+                                                <label class="input-group-text" for="editAssetStatus">Status</label></div>
                                             <select class="custom-select" id="editAssetStatus">
                                                 <option value="A">A — Assigned</option>
                                                 <option value="NA">NA — Not Assigned</option>
                                                 <option value="UM">UM — Under Maintenance</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text" for="editAssetAssignedTo">Assigned To</label>
-                                            </div>
-                                            <select class="custom-select" id="editAssetAssignedTo">
-                                                <option value="">— Not Assigned —</option>
-                                            </select>
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
+                                            </select></div>
+                                        <small class="text-danger error-msg d-block"></small></div>
                                 </div>
-
-                                <!-- Return Date only -->
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Return Date</span>
-                                            </div>
-                                            <input type="text" class="form-control datepicker" id="editAssetReturnDate" placeholder="DD/MM/YYYY" autocomplete="off" />
-                                        </div>
-                                        <small class="text-danger error-msg d-block"></small>
-                                    </div>
-                                </div>
-
-                                <!-- Multiple Image Upload -->
-                                <div class="row mb-2">
-                                    <div class="col-md-12">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fa-solid fa-images mr-1"></i>Images</span>
-                                            </div>
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-images mr-1"></i>Images</span></div>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple="multiple" />
-                                                <label class="custom-file-label" for="editAssetImages">Choose images (multiple allowed)</label>
-                                            </div>
+                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple="multiple" /><label class="custom-file-label" for="editAssetImages">Choose images (multiple allowed)</label></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1082,44 +867,36 @@
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger mr-2 admin-only" id="deleteAssetBtn">
-                                        <i class="fa-solid fa-trash mr-2"></i>Delete
-                                    </button>
-                                    <button type="button" class="btn btn-success admin-only" id="updateAssetBtn">
-                                        <i class="fa-solid fa-check mr-2"></i>Update
-                                    </button>
+                                    <button type="button" class="btn btn-danger mr-2 admin-only" id="deleteAssetBtn"><i class="fa-solid fa-trash mr-2"></i>Delete</button>
+                                    <button type="button" class="btn btn-success admin-only" id="updateAssetBtn"><i class="fa-solid fa-check mr-2"></i>Update</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Image Carousel Modal -->
                 <div class="modal fade" id="assetCarouselModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-images mr-2"></i>Asset Images</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
-                            </div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
                             <div class="modal-body p-3">
                                 <div id="assetCarousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner" id="carouselInner"></div>
-                                    <a class="carousel-control-prev" href="#assetCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon"></span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#assetCarousel" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon"></span>
-                                    </a>
+                                    <a class="carousel-control-prev" href="#assetCarousel" role="button" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
+                                    <a class="carousel-control-next" href="#assetCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon"></span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Asset History Modal -->
+
+            <!-- Asset History -->
             <div id="section-history" class="page-section mt-4" style="display: none;">
-                <div class="shadow p-3 mb-4 bg-white rounded d-flex align-items-center justify-content-between">
-                    <span><i class="fa-solid fa-clock-rotate-left mr-2"></i>Asset History</span>
-                </div>
+                <div class="shadow p-3 mb-4 bg-white rounded"><span><i class="fa-solid fa-clock-rotate-left mr-2"></i>Asset History</span></div>
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-hover" id="historyTable">
@@ -1136,44 +913,64 @@
             </div>
 
         </div>
-
     </form>
-
-    <!-- jQuery -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- datepicker -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <!-- Bootstrap 4 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- JSZip and pdfMake for DataTables export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <!-- DataTables core and Bootstrap4 theme -->
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
-    <!-- DataTables Buttons -->
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
-    <!-- DataTables Select -->
     <script src="https://cdn.datatables.net/select/2.0.3/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/select/2.0.3/js/select.bootstrap4.min.js"></script>
-    <!-- DataTables SearchPanes -->
     <script src="https://cdn.datatables.net/searchpanes/2.3.1/js/dataTables.searchPanes.min.js"></script>
     <script src="https://cdn.datatables.net/searchpanes/2.3.1/js/searchPanes.bootstrap4.min.js"></script>
-    <!-- DataTables StateRestore -->
     <script src="https://cdn.datatables.net/staterestore/1.4.3/js/dataTables.stateRestore.min.js"></script>
-    <!-- Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            // department and role data
+
+            // role apply admin and manager
+            function applyRole() {
+                if (isAdmin) {
+                    $(".admin-only").show();
+                    $(".toggle-password").show();
+                    $("#roleLabel").text("ADMIN").removeClass("manager").addClass("admin");
+                    if (empTable && $.fn.DataTable.isDataTable("#empTable")) empTable.column(".emp-action-col").visible(true);
+                    if (assetTable && $.fn.DataTable.isDataTable("#assetTable")) assetTable.column(".asset-action-col").visible(true);
+                    if (assignedTable && $.fn.DataTable.isDataTable("#assignedTable")) assignedTable.column(4).visible(true);
+                } else {
+                    $(".admin-only").hide();
+                    $(".toggle-password").hide();
+                    $("#roleLabel").text("MANAGER").removeClass("admin").addClass("manager");
+                    if (empTable && $.fn.DataTable.isDataTable("#empTable")) empTable.column(".emp-action-col").visible(false);
+                    if (assetTable && $.fn.DataTable.isDataTable("#assetTable")) assetTable.column(".asset-action-col").visible(false);
+                    if (assignedTable && $.fn.DataTable.isDataTable("#assignedTable")) assignedTable.column(4).visible(false);
+                }
+            }
+
+            // state
+            let empTable = null;
+            let assetTable = null;
+            let assignedTable = null;
+            let isAdmin = true;
+
+            applyRole();
+            $("#roleToggle").on("change", function () {
+                isAdmin = !$(this).prop("checked");
+                applyRole();
+            });
+
+            // dropdown data
             const deptRoles = {
                 "IT": ["Software Engineer", "QA Engineer", "DevOps Engineer", "Frontend Developer", "Backend Developer"],
                 "HR": ["HR Manager", "Recruiter", "Payroll Specialist", "HR Coordinator"],
@@ -1181,7 +978,6 @@
                 "Marketing": ["Marketing Manager", "Content Writer", "SEO Specialist", "Brand Strategist"],
                 "Operations": ["Operations Manager", "Logistics Coordinator", "Supply Chain Analyst", "Warehouse Supervisor"]
             };
-            //location data
             const locationData = [
                 {
                     text: "Tamil Nadu",
@@ -1204,16 +1000,6 @@
                     children: [{ id: "Hyderabad", text: "Hyderabad" }, { id: "Warangal", text: "Warangal" }, { id: "Nizamabad", text: "Nizamabad" }]
                 }
             ];
-
-            // localStorage function
-            const getEmployees = () => JSON.parse(localStorage.getItem("employees") || "[]");
-            const saveEmployees = d => localStorage.setItem("employees", JSON.stringify(d));
-            const getAssets = () => JSON.parse(localStorage.getItem("assets") || "[]");
-            const saveAssets = d => localStorage.setItem("assets", JSON.stringify(d));
-            const getHistory = () => JSON.parse(localStorage.getItem("assetHistory") || "[]");
-            const saveHistory = d => localStorage.setItem("assetHistory", JSON.stringify(d));
-
-            // assets data
             const seedAssets = [
                 { id: "AST001", category: "Laptop", name: "Dell Inspiron 15", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
                 { id: "AST002", category: "Laptop", name: "HP EliteBook 840", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
@@ -1243,7 +1029,16 @@
             ];
             if (!localStorage.getItem("assets")) saveAssets(seedAssets);
 
-            // generate id data
+            // local storage function 
+            const getEmployees = () => JSON.parse(localStorage.getItem("employees") || "[]");
+            const saveEmployees = d => localStorage.setItem("employees", JSON.stringify(d));
+            const getAssets = () => JSON.parse(localStorage.getItem("assets") || "[]");
+            const saveAssets = d => localStorage.setItem("assets", JSON.stringify(d));
+            const getHistory = () => JSON.parse(localStorage.getItem("assetHistory") || "[]");
+            const saveHistory = d => localStorage.setItem("assetHistory", JSON.stringify(d));
+
+            
+            // generate ID function
             const generateEmpId = () => {
                 const maxNum = getEmployees().reduce((max, e) => {
                     const n = parseInt((e.id || "EMP000").replace("EMP", ""), 10);
@@ -1259,7 +1054,7 @@
                 return "AST" + String(maxNum + 1).padStart(3, "0");
             };
 
-            // date funtion
+            // age calculation function
             const parseDMY = (str) => {
                 if (!str || str === "—") return null;
                 const p = str.split("/");
@@ -1267,8 +1062,6 @@
                 const d = new Date(+p[2], +p[1] - 1, +p[0]);
                 return isNaN(d.getTime()) ? null : d;
             };
-
-            // age verfication function
             const calcAge = (dob) => {
                 const today = new Date();
                 let age = today.getFullYear() - dob.getFullYear();
@@ -1277,17 +1070,17 @@
                 return age;
             };
             const getMax18Date = () => {
-                const d = new Date();
-                d.setFullYear(d.getFullYear() - 18);
+                const d = new Date(); d.setFullYear(d.getFullYear() - 18);
                 return d;
             };
 
-            // Datepicker
+            // datepicker function
             const initOrUpdateDatepicker = (selector, opts) => {
                 $(selector).each(function () {
                     if ($(this).hasClass("hasDatepicker")) {
                         $.each(opts, (k, v) => $(this).datepicker("option", k, v));
-                    } else {
+                    }
+                    else {
                         $(this).datepicker($.extend({
                             dateFormat: "dd/mm/yy",
                             changeMonth: true,
@@ -1298,33 +1091,13 @@
                 });
             };
 
-            // Role toggle addmin and manager
-            let isAdmin = true;
-            const applyRole = () => {
-                if (isAdmin) {
-                    $(".admin-only").show();
-                    $("#roleLabel").text("ADMIN").removeClass("manager").addClass("admin");
-                }
-                else {
-                    $(".admin-only").hide();
-                    $("#roleLabel").text("MANAGER").removeClass("admin").addClass("manager");
-                }
-            };
-            $("#roleToggle").on("change", function () {
-                isAdmin = !$(this).prop("checked");
-                applyRole();
-            });
-            applyRole();
-
-            // sidebar
+            // navbar section ------------------------------------------------------------------------------------------------------------------------
             const overlay = $("#sidebarOverlay");
             const closeSidebar = () => {
-                $("#sidenav").removeClass("show");
-                overlay.removeClass("active");
+                $("#sidenav").removeClass("show"); overlay.removeClass("active");
             };
             $("#sidebarToggleBtn").on("click", () => {
-                $("#sidenav").addClass("show");
-                overlay.addClass("active");
+                $("#sidenav").addClass("show"); overlay.addClass("active");
             });
             $("#closeSidebarBtn").on("click", closeSidebar);
             overlay.on("click", closeSidebar);
@@ -1336,7 +1109,6 @@
                 if (!isOpen) menu.addClass("open");
             });
 
-            // sidebar navigations
             const allNavLinks = [
                 $("#dashboardId"),
                 $("#addEmployeeId"),
@@ -1360,14 +1132,14 @@
             $("#viewEmployeeId").on("click",
                 () => showSection($("#viewEmployeeId"), "section-viewEmp", loadEmpTable));
             $("#assetAssignId").on("click",
-                () => showSection($("#assetAssignId"), "section-assign"));
+                () => showSection($("#assetAssignId"), "section-assign", loadAssignedTable));
             $("#assetInventoryId").on("click",
                 () => showSection($("#assetInventoryId"), "section-inventory", loadAssetTable));
             $("#assetHistoryId").on("click",
                 () => showSection($("#assetHistoryId"), "section-history", loadHistory));
             showSection($("#dashboardId"), "section-dashboard", loadDashboard);
 
-            // init date picker on modal 
+            // Datepicker initialize
             $(document).on("shown.bs.modal", "#addEmpModal", function () {
                 initOrUpdateDatepicker("#dob", {
                     maxDate: getMax18Date(),
@@ -1387,18 +1159,15 @@
                     minDate: tomorrow
                 });
             });
-            $(document).on("shown.bs.modal", "#editAssetModal", function () {
-                initOrUpdateDatepicker("#editAssetReturnDate", {
-                    minDate: new Date()
-                });
-            });
 
-            // regex patterns
+            // add employee section ----------------------------------------------------------------------------------------------------------------------
+
+            // regex pattern
             const fnamePattern = /^[A-Za-z]+(['][A-Za-z]+)*'?$/;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@!$%&])[A-Za-z\d@!$%&]{8,}$/;
 
-            //error functions
+            // error function
             const showError = (id, msg) => {
                 $("#" + id).closest(".input-group").siblings(".error-msg").text(msg);
                 $("#" + id).removeClass("is-valid").addClass("is-invalid");
@@ -1416,8 +1185,7 @@
                 $("#" + id).removeClass("is-invalid").addClass("is-valid");
             };
 
-            // add employee section ------------------------------------------------------------------
-            // add employee input validations
+            // add Employee validation
             const validateFname = () => {
                 const v = $("#fname").val();
                 if (!v.trim()) {
@@ -1449,8 +1217,7 @@
                     showError("lname", "Only letters and apostrophe allowed!");
                     return false;
                 }
-                clearError("lname");
-                return true;
+                clearError("lname"); return true;
             };
             const validateGender = () => {
                 const errEl = $("input[name='gender']").closest(".col-md-6").find(".error-msg");
@@ -1471,8 +1238,7 @@
                 if (!dob) {
                     showError("dob", "Enter a valid date (DD/MM/YYYY)!");
                     return false;
-                }
-                const age = calcAge(dob);
+                } const age = calcAge(dob);
                 if (age < 18) {
                     showError("dob", `Must be at least 18 years old. Entered age: ${age}.`);
                     return false;
@@ -1510,8 +1276,7 @@
                 if (!/^[0-9]{10}$/.test(v)) {
                     showError("contact", "Enter a valid 10-digit number!");
                     return false;
-                }
-                const exists = getEmployees().some(e => e.contact === v.trim());
+                } const exists = getEmployees().some(e => e.contact === v.trim());
                 if (exists) {
                     showError("contact", "This contact number is already registered!");
                     return false;
@@ -1579,32 +1344,32 @@
                     $("#deptrole").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                errEl.text(""); $("#deptrole").removeClass("is-invalid").addClass("is-valid"); return true;
+                errEl.text("");
+                $("#deptrole").removeClass("is-invalid").addClass("is-valid");
+                return true;
             };
             const validateLocation = () => {
                 const v = $("#location").val();
                 const errEl = $("#location").closest(".col-md-12").find(".error-msg");
-                if (!v) {
+                if (!v || v.length === 0) {
                     errEl.text("Location is required!");
                     return false;
                 }
                 errEl.text("");
                 return true;
             };
-            $("#fname").on("input", validateFname);
-            $("#lname").on("input", validateLname);
-            $("input[name='gender']").on("change", validateGender);
-            $("#dob").on("change", validateDob);
+
+            $("#fname").on("input", validateFname); $("#lname").on("input", validateLname);
+            $("input[name='gender']").on("change", validateGender); $("#dob").on("change", validateDob);
             $("#email").on("input", validateEmail);
             $("#contact").on("keydown", function (e) {
                 const ok = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];
                 if (!ok.includes(e.key) && !/^[0-9]$/.test(e.key)) e.preventDefault();
-            }).on("input", validateContact);
-            $("#pass").on("input", validatePass);
-            $("#cpass").on("input", validateCpass);
-            $("#location").on("change", validateLocation);
+            }).on("input", function () {
+                if (this.value.length > 10) this.value = this.value.slice(0, 10); validateContact();
+            });
+            $("#pass").on("input", validatePass); $("#cpass").on("input", validateCpass);
 
-            // multilevel dropdown
             Object.keys(deptRoles).forEach(d => $("#dept").append(`<option value="${d}">${d}</option>`));
             $("#dept").on("change", function () {
                 const sel = $(this).val();
@@ -1615,21 +1380,19 @@
                     return;
                 }
                 deptRoles[sel].forEach(r => $("#deptrole").append(`<option value="${r}">${r}</option>`));
-                $("#deptrole").prop("disabled", false);
-                validateDept();
+                $("#deptrole").prop("disabled", false); validateDept();
             });
             $("#deptrole").on("change", validateRole);
 
-            // Select2 
             $("#location").select2({
                 theme: "classic",
-                placeholder: "Select Location",
+                placeholder: "Select Location(s)",
                 allowClear: true,
                 data: locationData,
+                multiple: true,
                 dropdownParent: $("#addEmpModal")
-            });
+            }).val([]).trigger("change");
 
-            // Password toggle
             $(document).on("click", ".toggle-password", function () {
                 const inp = $(this).closest(".input-group").find("input");
                 const ico = $(this).find("i");
@@ -1643,7 +1406,6 @@
                 }
             });
 
-            // add employee submit
             $("#addEmpBtn").on("click", function () {
                 const ok = [
                     validateFname(),
@@ -1673,7 +1435,7 @@
                     password: $("#pass").val().trim(),
                     department: $("#dept").val(),
                     role: $("#deptrole").val(),
-                    location: $("#location").val() || "",
+                    location: $("#location").val() || [],
                     joindate: new Date().toLocaleDateString("en-GB"),
                     enddate: "",
                     status: "Active"
@@ -1681,23 +1443,26 @@
                 const emps = getEmployees();
                 emps.push(emp);
                 saveEmployees(emps);
-                Swal.fire({ title: "Success", icon: "success", text: `${emp.fullname} added successfully!` });
+                Swal.fire({
+                    title: "Success",
+                    icon: "success",
+                    text: `${emp.fullname} added successfully!`
+                });
                 $("#addEmpModal").modal("hide");
             });
-
-            // reset input field on modal close
+            // reset form on modal close
             $("#addEmpModal").on("hidden.bs.modal", function () {
                 $("#fname,#lname,#dob,#email,#contact,#pass,#cpass").val("").removeClass("is-valid is-invalid");
                 $("input[name='gender']").prop("checked", false);
                 $("#dept").val("").removeClass("is-valid is-invalid");
                 $("#deptrole").html('<option value="">Select Role</option>').prop("disabled", true).removeClass("is-valid is-invalid");
-                $("#location").val(null).trigger("change");
+                $("#location").val([]).trigger("change");
                 $(".error-msg").text("").removeClass("text-success").addClass("text-danger");
                 $("#pass,#cpass").attr("type", "password");
                 $(".toggle-password i").removeClass("fa-eye-slash").addClass("fa-eye");
             });
 
-            // dashboard section -----------------------------------------------------------------------
+            // Dashboad section ---------------------------------------------------------------------------------------------------------------------
             function loadDashboard() {
                 const employees = getEmployees();
                 const assets = getAssets();
@@ -1709,8 +1474,7 @@
                 $("#unassignedAssets").text(assets.filter(a => a.status === "NA").length);
             }
 
-            // view employee section -------------------------------------------------------------------
-            // edit employee validators
+            // edit Employee validation
             const validateEditFname = () => {
                 const v = $("#editFname").val();
                 if (!v.trim()) {
@@ -1725,7 +1489,8 @@
                     showEditError("editFname", "Only letters and apostrophe allowed!");
                     return false;
                 }
-                clearEditError("editFname"); return true;
+                clearEditError("editFname");
+                return true;
             };
             const validateEditLname = () => {
                 const v = $("#editLname").val();
@@ -1763,13 +1528,11 @@
                 if (!dob) {
                     showEditError("editDob", "Enter a valid date!");
                     return false;
-                }
-                const age = calcAge(dob);
+                } const age = calcAge(dob);
                 if (age < 18) {
                     showEditError("editDob", `Must be at least 18. Entered age: ${age}.`);
                     return false;
-                }
-                if (age > 60) {
+                } if (age > 60) {
                     showEditError("editDob", `Age ${age} exceeds maximum of 60.`);
                     return false;
                 }
@@ -1837,7 +1600,7 @@
                     showEditError("editCpass", "Confirm password!");
                     return false;
                 }
-                if (inp.val() !== $("#editPassword").val()) {
+                if (inp.val() !== $("+editPassword").val()) {
                     showEditError("editCpass", "Passwords don't match!");
                     return false;
                 }
@@ -1868,19 +1631,21 @@
                     errEl.text("Role required!"); $("#editRole").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                errEl.text(""); $("#editRole").removeClass("is-invalid").addClass("is-valid");
+                errEl.text("");
+                $("#editRole").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateEditLoc = () => {
                 const v = $("#editLocation").val();
                 const errEl = $("#editLocation").closest(".col-md-6").find(".error-msg");
-                if (!v) {
+                if (!v || v.length === 0) {
                     errEl.text("Location required!");
                     return false;
                 }
                 errEl.text("");
                 return true;
             };
+
             $("#editFname").on("input", validateEditFname);
             $("#editLname").on("input", validateEditLname);
             $("input[name='editGender']").on("change", validateEditGender);
@@ -1889,12 +1654,14 @@
             $("#editContact").on("keydown", function (e) {
                 const ok = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];
                 if (!ok.includes(e.key) && !/^[0-9]$/.test(e.key)) e.preventDefault();
-            }).on("input", validateEditContact);
+            }).on("input", function () {
+                if (this.value.length > 10) this.value = this.value.slice(0, 10);
+                validateEditContact();
+            });
             $("#editPassword").on("input", validateEditPass);
             $("#editCpass").on("input", validateEditCpass);
             $("#editLocation").on("change", validateEditLoc);
 
-            // edit form multilevel dropdown
             Object.keys(deptRoles).forEach(d => $("#editDept").append(`<option value="${d}">${d}</option>`));
             $("#editDept").on("change", function () {
                 validateEditDept();
@@ -1906,51 +1673,57 @@
             });
             $("#editRole").on("change", validateEditRole);
 
-            // Select2
             $("#editLocation").select2({
                 theme: "classic",
-                placeholder: "Select Location",
+                placeholder: "Select Location(s)",
                 allowClear: true,
                 data: locationData,
+                multiple: true,
                 dropdownParent: $("#editEmpModal")
-            });
+            }).val([]).trigger("change");
 
-            // fill edit form input fields
+            // populate edit form
             const populateEditModal = (emp, mode) => {
                 $("#editEmpId").val(emp.id);
                 $("#editMode").val(mode);
                 const isChild = mode === "child";
                 const isParent = mode === "parent";
-                $("#editFname").val(emp.firstname || "").prop("disabled", isChild);
-                $("#editLname").val(emp.lastname || "").prop("disabled", isChild);
-                $("input[name='editGender']").prop("disabled", isChild);
+                const allDisabled = !isAdmin;
+                $("#editFname").val(emp.firstname || "").prop("disabled", allDisabled || isChild);
+                $("#editLname").val(emp.lastname || "").prop("disabled", allDisabled || isChild);
+                $("input[name='editGender']").prop("disabled", allDisabled || isChild);
                 if ((emp.gender || "").toLowerCase() === "male") $("#editMale").prop("checked", true);
                 else if ((emp.gender || "").toLowerCase() === "female") $("#editFemale").prop("checked", true);
                 else $("input[name='editGender']").prop("checked", false);
-                $("#editDob").val(emp.dob || "").prop("disabled", isChild);
-                $("#editEmail").val(emp.email || "").prop("disabled", isChild);
-                $("#editContact").val(emp.contact || "").prop("disabled", isChild);
-                $("#editPassword").val(emp.password || "").prop("disabled", isChild);
-                $("#editCpass").val(emp.password || "").prop("disabled", isChild);
-                $(".toggle-password").prop("disabled", isChild);
-                $("#editStatus").val(emp.status || "Active").prop("disabled", isChild);
-                $("#editDept").val(emp.department || "").prop("disabled", isParent);
+                $("#editDob").val(emp.dob || "").prop("disabled", allDisabled || isChild);
+                $("#editEmail").val(emp.email || "").prop("disabled", allDisabled || isChild);
+                $("#editContact").val(emp.contact || "").prop("disabled", allDisabled || isChild);
+                $("#editPassword").val(emp.password || "").prop("disabled", allDisabled || isChild);
+                $("#editCpass").val(emp.password || "").prop("disabled", allDisabled || isChild);
+                $(".toggle-password").prop("disabled", allDisabled || isChild);
+                $("#editStatus").val(emp.status || "Active").prop("disabled", allDisabled || isChild);
+                $("#editDept").val(emp.department || "").prop("disabled", allDisabled || isParent);
                 if (emp.department && deptRoles[emp.department]) {
                     $("#editRole").html('<option value="">Select Role</option>');
                     deptRoles[emp.department].forEach(r => $("#editRole").append(`<option value="${r}">${r}</option>`));
-                    $("#editRole").val(emp.role || "").prop("disabled", isParent);
-                } else {
-                    $("#editRole").html('<option value="">Select Role</option>').prop("disabled", true);
-                }
-                const loc = Array.isArray(emp.location) ? emp.location[0] || "" : (emp.location || "");
-                $("#editLocation").val(loc).trigger("change").prop("disabled", isParent);
+                    $("#editRole").val(emp.role || "").prop("disabled", allDisabled || isParent);
+                } else { $("#editRole").html('<option value="">Select Role</option>').prop("disabled", true); }
+                const locArr = Array.isArray(emp.location) ? emp.location : (emp.location ? [emp.location] : []);
+                $("#editLocation").val(locArr).trigger("change").prop("disabled", allDisabled || isParent);
                 $("#editJoinDate").val(emp.joindate || "");
-                $("#editEndDate").val(emp.enddate || "").prop("disabled", isParent);
+                $("#editEndDate").val(emp.enddate || "").prop("disabled", allDisabled || isParent);
                 const joinDateObj = parseDMY(emp.joindate);
                 const minRelieve = joinDateObj ? new Date(joinDateObj.getTime() + 86400000) : new Date();
-                initOrUpdateDatepicker("#editEndDate", { minDate: minRelieve });
-
-                if (isParent) {
+                initOrUpdateDatepicker("#editEndDate", {
+                    minDate: minRelieve
+                });
+                if (allDisabled) {
+                    $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass").closest(".input-group").css("opacity", "0.6");
+                    $("input[name='editGender']").closest(".row").css("opacity", "0.6");
+                    $("#editDept,#editRole").addClass("opacity-50");
+                    $("#editLocation + .select2-container").css("opacity", "0.5");
+                    $("#editJoinDate,#editEndDate").prop("disabled", true).closest(".input-group").css("opacity", "0.6");
+                } else if (isParent) {
                     $("#editDept,#editRole").addClass("opacity-50");
                     $("#editLocation + .select2-container").css("opacity", "0.5");
                     $("#editJoinDate,#editEndDate").prop("disabled", true);
@@ -1963,17 +1736,15 @@
                 }
             };
 
-            // reset edit input field on modal close
+            // reset form on modal close
             $("#editEmpModal").on("hidden.bs.modal", function () {
-                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass,#editJoinDate,#editEndDate")
-                    .val("").prop("disabled", false).removeClass("is-valid is-invalid");
+                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass,#editJoinDate,#editEndDate").val("").prop("disabled", false).removeClass("is-valid is-invalid");
                 $("input[name='editGender']").prop("checked", false).prop("disabled", false);
                 $("#editDept").val("").prop("disabled", false).removeClass("is-valid is-invalid");
                 $("#editRole").html('<option value="">Select Role</option>').prop("disabled", true).removeClass("is-valid is-invalid");
-                $("#editLocation").val(null).trigger("change").prop("disabled", false);
+                $("#editLocation").val([]).trigger("change").prop("disabled", false);
                 $(".error-msg").text("").removeClass("text-success").addClass("text-danger");
-                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass")
-                    .closest(".input-group").css("opacity", "1");
+                $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass").closest(".input-group").css("opacity", "1");
                 $("input[name='editGender']").closest(".row").css("opacity", "1");
                 $("#editDept,#editRole").removeClass("opacity-50");
                 $("#editLocation + .select2-container").css("opacity", "1");
@@ -1982,39 +1753,41 @@
                 $("#editStatus").val("Active").prop("disabled", false);
             });
 
-            // child row format
+            // dtatable definitions
             const childFormat = (d) => {
-                const loc = Array.isArray(d.location) ? d.location[0] || "—" : (d.location || "—");
+                const loc = Array.isArray(d.location) ? (d.location.join(", ") || "—") : (d.location || "—");
+                const actionHeader = isAdmin ? `<th rowspan="2" class="text-center align-middle">Action</th>` : "";
+                const actionCell = isAdmin ? `<td><button type="button" class="btn btn-sm btn-outline-primary childEditBtn" data-id="${d.id}">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                            </td>` : "";
                 return `<table class="table table-sm table-bordered table-striped child-table">
-                            <thead class="thead-dark text-center">
-                                <tr>
-                                    <th rowspan="2" class="text-center align-middle">Location</th>
-                                    <th colspan="2" class="text-center align-middle">Position</th>
-                                    <th rowspan="2" class="text-center align-middle">Join Date</th>
-                                    <th rowspan="2" class="text-center align-middle">Relieve Date</th>
-                                    <th rowspan="2" class="text-center align-middle">Action</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center align-middle">Department</th>
-                                    <th class="text-center align-middle">Role</th>
-                                </tr>
-                            </thead>
-                            <tbody><tr class="text-center">
-                                <td>${loc}</td><td>${d.department || "—"}</td><td>${d.role || "—"}</td>
-                                <td>${d.joindate || "—"}</td><td>${d.enddate || "—"}</td>
-                                <td><button type="button" class="btn btn-sm btn-outline-primary childEditBtn" data-id="${d.id}">
-                                    <i class="fa-solid fa-pen-to-square"></i></button></td>
-                            </tr></tbody>
-                        </table>`;
-                };
+                <thead class="thead-dark text-center"><tr>
+                    <th rowspan="2" class="text-center align-middle">Location</th>
+                    <th colspan="2" class="text-center align-middle">Position</th>
+                    <th rowspan="2" class="text-center align-middle">Join Date</th>
+                    <th rowspan="2" class="text-center align-middle">Relieve Date</th>
+                    ${actionHeader}
+                </tr><tr>
+                    <th class="text-center align-middle">Department</th>
+                    <th class="text-center align-middle">Role</th>
+                </tr></thead>
+                <tbody><tr class="text-center">
+                    <td>${loc}</td>
+                    <td>${d.department || "—"}</td>
+                    <td>${d.role || "—"}</td>
+                    <td>${d.joindate || "—"}</td>
+                    <td>${d.enddate || "—"}</td>
+                    ${actionCell}
+                </tr></tbody>
+            </table>`;
+            };
 
-            // dom layout
             const dtDom =
                 '<"row"<"col-12"<"dt-filter-btn">>>' +
                 '<"row"<"col-md-12 mb-2"P>>' +
                 '<"row align-items-center mb-2"<"col-md-2 mt-n3"l><"col-md-1"<"dt-state-btn">><"col-md-1"<"dt-load-btn">><"col-md-8 d-flex justify-content-end"<"dt-export-btn">f>>' +
                 '<"d-none"B>t<"d-flex justify-content-between align-items-center pt-2"ip>';
-
             const dtButtons = [
                 {
                     text: '<i class="fa-solid fa-filter mr-1"></i> Filters',
@@ -2065,24 +1838,12 @@
                 }
             ];
 
-            // rebuild table for child row
-            let empTable = null;
-            const rebuildEmpTableHeader = () => {
-                $("#empTable thead").empty().append(`
-                <tr class="text-center thead-dark">
-                    <th style="width:40px"></th>
-                    <th>Full Name</th><th>Gender</th><th>DOB</th>
-                    <th>Email</th><th>Contact</th>
-                    <th>Status</th><th>Action</th><th>Profile</th>
-                </tr>`);
-            };
-
-            //load table
+            // load datatable
             function loadEmpTable() {
                 const employees = getEmployees();
                 if (empTable && $.fn.DataTable.isDataTable("#empTable")) {
                     empTable.clear().rows.add(employees).draw();
-                    rebuildEmpTableHeader();
+                    applyRole();
                     return;
                 }
                 if ($.fn.DataTable.isDataTable("#empTable")) {
@@ -2172,8 +1933,10 @@
                             defaultContent: "—",
                             searchPanes: { show: true },
                             render: d => {
-                                const cls = d === "Active" ? "status-active" : "status-inactive";
-                                const ico = d === "Active" ? '<i class="fa-solid fa-circle-check mr-1"></i>' : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
+                                const cls = d === "Active" ? "status-active"
+                                    : "status-inactive"; const ico = d === "Active"
+                                    ? '<i class="fa-solid fa-circle-check mr-1"></i>'
+                                    : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
                                 return `<span class="${cls}">${ico}${d || "—"}</span>`;
                             }
                         },
@@ -2182,10 +1945,10 @@
                             orderable: false,
                             searchable: false,
                             searchPanes: { show: false },
-                            className: "text-center align-middle",
+                            className: "text-center align-middle emp-action-col",
                             render: d => `<button type="button" class="btn btn-sm btn-outline-primary parentEditBtn" data-id="${d.id}">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>`
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>`
                         },
                         {
                             data: null,
@@ -2195,11 +1958,10 @@
                             className: "text-center align-middle",
                             render: d => `<button type="button" class="btn btn-sm btn-outline-info profileBtn" data-id="${d.id}">
                                             <i class="fa-solid fa-user"></i>
-                                        </button>`
+                                            </button>`
                         }
                     ],
                     initComplete: function () {
-                        rebuildEmpTableHeader();
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
                         c.find(".dt-filter-btn").append(b.eq(0).detach());
@@ -2209,24 +1971,28 @@
                         $(".dtsp-panesContainer").hide();
                     }
                 });
-
+                applyRole();
                 empTable.on("click", "tbody td.dt-control", function (e) {
                     const tr = e.target.closest("tr");
                     const row = empTable.row(tr);
-                    if (row.child.isShown()) { row.child.hide(); $(tr).removeClass("shown"); }
-                    else { row.child(childFormat(row.data())).show(); $(tr).addClass("shown"); }
+                    if (row.child.isShown()) {
+                        row.child.hide();
+                        $(tr).removeClass("shown");
+                    }
+                    else {
+                        row.child(childFormat(row.data())).show();
+                        $(tr).addClass("shown");
+                    }
                 });
             }
 
-            // parent row edit
             $("#empTable").on("click", ".parentEditBtn", function () {
                 const emp = getEmployees().find(e => e.id === $(this).data("id"));
-                if (!emp) return;
-                populateEditModal(emp, "parent");
+                if (!emp) return; populateEditModal(emp, "parent");
                 $("#editEmpModal").modal("show");
             });
 
-            // child row edit
+            // employee child edit
             $(document).on("click", ".childEditBtn", function () {
                 const emp = getEmployees().find(e => e.id === $(this).data("id"));
                 if (!emp) return;
@@ -2234,12 +2000,11 @@
                 $("#editEmpModal").modal("show");
             });
 
-            // profile button to show user profile
+            //  employee profile
             $("#empTable").on("click", ".profileBtn", function () {
                 const emp = getEmployees().find(e => e.id === $(this).data("id"));
                 if (!emp) return;
-                const loc = Array.isArray(emp.location) ? emp.location[0] || "—" : (emp.location || "—");
-                // Calculate age from stored DOB
+                const loc = Array.isArray(emp.location) ? (emp.location.join(", ") || "—") : (emp.location || "—");
                 const dobDate = parseDMY(emp.dob);
                 const ageStr = dobDate ? `${calcAge(dobDate)} years` : "—";
                 Swal.fire({
@@ -2247,23 +2012,22 @@
                     icon: "info",
                     width: 520,
                     html: `<table class="table table-sm table-bordered text-left mt-2">
-                                <tr><th style="width:40%">Employee ID</th><td>${emp.id}</td></tr>
-                                <tr><th>Gender</th><td>${emp.gender || "—"}</td></tr>
-                                <tr><th>Date of Birth</th><td>${emp.dob || "—"} (${ageStr})</td></tr>
-                                <tr><th>Email</th><td>${emp.email || "—"}</td></tr>
-                                <tr><th>Contact</th><td>${emp.contact || "—"}</td></tr>
-                                <tr><th>Department</th><td>${emp.department || "—"}</td></tr>
-                                <tr><th>Role</th><td>${emp.role || "—"}</td></tr>
-                                <tr><th>Location</th><td>${loc}</td></tr>
-                                <tr><th>Join Date</th><td>${emp.joindate || "—"}</td></tr>
-                                <tr><th>Relieve Date</th><td>${emp.enddate || "—"}</td></tr>
-                                <tr><th>Status</th><td>${emp.status || "—"}</td></tr>
-                            </table>`,
-                    confirmButtonText: "Close"
+                            <tr><th style="width:40%">Employee ID</th><td>${emp.id}</td></tr>
+                            <tr><th>Gender</th><td>${emp.gender || "—"}</td></tr>
+                            <tr><th>Date of Birth</th><td>${emp.dob || "—"} (${ageStr})</td></tr>
+                            <tr><th>Email</th><td>${emp.email || "—"}</td></tr>
+                            <tr><th>Contact</th><td>${emp.contact || "—"}</td></tr>
+                            <tr><th>Department</th><td>${emp.department || "—"}</td></tr>
+                            <tr><th>Role</th><td>${emp.role || "—"}</td></tr>
+                            <tr><th>Location</th><td>${loc}</td></tr>
+                            <tr><th>Join Date</th><td>${emp.joindate || "—"}</td></tr>
+                            <tr><th>Relieve Date</th><td>${emp.enddate || "—"}</td></tr>
+                            <tr><th>Status</th><td>${emp.status || "—"}</td></tr>
+                        </table>`, confirmButtonText: "Close"
                 });
             });
 
-            // Update employee
+            // update employee
             $("#updateEmpBtn").on("click", function () {
                 const id = $("#editEmpId").val();
                 const mode = $("#editMode").val();
@@ -2272,8 +2036,14 @@
                 if (idx === -1) return;
                 if (mode === "parent") {
                     const ok = [
-                        validateEditFname(), validateEditLname(), validateEditGender(), validateEditDob(),
-                        validateEditEmail(), validateEditContact(), validateEditPass(), validateEditCpass()
+                        validateEditFname(),
+                        validateEditLname(),
+                        validateEditGender(),
+                        validateEditDob(),
+                        validateEditEmail(),
+                        validateEditContact(),
+                        validateEditPass(),
+                        validateEditCpass()
                     ];
                     if (!ok.every(Boolean)) return;
                     emps[idx].firstname = $("#editFname").val().trim();
@@ -2286,81 +2056,235 @@
                     emps[idx].password = $("#editPassword").val().trim();
                     emps[idx].status = $("#editStatus").val();
                 } else {
-                    const ok = [validateEditDept(), validateEditRole(), validateEditLoc()];
+                    const ok = [
+                        validateEditDept(),
+                        validateEditRole(),
+                        validateEditLoc()
+                    ];
                     if (!ok.every(Boolean)) return;
                     emps[idx].department = $("#editDept").val();
                     emps[idx].role = $("#editRole").val();
-                    emps[idx].location = $("#editLocation").val() || "";
-                    emps[idx].enddate = $("#editEndDate").val().trim();
-                    emps[idx].status = $("#editStatus").val();
+                    emps[idx].location = $("#editLocation").val() || [];
+                    const relieveVal = $("#editEndDate").val().trim();
+                    emps[idx].enddate = relieveVal;
+                    if (relieveVal) {
+                        emps[idx].status = "Inactive";
+                        Swal.fire({
+                            icon: "info",
+                            title: "Status Auto-Updated",
+                            text: "Employee status set to Inactive.",
+                            timer: 3000,
+                            showConfirmButton: false
+                        });
+                    }
+                    else {
+                        emps[idx].status = $("#editStatus").val();
+                    }
                 }
                 saveEmployees(emps);
                 $("#editEmpModal").modal("hide");
                 loadEmpTable();
-                Swal.fire({ icon: "success", title: "Updated!", text: `${emps[idx].fullname} updated successfully.` });
+                Swal.fire({
+                    icon: "success",
+                    title: "Updated!",
+                    text: `${emps[idx].fullname} updated successfully.`
+                });
             });
 
-            // Delete employee
+            // employee delete
             $("#deleteEmpBtn").on("click", function () {
                 const id = $("#editEmpId").val();
                 const emps = getEmployees();
                 const emp = emps.find(e => e.id === id);
                 if (!emp) return;
-
-                const blockedAssets = getAssets().filter(a =>
-                    (a.status === "A" || a.status === "UM") && a.assignedTo === emp.fullname
-                );
-
+                const blockedAssets = getAssets().filter(a => (a.status === "A" || a.status === "UM") && a.assignedTo === emp.fullname);
                 if (blockedAssets.length > 0) {
-                    const assetList = blockedAssets
-                        .map(a => `${a.name} (${a.id}) — ${a.status === "A" ? "Assigned" : "Under Maintenance"}`)
-                        .join("\n");
+                    const assetList = blockedAssets.map(a => `${a.name} (${a.id}) — ${a.status === "A"
+                        ? "Assigned"
+                        : "Under Maintenance"}`).join("\n");
                     Swal.fire({
                         icon: "warning",
                         title: "Cannot Delete",
-                        html: `<b>${emp.fullname}</b> still has assets linked to them:<br><br>
-                   <pre style="text-align:left;font-size:0.85rem">${assetList}</pre>
-                   Please return or reassign all assets before deleting.`
-                    });
-                    return;
+                        html: `<b>${emp.fullname}</b> still has assets linked:<br><br><pre style="text-align:left;font-size:0.85rem">${assetList}</pre>Please return or reassign all assets before deleting.`
+                    }); return;
                 }
-
                 Swal.fire({
                     title: "Delete Employee?",
-                    text: `Delete ${emp.fullname}? This action cannot be undone.`,
+                    text: `Delete ${emp.fullname}? This cannot be undone.`,
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#dc3545",
                     confirmButtonText: "Delete"
-                }).then(r => {
-                    if (r.isConfirmed) {
-                        saveEmployees(emps.filter(e => e.id !== id));
-                        $("#editEmpModal").modal("hide");
-                        loadEmpTable();
-                        Swal.fire({
-                            icon: "success",
-                            title: "Deleted!",
-                            text: `${emp.fullname} removed.`
-                        });
+                })
+                    .then(r => {
+                        if (r.isConfirmed) {
+                            saveEmployees(emps.filter(e => e.id !== id));
+                            $("#editEmpModal").modal("hide");
+                            loadEmpTable();
+                            Swal.fire({
+                                icon: "success",
+                                title: "Deleted!",
+                                text: `${emp.fullname} removed.`
+                            });
+                        }
+                    });
+            });
+
+            // asset Assign section 
+
+            function loadAssignedTable() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const allAssets = getAssets();
+                let autoReturned = false;
+                allAssets.forEach((a, idx) => {
+                    if (a.status === "A" && a.returnDate && a.returnDate !== "—") {
+                        const retDate = parseDMY(a.returnDate);
+                        if (retDate && retDate <= today) {
+                            const hist = getHistory();
+                            const todayStr = new Date().toLocaleDateString("en-GB");
+                            hist.unshift({
+                                type: "return",
+                                msg: `${a.name} (${a.id}) auto-returned from ${a.assignedTo} on ${todayStr} (return date reached)`,
+                                asset: a.name,
+                                assetId: a.id,
+                                employee: a.assignedTo,
+                                date: todayStr
+                            });
+                            saveHistory(hist);
+                            allAssets[idx].status = "NA";
+                            allAssets[idx].assignedTo = "—";
+                            allAssets[idx].startDate = "—";
+                            allAssets[idx].returnDate = "—";
+                            autoReturned = true;
+                        }
                     }
+                });
+                if (autoReturned) {
+                    saveAssets(allAssets);
+                    loadDashboard();
+                }
+
+                const assignedAssets = allAssets.filter(a => a.status === "A");
+                if (assignedTable && $.fn.DataTable.isDataTable("#assignedTable")) {
+                    assignedTable.clear().rows.add(assignedAssets).draw();
+                    assignedTable.column(4).visible(isAdmin);
+                    return;
+                }
+                if ($.fn.DataTable.isDataTable("#assignedTable")) {
+                    $("#assignedTable").DataTable().destroy();
+                    $("#assignedBody").empty();
+                }
+                assignedTable = $("#assignedTable").DataTable({
+                    data: assignedAssets,
+                    pageLength: 10,
+                    ordering: true,
+                    searching: true,
+                    info: true,
+                    language: {
+                        search: "",
+                        searchPlaceholder: "Search assigned assets...",
+                        emptyTable: "No assets currently assigned",
+                        zeroRecords: "No matching records",
+                        info: "Showing _START_ to _END_ of _TOTAL_ assigned",
+                        lengthMenu: "Show _MENU_"
+                    },
+                    columns: [
+                        {
+                            data: "name",
+                            className: "text-center align-middle",
+                            defaultContent: "—",
+                            render: $.fn.dataTable.render.text()
+                        },
+                        {
+                            data: "assignedTo",
+                            className: "text-center align-middle",
+                            defaultContent: "—",
+                            render: $.fn.dataTable.render.text()
+                        },
+                        {
+                            data: "startDate",
+                            className: "text-center align-middle",
+                            defaultContent: "—",
+                            render: $.fn.dataTable.render.text()
+                        },
+                        {
+                            data: "returnDate",
+                            className: "text-center align-middle",
+                            defaultContent: "—",
+                            render: $.fn.dataTable.render.text()
+                        },
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            className: "text-center align-middle",
+                            render: d => `<button type="button" class="btn btn-sm btn-warning returnAssetBtn" data-id="${d.id}">
+                                        <i class="fa-solid fa-rotate-left mr-1"></i>Return
+                                        </button>`
+                        }
+                    ],
+                    initComplete: function () { }
+                });
+                assignedTable.column(4).visible(isAdmin);
+            }
+
+            // return asset button
+            $(document).on("click", ".returnAssetBtn", function () {
+                const assetId = $(this).data("id");
+                const assets = getAssets();
+                const idx = assets.findIndex(a => a.id === assetId);
+                if (idx === -1) return;
+                const asset = assets[idx];
+                Swal.fire({
+                    title: "Return Asset?",
+                    html: `Return <b>${asset.name}</b> from <b>${asset.assignedTo}</b>?`,
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#ffc107",
+                    confirmButtonText: "Return"
+                }).then(r => {
+                    if (!r.isConfirmed) return;
+                    const hist = getHistory();
+                    const todayStr = new Date().toLocaleDateString("en-GB");
+                    hist.unshift({
+                        type: "return",
+                        msg: `${asset.name} (${asset.id}) returned from ${asset.assignedTo} on ${todayStr}`,
+                        asset: asset.name,
+                        assetId: asset.id,
+                        employee: asset.assignedTo,
+                        date: todayStr
+                    });
+                    saveHistory(hist);
+                    assets[idx].status = "NA";
+                    assets[idx].assignedTo = "—";
+                    assets[idx].startDate = "—";
+                    assets[idx].returnDate = "—";
+                    saveAssets(assets);
+                    loadAssignedTable();
+                    loadDashboard();
+                    Swal.fire({
+                        icon: "success",
+                        title: "Returned!",
+                        text: `${asset.name} has been returned and is now available.`,
+                        timer: 2500,
+                        showConfirmButton: false
+                    });
                 });
             });
 
-            // asset assign section -------------------------------------------------------------
-            // asset assign
+            //assign form validations
             $("#assignModal").on("show.bs.modal", function () {
                 const emps = getEmployees();
                 const assets = getAssets();
                 $("#assignEmployee").html('<option value="">Select Employee</option>');
                 emps.filter(e => e.status === "Active").forEach(emp =>
-                    $("#assignEmployee").append(`<option value="${emp.id}">${emp.fullname} — ${emp.department} (${emp.id})</option>`)
-                );
+                    $("#assignEmployee").append(`<option value="${emp.id}">${emp.fullname} — ${emp.department} (${emp.id})</option>`));
                 const cats = [...new Set(assets.filter(a => a.status === "NA").map(a => a.category))];
                 $("#assignCategory").html('<option value="">Select Category</option>');
                 cats.forEach(c => $("#assignCategory").append(`<option value="${c}">${c}</option>`));
                 $("#assignAsset").html('<option value="">Select Asset</option>').prop("disabled", true);
-                $("#assignStartDate").val(new Date().toLocaleDateString("en-GB"));
-                $("#assignReturnDate").val("");
+                $("#assignStartDate").val(new Date().toLocaleDateString("en-GB")); $("#assignReturnDate").val("");
             });
 
             $("#assignCategory").on("change", function () {
@@ -2378,21 +2302,15 @@
                 $("#assignAsset").prop("disabled", false);
             });
 
-            // asset check limit
             $("#assignEmployee").on("change", function () {
                 validateAssignEmp();
                 const empId = $(this).val();
-                const assets = getAssets();
                 const empName = $(this).find("option:selected").text().split(" — ")[0];
-                const count = assets.filter(a => a.assignedTo === empName && a.status === "A").length;
+                const count = getAssets().filter(a => a.assignedTo === empName && a.status === "A").length;
                 const warnEl = $(this).closest(".input-group").siblings(".error-msg");
-                if (empId && count >= 3) {
-                    warnEl.removeClass("text-danger").addClass("text-warning")
-                        .text(`Warning: ${empName} already has ${count} asset(s) assigned.`);
-                }
+                if (empId && count >= 3) warnEl.removeClass("text-danger").addClass("text-warning").text(`Warning: ${empName} already has ${count} asset(s) assigned.`);
             });
 
-            // asset validation
             const validateAssignEmp = () => {
                 const v = $("#assignEmployee").val();
                 const err = $("#assignEmployee").closest(".input-group").siblings(".error-msg");
@@ -2408,10 +2326,12 @@
                 const v = $("#assignCategory").val();
                 const err = $("#assignCategory").closest(".input-group").siblings(".error-msg");
                 if (!v) {
-                    err.text("Select a category!"); $("#assignCategory").removeClass("is-valid").addClass("is-invalid");
+                    err.text("Select a category!");
+                    $("#assignCategory").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assignCategory").removeClass("is-invalid").addClass("is-valid");
+                err.text("");
+                $("#assignCategory").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateAssignAst = () => {
@@ -2422,14 +2342,18 @@
                 const v = $("#assignAsset").val();
                 const err = $("#assignAsset").closest(".input-group").siblings(".error-msg");
                 if (!v) {
-                    err.text("Select an asset!"); $("#assignAsset").removeClass("is-valid").addClass("is-invalid");
+                    err.text("Select an asset!");
+                    $("#assignAsset").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assignAsset").removeClass("is-invalid").addClass("is-valid");
+                err.text("");
+                $("#assignAsset").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             $("#assignCategory").on("change", validateAssignCat);
             $("#assignAsset").on("change", validateAssignAst);
+
+            // assign button
             $("#confirmAssignBtn").on("click", function () {
                 const ok = [
                     validateAssignEmp(),
@@ -2464,13 +2388,15 @@
                 });
                 saveHistory(hist);
                 $("#assignModal").modal("hide");
+                loadAssignedTable();
+                loadDashboard();
                 Swal.fire({
                     icon: "success",
                     title: "Assigned!",
                     html: `<b>${assets[idx].name}</b> assigned to <b>${emp.fullname}</b> successfully.`
                 });
             });
-
+            //reset form on modal close
             $("#assignModal").on("hidden.bs.modal", function () {
                 $("#assignEmployee,#assignCategory").val("");
                 $("#assignAsset").html('<option value="">Select Asset</option>').prop("disabled", true);
@@ -2480,16 +2406,15 @@
                 $(".error-msg").text("").removeClass("text-warning").addClass("text-danger");
             });
 
-            // asset inventory section -----------------------------------------------------------------------
-            let assetTable = null;
-            // asset status
+            // asset Inventory section ----------------------------------------------------------------------------------------------------------------------------
             const renderStatus = (s) => {
                 if (s === "A") return `<span class="status-active"><i class="fa-solid fa-circle-check mr-1"></i>A</span>`;
                 if (s === "NA") return `<span class="status-inactive"><i class="fa-solid fa-circle-xmark mr-1"></i>NA</span>`;
                 if (s === "UM") return `<span class="text-warning font-weight-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>UM</span>`;
                 return s || "—";
             };
-            // status list of asset 
+
+            // asset summary card
             const buildCatSummary = () => {
                 const assets = getAssets();
                 const cats = [...new Set(assets.map(a => a.category))];
@@ -2500,58 +2425,24 @@
                     const assigned = ca.filter(a => a.status === "A").length;
                     const notAssig = ca.filter(a => a.status === "NA").length;
                     const underM = ca.filter(a => a.status === "UM").length;
-                    const remaining = notAssig;
-
-                    html += `
-                        <div class="cat-card">
-                            <div class="cat-name">${cat}</div>
-
-                            <div class="cat-top-row">
-                                <div class="cat-top-label">Total</div>
-                                <div class="cat-top-label">Remaining</div>
-                            </div>
-                            <div class="cat-top-row">
-                                <div class="cat-top-val">${total}</div>
-                                <div class="cat-top-val">${remaining}</div>
-                            </div>
-
-                            <hr class="cat-divider" />
-
-                            <div class="cat-detail-row">
-                                <span class="cat-detail-label">Assigned</span>
-                                <span class="cat-detail-val">${assigned}</span>
-                            </div>
-                            <div class="cat-detail-row">
-                                <span class="cat-detail-label">Not Assigned</span>
-                                <span class="cat-detail-val">${notAssig}</span>
-                            </div>
-                            <div class="cat-detail-row">
-                                <span class="cat-detail-label">Under Maintenance</span>
-                                <span class="cat-detail-val">${underM}</span>
-                            </div>
-                        </div>
-                    `;
+                    html += `<div class="cat-card">
+                    <div class="cat-name">${cat}</div>
+                    <div class="cat-stat-header"><span class="cat-sh-cell">Total</span><span class="cat-sh-cell">In-stock</span><span class="cat-sh-cell">Assigned</span></div>
+                    <div class="cat-stat-row"><span class="cat-sv-cell">${total}</span><span class="cat-sv-cell">${notAssig}</span><span class="cat-sv-cell">${assigned}</span></div>
+                    <hr class="cat-divider" />
+                    <div class="cat-detail-row"><span class="cat-detail-label">Under Maintenance</span><span class="cat-detail-val">${underM}</span></div>
+                </div>`;
                 });
                 $("#catSummaryWrap").html(html);
             };
-
-            // rebuld asset table
-            const rebuildAssetTableHeader = () => {
-                $("#assetTable thead").empty().append(`
-                <tr class="text-center thead-dark">
-                    <th>ID</th><th>Category</th><th>Asset Name</th><th>Status</th>
-                    <th>Assigned To</th><th>Start Date</th><th>Return Date</th>
-                    <th>Image</th><th>Action</th>
-                </tr>`);
-            };
-
-            // load asset taable
+            // asset inventory table
             function loadAssetTable() {
                 buildCatSummary();
                 const assets = getAssets();
                 if (assetTable && $.fn.DataTable.isDataTable("#assetTable")) {
                     assetTable.clear().rows.add(assets).draw();
                     buildCatSummary();
+                    applyRole();
                     return;
                 }
                 if ($.fn.DataTable.isDataTable("#assetTable")) {
@@ -2585,7 +2476,7 @@
                     dom: dtDom,
                     buttons: dtButtons,
                     columnDefs: [{
-                        targets: [7, 8],
+                        targets: [4, 5],
                         searchPanes: { show: false }
                     }],
                     columns: [
@@ -2618,34 +2509,13 @@
                             render: d => renderStatus(d)
                         },
                         {
-                            data: "assignedTo",
-                            className: "text-center align-middle",
-                            defaultContent: "—",
-                            searchPanes: { show: true },
-                            render: $.fn.dataTable.render.text()
-                        },
-                        {
-                            data: "startDate",
-                            className: "text-center align-middle",
-                            defaultContent: "—",
-                            searchPanes: { show: false },
-                            render: $.fn.dataTable.render.text()
-                        },
-                        {
-                            data: "returnDate",
-                            className: "text-center align-middle",
-                            defaultContent: "—",
-                            searchPanes: { show: false },
-                            render: $.fn.dataTable.render.text()
-                        },
-                        {
                             data: "image",
                             orderable: false,
                             searchable: false,
                             searchPanes: { show: false },
                             className: "text-center align-middle",
                             render: (d, type, row) => `<button type="button" class="btn btn-sm btn-outline-secondary viewImgBtn" data-id="${row.id}">
-                                                            <i class="fa-solid fa-image"></i>
+                                                        <i class="fa-solid fa-image"></i>
                                                         </button>`
                         },
                         {
@@ -2653,14 +2523,13 @@
                             orderable: false,
                             searchable: false,
                             searchPanes: { show: false },
-                            className: "text-center align-middle",
+                            className: "text-center align-middle asset-action-col",
                             render: d => `<button type="button" class="btn btn-sm btn-outline-primary editAssetBtn" data-id="${d.id}">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>`
+                                            </button>`
                         }
                     ],
                     initComplete: function () {
-                        rebuildAssetTableHeader();
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
                         c.find(".dt-filter-btn").append(b.eq(0).detach());
@@ -2670,9 +2539,10 @@
                         $(".dtsp-panesContainer").hide();
                     }
                 });
+                applyRole();
             }
 
-            // image modal for asset
+            // image button click
             $("#assetTable").on("click", ".viewImgBtn", function () {
                 const asset = getAssets().find(a => a.id === $(this).data("id"));
                 if (!asset) return;
@@ -2681,23 +2551,23 @@
                 if (imgs.length > 0) {
                     imgs.forEach((src, i) => {
                         slides += `<div class="carousel-item ${i === 0 ? "active" : ""}">
-                            <img src="${src}" class="d-block w-100" alt="${asset.name} image ${i + 1}" style="max-height:400px;object-fit:contain;" />
-                            <div class="carousel-caption d-none d-md-block" style="background:rgba(0,0,0,0.4);border-radius:4px;">
-                                <small>${i + 1} / ${imgs.length}</small>
-                            </div>
-                        </div>`;
+                                    <img src="${src}" class="d-block w-100" alt="${asset.name} image ${i + 1}" style="max-height:400px;object-fit:contain;" />
+                                    <div class="carousel-caption d-none d-md-block" style="background:rgba(0,0,0,0.4);border-radius:4px;"><small>${i + 1} / ${imgs.length}</small>
+                                    </div>
+                                </div>`;
                     });
-                } else {
+                }
+                else {
                     slides = `<div class="carousel-item active text-center py-5">
-                        <i class="fa-solid fa-image fa-5x text-muted"></i>
-                        <p class="mt-3 text-muted">No image available for ${asset.name}</p>
-                    </div>`;
+                                <i class="fa-solid fa-image fa-5x text-muted"></i>
+                                <p class="mt-3 text-muted">No image available for ${asset.name}</p>
+                            </div>`;
                 }
                 $("#carouselInner").html(slides);
                 $("#assetCarouselModal").modal("show");
             });
 
-            // Asset validate functions
+            // add asset validatoion
             const validateAssetCat = () => {
                 const v = $("#assetCategory").val();
                 const err = $("#assetCategory").closest(".input-group").siblings(".error-msg");
@@ -2722,7 +2592,8 @@
                     showError("assetName", "Asset with this name already exists in this category!");
                     return false;
                 }
-                clearError("assetName"); return true;
+                clearError("assetName");
+                return true;
             };
             const validateAssetStat = () => {
                 const v = $("#assetStatus").val();
@@ -2732,7 +2603,8 @@
                     $("#assetStatus").removeClass("is-valid").addClass("is-invalid");
                     return false;
                 }
-                err.text(""); $("#assetStatus").removeClass("is-invalid").addClass("is-valid");
+                err.text("");
+                $("#assetStatus").removeClass("is-invalid").addClass("is-valid");
                 return true;
             };
             const validateEditAssetCat = () => {
@@ -2762,7 +2634,6 @@
             $("#editAssetCategory").on("change", validateEditAssetCat);
             $("#editAssetName").on("input", validateEditAssetName);
 
-            // image preview
             $("#assetImage").on("change", function () {
                 const file = this.files[0];
                 const label = $(this).siblings(".custom-file-label");
@@ -2773,13 +2644,11 @@
                 }
                 label.text(file.name);
                 const reader = new FileReader();
-                reader.onload = e => {
-                    $("#assetImagePreview").attr("src", e.target.result).show();
-                };
+                reader.onload = e => $("#assetImagePreview").attr("src", e.target.result).show();
                 reader.readAsDataURL(file);
             });
 
-            // save asset
+            //add asset button
             $("#saveAssetBtn").on("click", function () {
                 const ok = [
                     validateAssetCat(),
@@ -2803,8 +2672,7 @@
                     const assets = getAssets();
                     assets.push(asset);
                     saveAssets(assets);
-                    loadAssetTable();
-                    $("#addAssetModal").modal("hide");
+                    loadAssetTable(); $("#addAssetModal").modal("hide");
                     Swal.fire({
                         icon: "success",
                         title: "Added!",
@@ -2815,11 +2683,8 @@
                     const r = new FileReader();
                     r.onload = e => doSave(e.target.result);
                     r.readAsDataURL(file);
-                }
-                else doSave("");
+                } else doSave("");
             });
-
-            // reset input field on modal close
             $("#addAssetModal").on("hidden.bs.modal", function () {
                 $("#assetCategory,#assetStatus").val("");
                 $("#assetName").val("");
@@ -2830,7 +2695,7 @@
                 $(".error-msg").text("");
             });
 
-            // edit asset
+            // Edit Asset button
             $("#assetTable").on("click", ".editAssetBtn", function () {
                 const asset = getAssets().find(a => a.id === $(this).data("id"));
                 if (!asset) return;
@@ -2838,51 +2703,36 @@
                 $("#editAssetCategory").val(asset.category);
                 $("#editAssetName").val(asset.name);
                 $("#editAssetStatus").val(asset.status);
-                const existingReturn = (asset.returnDate && asset.returnDate !== "—") ? asset.returnDate : "";
-                $("#editAssetReturnDate").val(existingReturn);
-                const empDropdown = $("#editAssetAssignedTo");
-                empDropdown.html('<option value="">— Not Assigned —</option>');
-                getEmployees().forEach(emp => {
-                    empDropdown.append(`<option value="${emp.fullname}">${emp.fullname} — ${emp.department} (${emp.id})</option>`);
-                });
-                const currentAssigned = (asset.assignedTo === "—") ? "" : asset.assignedTo;
-                empDropdown.val(currentAssigned);
                 const editPreviewWrap = $("#editAssetImagePreviewWrap");
                 editPreviewWrap.empty();
                 const imgs = Array.isArray(asset.images) ? asset.images : (asset.image ? [asset.image] : []);
                 imgs.forEach((src, i) => {
                     if (!src) return;
-                    editPreviewWrap.append(`
-                    <div class="position-relative" style="display:inline-block;">
-                        <img src="${src}" style="width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid #dee2e6;" />
-                        <button type="button" class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
-                            data-index="${i}" style="top:-6px;right:-6px;padding:1px 5px;font-size:0.65rem;line-height:1;">&times;</button>
+                    editPreviewWrap.append(`<div class="position-relative" style="display:inline-block;">
+                    <img src="${src}" style="width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid #dee2e6;" />
+                    <button type="button" class="btn btn-danger btn-sm position-absolute removeEditImgBtn" data-index="${i}" style="top:-6px;right:-6px;padding:1px 5px;font-size:0.65rem;line-height:1;">&times;</button>
                     </div>`);
                 });
                 $("#editAssetModal").modal("show");
             });
 
-            // edit asset image
+            // edit image
             $("#editAssetImages").on("change", function () {
                 const files = Array.from(this.files);
-                $(this).siblings(".custom-file-label").text(files.length > 0 ? `${files.length} image(s) selected` : "Choose images");
+                $(this).siblings(".custom-file-label").text(files.length > 0
+                    ? `${files.length} image(s) selected`
+                    : "Choose images");
                 if (!files.length) return;
                 const wrap = $("#editAssetImagePreviewWrap");
                 files.forEach(file => {
                     const reader = new FileReader();
                     reader.onload = function (e) {
                         const total = wrap.find("img").length;
-                        wrap.append(`
-                        <div class="position-relative" style="display:inline-block;">
-                            <img src="${e.target.result}" style="width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid #dee2e6;" />
-                            <button type="button" class="btn btn-danger btn-sm position-absolute removeEditImgBtn"
-                                data-index="${total}" style="top:-6px;right:-6px;padding:1px 5px;font-size:0.65rem;line-height:1;">&times;</button>
-                        </div>`);
+                        wrap.append(`<div class="position-relative" style="display:inline-block;"><img src="${e.target.result}" style="width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid #dee2e6;" /><button type="button" class="btn btn-danger btn-sm position-absolute removeEditImgBtn" data-index="${total}" style="top:-6px;right:-6px;padding:1px 5px;font-size:0.65rem;line-height:1;">&times;</button></div>`);
                     };
                     reader.readAsDataURL(file);
                 });
             });
-
             $(document).on("click", ".removeEditImgBtn", function () {
                 $(this).closest("div").remove();
                 $("#editAssetImagePreviewWrap > div").each(function (i) {
@@ -2890,92 +2740,56 @@
                 });
             });
 
-            // update asset
             $("#updateAssetBtn").on("click", function () {
-                const ok = [validateEditAssetCat(), validateEditAssetName()];
+                const ok = [
+                    validateEditAssetCat(),
+                    validateEditAssetName()
+                ];
                 if (!ok.every(Boolean)) return;
-
                 const id = $("#editAssetId").val();
                 const assets = getAssets();
                 const idx = assets.findIndex(a => a.id === id);
                 if (idx === -1) return;
-
-                let newStatus = $("#editAssetStatus").val();
-                const newAssigned = $("#editAssetAssignedTo").val().trim();
-                const returnDateVal = $("#editAssetReturnDate").val().trim();
-                const returnDateObj = parseDMY(returnDateVal);
-
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                if (newStatus === "A" && !newAssigned) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Assign Required",
-                        text: "Status 'Assigned' requires selecting an employee."
+                const newStatus = $("#editAssetStatus").val();
+                if ((newStatus === "NA" || newStatus === "UM") && assets[idx].status === "A" && assets[idx].assignedTo !== "—") {
+                    const hist = getHistory();
+                    const todayStr = new Date().toLocaleDateString("en-GB");
+                    hist.unshift({
+                        type: "return",
+                        msg: `${assets[idx].name} (${assets[idx].id}) returned from ${assets[idx].assignedTo} on ${todayStr}`,
+                        asset: assets[idx].name,
+                        assetId: assets[idx].id,
+                        employee: assets[idx].assignedTo,
+                        date: todayStr
                     });
-                    return;
-                }
-                if (returnDateVal && returnDateObj && returnDateObj <= today && newStatus === "A") {
-                    newStatus = "NA";
-                    Swal.fire({
-                        icon: "info",
-                        title: "Status Auto-Updated",
-                        text: "Return date has been reached. Status changed from Assigned to Not Assigned.",
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
-                }
-                if (newStatus === "NA" || newStatus === "UM") {
-                    const wasAssigned = assets[idx].assignedTo && assets[idx].assignedTo !== "—";
-                    if (wasAssigned && newStatus === "NA") {
-                        const hist = getHistory();
-                        const todayStr = new Date().toLocaleDateString("en-GB");
-                        hist.unshift({
-                            type: "return",
-                            msg: `${assets[idx].name} (${assets[idx].id}) returned from ${assets[idx].assignedTo} on ${todayStr}`,
-                            asset: assets[idx].name,
-                            assetId: assets[idx].id,
-                            employee: assets[idx].assignedTo,
-                            date: todayStr
-                        });
-                        saveHistory(hist);
-                    }
+                    saveHistory(hist);
                     assets[idx].assignedTo = "—";
                     assets[idx].startDate = "—";
                     assets[idx].returnDate = "—";
-                } else {
-                    assets[idx].assignedTo = newAssigned || "—";
-                    assets[idx].returnDate = returnDateVal || "—";
                 }
-
                 const finalImages = [];
                 $("#editAssetImagePreviewWrap img").each(function () {
                     finalImages.push($(this).attr("src"));
                 });
-
                 assets[idx].category = $("#editAssetCategory").val();
                 assets[idx].name = $("#editAssetName").val().trim();
                 assets[idx].status = newStatus;
                 assets[idx].images = finalImages;
                 assets[idx].image = finalImages.length > 0 ? finalImages[0] : "";
-
                 saveAssets(assets);
-                $("#editAssetModal").modal("hide");
-                loadAssetTable();
+                $("#editAssetModal").modal("hide"); loadAssetTable();
                 Swal.fire({
                     icon: "success",
                     title: "Updated!",
                     text: `${assets[idx].name} updated successfully.`
                 });
             });
-
-            // reset input field on modal close
+            //reset form on modal close
             $("#editAssetModal").on("hidden.bs.modal", function () {
-                $("#editAssetId,#editAssetReturnDate").val("");
+                $("#editAssetId").val("");
                 $("#editAssetCategory").val("");
                 $("#editAssetName").val("");
                 $("#editAssetStatus").val("A");
-                $("#editAssetAssignedTo").html('<option value="">— Not Assigned —</option>');
                 $("#editAssetImages").val("");
                 $(".custom-file-label").text("Choose images");
                 $("#editAssetImagePreviewWrap").empty();
@@ -2989,16 +2803,13 @@
                 const assets = getAssets();
                 const asset = assets.find(a => a.id === id);
                 if (!asset) return;
-
                 if (asset.status === "A") {
                     Swal.fire({
                         icon: "warning",
                         title: "Cannot Delete",
-                        text: `"${asset.name}" is currently assigned to ${asset.assignedTo}. Return the asset before deleting.`
-                    });
-                    return;
+                        text: `"${asset.name}" is currently assigned to ${asset.assignedTo}. Return before deleting.`
+                    }); return;
                 }
-
                 Swal.fire({
                     title: "Delete Asset?",
                     html: `Delete <b>${asset.name}</b> (${asset.id})? This cannot be undone.`,
@@ -3006,47 +2817,43 @@
                     showCancelButton: true,
                     confirmButtonColor: "#dc3545",
                     confirmButtonText: "Delete"
-                }).then(r => {
-                    if (!r.isConfirmed) return;
-                    saveAssets(assets.filter(a => a.id !== id));
-                    const hist = getHistory();
-                    const today = new Date().toLocaleDateString("en-GB");
-                    hist.unshift({
-                        type: "delete",
-                        msg: `${asset.name} (${asset.id}) deleted from inventory on ${today}`,
-                        asset: asset.name,
-                        assetId: asset.id,
-                        date: today
+                })
+                    .then(r => {
+                        if (!r.isConfirmed) return;
+                        saveAssets(assets.filter(a => a.id !== id));
+                        const hist = getHistory();
+                        const today = new Date().toLocaleDateString("en-GB");
+                        hist.unshift({
+                            type: "delete",
+                            msg: `${asset.name} (${asset.id}) deleted from inventory on ${today}`,
+                            asset: asset.name,
+                            assetId: asset.id,
+                            date: today
+                        });
+                        saveHistory(hist);
+                        $("#editAssetModal").modal("hide");
+                        loadAssetTable(); Swal.fire({
+                            icon: "success",
+                            title: "Deleted!",
+                            text: `${asset.name} removed from inventory.`
+                        });
                     });
-                    saveHistory(hist);
-                    $("#editAssetModal").modal("hide");
-                    loadAssetTable();
-                    Swal.fire({
-                        icon: "success",
-                        title: "Deleted!",
-                        text: `${asset.name} removed from inventory.`
-                    });
-                });
             });
 
-            // asset history section------------------------------------------------------------
+            // Asset History section -----------------------------------------------------------------------------------------
             function loadHistory() {
                 const hist = getHistory();
                 $("#historyBody").empty();
                 if (!hist.length) {
-                    $("#historyBody").html(
-                        '<tr><td colspan="2" class="text-muted text-center py-3">No history yet. Assign or return an asset to see records here.</td></tr>'
-                    );
+                    $("#historyBody").html('<tr><td colspan="2" class="text-muted text-center py-3">No history yet. Assign or return an asset to see records here.</td></tr>');
                     return;
                 }
                 hist.forEach((item, i) => {
-                    const badge = item.type === "return" ? '<span class="badge badge-danger mr-2">Returned</span>'
+                    const badge = item.type === "return"
+                        ? '<span class="badge badge-danger mr-2">Returned</span>'
                         : item.type === "delete" ? '<span class="badge badge-dark mr-2">Deleted</span>'
                             : '<span class="badge badge-success mr-2">Assigned</span>';
-                    $("#historyBody").append(`<tr>
-                        <td class="text-center align-middle">${i + 1}</td>
-                        <td class="text-left">${badge}${item.msg}</td>
-                    </tr>`);
+                    $("#historyBody").append(`<tr><td class="text-center align-middle">${i + 1}</td><td class="text-left">${badge}${item.msg}</td></tr>`);
                 });
             }
 
