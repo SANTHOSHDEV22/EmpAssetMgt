@@ -4,14 +4,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>EAM</title>
+    <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- DataTables Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.min.css" />
+    <!-- Buttons Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap4.min.css" />
+    <!-- SearchPanes Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/2.3.1/css/searchPanes.bootstrap4.min.css" />
+    <!-- SearchBuilder Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.7.1/css/searchBuilder.bootstrap4.min.css" />
+    <!-- Select Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap4.min.css" />
+    <!-- StateRestore -->
     <link rel="stylesheet" href="https://cdn.datatables.net/staterestore/1.4.3/css/stateRestore.dataTables.min.css" />
+    <!-- Select2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <!-- jQuery UI -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <style>
         .navbar-collapse {
@@ -26,15 +37,15 @@
             overflow-y: auto;
         }
 
-            .navbar-collapse.collapsing {
-                left: -240px;
-                height: 100% !important;
-                transition: left 300ms ease-in-out !important;
-            }
+        .navbar-collapse.collapsing {
+            left: -240px;
+            height: 100% !important;
+            transition: left 300ms ease-in-out !important;
+        }
 
-            .navbar-collapse.show {
-                left: 0;
-            }
+        .navbar-collapse.show {
+            left: 0;
+        }
 
         .sidebar-overlay {
             position: fixed;
@@ -47,9 +58,9 @@
             display: none;
         }
 
-            .sidebar-overlay.active {
-                display: block;
-            }
+        .sidebar-overlay.active {
+            display: block;
+        }
 
         .dropdown-menu {
             display: none;
@@ -60,19 +71,19 @@
             float: none !important;
         }
 
-            .dropdown-menu.open {
-                display: block;
-            }
+        .dropdown-menu.open {
+            display: block;
+        }
 
-            .dropdown-menu .dropdown-item {
-                color: #adb5bd;
-                padding: 0.4rem 0.5rem;
-            }
+        .dropdown-menu .dropdown-item {
+            color: #adb5bd;
+            padding: 0.4rem 0.5rem;
+        }
 
-                .dropdown-menu .dropdown-item:hover {
-                    background: #495057;
-                    color: #fff;
-                }
+        .dropdown-menu .dropdown-item:hover {
+            background: #495057;
+            color: #fff;
+        }
 
         .role-badge {
             font-size: 0.7rem;
@@ -82,15 +93,15 @@
             letter-spacing: 0.5px;
         }
 
-            .role-badge.admin {
-                background: #28a745;
-                color: #fff;
-            }
+        .role-badge.admin {
+            background: #28a745;
+            color: #fff;
+        }
 
-            .role-badge.manager {
-                background: #17a2b8;
-                color: #fff;
-            }
+        .role-badge.manager {
+            background: #17a2b8;
+            color: #fff;
+        }
 
         #roleToggle, #roleToggle + .custom-control-label {
             cursor: pointer;
@@ -101,11 +112,11 @@
             width: 100%;
         }
 
-            .dash-table th, .dash-table td {
-                width: 50%;
-                text-align: center;
-                vertical-align: middle;
-            }
+        .dash-table th, .dash-table td {
+            width: 50%;
+            text-align: center;
+            vertical-align: middle;
+        }
 
         .dash-table-4 th, .dash-table-4 td {
             width: 25%;
@@ -136,15 +147,15 @@
             box-sizing: border-box;
         }
 
-            .cat-card .cat-name {
-                font-size: 0.95rem;
-                font-weight: 700;
-                color: #212529;
-                margin: 0 0 8px 0;
-                padding-bottom: 6px;
-                border-bottom: 2px solid #343a40;
-                letter-spacing: 0.2px;
-            }
+        .cat-card .cat-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #212529;
+            margin: 0 0 8px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #343a40;
+            letter-spacing: 0.2px;
+        }
 
         .cat-stat-header {
             display: grid;
@@ -218,50 +229,50 @@
             align-items: stretch;
         }
 
-            .location-wrapper .location-label {
-                display: flex;
-                align-items: center;
-                padding: 0 0.75rem;
-                font-size: 1rem;
-                color: #495057;
-                background: #e9ecef;
-                border: 1px solid #ced4da;
-                border-right: none;
-                border-radius: 0.25rem 0 0 0.25rem;
-                white-space: nowrap;
-                min-height: 34px;
-            }
+        .location-wrapper .location-label {
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+            font-size: 1rem;
+            color: #495057;
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            border-right: none;
+            border-radius: 0.25rem 0 0 0.25rem;
+            white-space: nowrap;
+            min-height: 34px;
+        }
 
         #location + .select2-container--classic, #editLocation + .select2-container--classic {
             flex: 1 1 auto;
             width: 100% !important;
         }
 
-            #location + .select2-container--classic .select2-selection--multiple,
-            #editLocation + .select2-container--classic .select2-selection--multiple {
-                min-height: 34px !important;
-                border: 1px solid #ced4da !important;
-                border-left: none !important;
-                border-radius: 0 0.25rem 0.25rem 0 !important;
-                background-image: none;
-                padding: 2px 4px;
-            }
+        #location + .select2-container--classic .select2-selection--multiple,
+        #editLocation + .select2-container--classic .select2-selection--multiple {
+            min-height: 34px !important;
+            border: 1px solid #ced4da !important;
+            border-left: none !important;
+            border-radius: 0 0.25rem 0.25rem 0 !important;
+            background-image: none;
+            padding: 2px 4px;
+        }
 
-            #location + .select2-container--classic .select2-selection__choice,
-            #editLocation + .select2-container--classic .select2-selection__choice {
-                background-color: #343a40;
-                color: #fff;
-                border: none;
-                border-radius: 3px;
-                padding: 1px 6px;
-                font-size: 0.8rem;
-            }
+        #location + .select2-container--classic .select2-selection__choice,
+        #editLocation + .select2-container--classic .select2-selection__choice {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 1px 6px;
+            font-size: 0.8rem;
+        }
 
-            #location + .select2-container--classic .select2-selection__choice__remove,
-            #editLocation + .select2-container--classic .select2-selection__choice__remove {
-                color: #adb5bd;
-                margin-right: 4px;
-            }
+        #location + .select2-container--classic .select2-selection__choice__remove,
+        #editLocation + .select2-container--classic .select2-selection__choice__remove {
+            color: #adb5bd;
+            margin-right: 4px;
+        }
 
         .ui-datepicker {
             z-index: 9999 !important;
@@ -382,20 +393,25 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title"><i class="fa-solid fa-user mr-2"></i>Add Employee</h5>
-                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button></div>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Firstname</span></div>
-                                                <input type="text" class="form-control" id="fname" placeholder="Enter firstname" /></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                <input type="text" class="form-control" id="fname" placeholder="Enter firstname" />
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Lastname</span></div>
-                                                <input type="text" class="form-control" id="lname" placeholder="Enter lastname" /></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                <input type="text" class="form-control" id="lname" placeholder="Enter lastname" />
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-md-6">
@@ -404,35 +420,45 @@
                                                 <div class="input-group mr-3" style="max-width: 140px">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="radio" name="gender" id="genderMale" value="Male" /></div>
+                                                            <input type="radio" name="gender" id="genderMale" value="Male" />
+                                                        </div>
                                                     </div>
-                                                    <label class="form-control mb-0" for="genderMale">Male</label></div>
+                                                    <label class="form-control mb-0" for="genderMale">Male</label>
+                                                </div>
                                                 <div class="input-group" style="max-width: 160px">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="radio" name="gender" id="genderFemale" value="Female" /></div>
+                                                            <input type="radio" name="gender" id="genderFemale" value="Female" />
+                                                        </div>
                                                     </div>
-                                                    <label class="form-control mb-0" for="genderFemale">Female</label></div>
+                                                    <label class="form-control mb-0" for="genderFemale">Female</label>
+                                                </div>
                                             </div>
                                             <small class="text-danger error-msg d-block"></small>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">DOB</span></div>
-                                                <input type="text" class="form-control datepicker" id="dob" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                <input type="text" class="form-control datepicker" id="dob" placeholder="DD/MM/YYYY" autocomplete="off" />
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-                                                <input type="text" class="form-control" id="email" placeholder="Enter email address" /></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                <input type="text" class="form-control" id="email" placeholder="Enter email address" />
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Contact</span></div>
-                                                <input type="text" class="form-control" id="contact" placeholder="Enter 10-digit number" minlength="10" maxlength="10" /></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                <input type="text" class="form-control" id="contact" placeholder="Enter 10-digit number" minlength="10" maxlength="10" />
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-md-6">
@@ -442,7 +468,8 @@
                                                     <button class="btn btn-outline-secondary toggle-password" type="button"><i class="fas fa-eye"></i></button>
                                                 </div>
                                             </div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Confirm Password</span></div>
@@ -450,38 +477,48 @@
                                                     <button class="btn btn-outline-secondary toggle-password" type="button"><i class="fas fa-eye"></i></button>
                                                 </div>
                                             </div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="dept">Department</label></div>
+                                                    <label class="input-group-text" for="dept">Department</label>
+                                                </div>
                                                 <select class="custom-select" id="dept">
                                                     <option value="">Select Department</option>
-                                                </select></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                </select>
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="deptrole">Role</label></div>
+                                                    <label class="input-group-text" for="deptrole">Role</label>
+                                                </div>
                                                 <select class="custom-select" id="deptrole" disabled="disabled">
                                                     <option value="">Select Role</option>
-                                                </select></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                </select>
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-md-12">
                                             <div class="location-wrapper mb-2">
-                                                <label class="location-label font-weight-bold" for="location">Location :</label><select id="location" style="width: 100%" multiple="multiple"></select></div>
-                                            <small class="text-danger error-msg d-block"></small></div>
+                                                <label class="location-label font-weight-bold" for="location">Location :</label><select id="location" style="width: 100%" multiple="multiple"></select>
+                                            </div>
+                                            <small class="text-danger error-msg d-block"></small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="addEmpBtn">Add</button></div>
+                                    <button type="button" class="btn btn-success" id="addEmpBtn">Add</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -518,20 +555,25 @@
                     <div class="modal-content border-0 shadow">
                         <div class="modal-header bg-dark text-white">
                             <h5 class="modal-title"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Employee</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+                            <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                        </div>
                         <div class="modal-body p-4">
                             <input type="hidden" id="editEmpId" /><input type="hidden" id="editMode" />
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Firstname</span></div>
-                                        <input type="text" class="form-control" id="editFname" /></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <input type="text" class="form-control" id="editFname" />
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Lastname</span></div>
-                                        <input type="text" class="form-control" id="editLname" /></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <input type="text" class="form-control" id="editLname" />
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                             <div class="row align-items-center mb-2">
                                 <div class="col-md-6">
@@ -540,35 +582,45 @@
                                         <div class="input-group mr-3" style="max-width: 140px">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <input type="radio" name="editGender" id="editMale" value="Male" /></div>
+                                                    <input type="radio" name="editGender" id="editMale" value="Male" />
+                                                </div>
                                             </div>
-                                            <label class="form-control mb-0" for="editMale">Male</label></div>
+                                            <label class="form-control mb-0" for="editMale">Male</label>
+                                        </div>
                                         <div class="input-group" style="max-width: 160px">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <input type="radio" name="editGender" id="editFemale" value="Female" /></div>
+                                                    <input type="radio" name="editGender" id="editFemale" value="Female" />
+                                                </div>
                                             </div>
-                                            <label class="form-control mb-0" for="editFemale">Female</label></div>
+                                            <label class="form-control mb-0" for="editFemale">Female</label>
+                                        </div>
                                     </div>
                                     <small class="text-danger error-msg d-block mt-1"></small>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">DOB</span></div>
-                                        <input type="text" class="form-control datepicker" id="editDob" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <input type="text" class="form-control datepicker" id="editDob" placeholder="DD/MM/YYYY" autocomplete="off" />
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Email</span></div>
-                                        <input type="text" class="form-control" id="editEmail" /></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <input type="text" class="form-control" id="editEmail" />
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Contact</span></div>
-                                        <input type="text" class="form-control" id="editContact" minlength="10" maxlength="10" /></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <input type="text" class="form-control" id="editContact" minlength="10" maxlength="10" />
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-6">
@@ -578,7 +630,8 @@
                                             <button type="button" class="btn btn-outline-secondary toggle-password"><i class="fas fa-eye"></i></button>
                                         </div>
                                     </div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Confirm Password</span></div>
@@ -586,25 +639,32 @@
                                             <button type="button" class="btn btn-outline-secondary toggle-password"><i class="fas fa-eye"></i></button>
                                         </div>
                                     </div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="editDept">Department</label></div>
+                                            <label class="input-group-text" for="editDept">Department</label>
+                                        </div>
                                         <select class="custom-select" id="editDept">
                                             <option value="">Select Department</option>
-                                        </select></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        </select>
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="editRole">Role</label></div>
+                                            <label class="input-group-text" for="editRole">Role</label>
+                                        </div>
                                         <select class="custom-select" id="editRole" disabled="disabled">
                                             <option value="">Select Role</option>
-                                        </select></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        </select>
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-6">
@@ -613,24 +673,31 @@
                                         <select class="custom-select" id="editStatus">
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
-                                        </select></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        </select>
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="location-wrapper mb-2">
-                                        <label class="location-label" for="editLocation">Location</label><select id="editLocation" style="width: 100%" multiple="multiple"></select></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <label class="location-label" for="editLocation">Location</label><select id="editLocation" style="width: 100%" multiple="multiple"></select>
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Join Date</span></div>
-                                        <input type="text" class="form-control" id="editJoinDate" readonly="readonly" /></div>
+                                        <input type="text" class="form-control" id="editJoinDate" readonly="readonly" />
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend"><span class="input-group-text">Relieve Date</span></div>
-                                        <input type="text" class="form-control datepicker" id="editEndDate" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
-                                    <small class="text-danger error-msg d-block"></small></div>
+                                        <input type="text" class="form-control datepicker" id="editEndDate" placeholder="DD/MM/YYYY" autocomplete="off" />
+                                    </div>
+                                    <small class="text-danger error-msg d-block"></small>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer border-0">
@@ -674,55 +741,68 @@
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-user-check mr-2"></i>Assign Asset to Employee</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
                             <div class="modal-body p-4">
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assignEmployee"><i class="fa-solid fa-user mr-2"></i>Employee</label></div>
+                                                <label class="input-group-text" for="assignEmployee"><i class="fa-solid fa-user mr-2"></i>Employee</label>
+                                            </div>
                                             <select class="custom-select" id="assignEmployee">
                                                 <option value="">Select Employee</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assignCategory"><i class="fa-solid fa-layer-group mr-2"></i>Category</label></div>
+                                                <label class="input-group-text" for="assignCategory"><i class="fa-solid fa-layer-group mr-2"></i>Category</label>
+                                            </div>
                                             <select class="custom-select" id="assignCategory">
                                                 <option value="">Select Category</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assignAsset"><i class="fa-solid fa-suitcase mr-2"></i>Asset</label></div>
+                                                <label class="input-group-text" for="assignAsset"><i class="fa-solid fa-suitcase mr-2"></i>Asset</label>
+                                            </div>
                                             <select class="custom-select" id="assignAsset" disabled="disabled">
                                                 <option value="">Select Asset</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Start Date</span></div>
-                                            <input type="text" class="form-control" id="assignStartDate" readonly="readonly" /></div>
+                                            <input type="text" class="form-control" id="assignStartDate" readonly="readonly" />
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Return Date</span></div>
-                                            <input type="text" class="form-control datepicker" id="assignReturnDate" placeholder="DD/MM/YYYY" autocomplete="off" /></div>
+                                            <input type="text" class="form-control datepicker" id="assignReturnDate" placeholder="DD/MM/YYYY" autocomplete="off" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="confirmAssignBtn"><i class="fa-solid fa-check mr-2"></i>Assign</button></div>
+                                    <button type="button" class="btn btn-success" id="confirmAssignBtn"><i class="fa-solid fa-check mr-2"></i>Assign</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -760,13 +840,15 @@
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-plus mr-2"></i>Add Asset</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
                             <div class="modal-body p-4">
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assetCategory">Category</label></div>
+                                                <label class="input-group-text" for="assetCategory">Category</label>
+                                            </div>
                                             <select class="custom-select" id="assetCategory">
                                                 <option value="">Select Category</option>
                                                 <option value="Laptop">Laptop</option>
@@ -774,39 +856,49 @@
                                                 <option value="Keyboard">Keyboard</option>
                                                 <option value="Mouse">Mouse</option>
                                                 <option value="Headset">Headset</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Asset Name</span></div>
-                                            <input type="text" class="form-control" id="assetName" placeholder="Enter asset name" /></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            <input type="text" class="form-control" id="assetName" placeholder="Enter asset name" />
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="assetStatus">Status</label></div>
+                                                <label class="input-group-text" for="assetStatus">Status</label>
+                                            </div>
                                             <select class="custom-select" id="assetStatus">
                                                 <option value="">Select Status</option>
                                                 <option value="A">A — Assigned</option>
                                                 <option value="NA">NA — Not Assigned</option>
                                                 <option value="UM">UM — Under Maintenance</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-image mr-1"></i>Image</span></div>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="assetImage" accept="image/*" /><label class="custom-file-label" for="assetImage">Choose image</label></div>
+                                                <input type="file" class="custom-file-input" id="assetImage" accept="image/*" /><label class="custom-file-label" for="assetImage">Choose image</label>
+                                            </div>
                                         </div>
-                                        <img id="assetImagePreview" src="" alt="Preview" style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #dee2e6; margin-top: 6px;" /><small class="text-danger error-msg d-block"></small></div>
+                                        <img id="assetImagePreview" src="" alt="Preview" style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #dee2e6; margin-top: 6px;" /><small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer border-0">
                                 <div class="container d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" id="saveAssetBtn">Add</button></div>
+                                    <button type="button" class="btn btn-success" id="saveAssetBtn">Add</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -818,14 +910,16 @@
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit Asset</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
                             <div class="modal-body p-4">
                                 <input type="hidden" id="editAssetId" />
                                 <div class="row mb-2">
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="editAssetCategory">Category</label></div>
+                                                <label class="input-group-text" for="editAssetCategory">Category</label>
+                                            </div>
                                             <select class="custom-select" id="editAssetCategory">
                                                 <option value="">Select Category</option>
                                                 <option value="Laptop">Laptop</option>
@@ -833,32 +927,40 @@
                                                 <option value="Keyboard">Keyboard</option>
                                                 <option value="Mouse">Mouse</option>
                                                 <option value="Headset">Headset</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text">Asset Name</span></div>
-                                            <input type="text" class="form-control" id="editAssetName" placeholder="Enter asset name" /></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            <input type="text" class="form-control" id="editAssetName" placeholder="Enter asset name" />
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="editAssetStatus">Status</label></div>
+                                                <label class="input-group-text" for="editAssetStatus">Status</label>
+                                            </div>
                                             <select class="custom-select" id="editAssetStatus">
                                                 <option value="A">A — Assigned</option>
                                                 <option value="NA">NA — Not Assigned</option>
                                                 <option value="UM">UM — Under Maintenance</option>
-                                            </select></div>
-                                        <small class="text-danger error-msg d-block"></small></div>
+                                            </select>
+                                        </div>
+                                        <small class="text-danger error-msg d-block"></small>
+                                    </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-images mr-1"></i>Images</span></div>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple="multiple" /><label class="custom-file-label" for="editAssetImages">Choose images (multiple allowed)</label></div>
+                                                <input type="file" class="custom-file-input" id="editAssetImages" accept="image/*" multiple="multiple" /><label class="custom-file-label" for="editAssetImages">Choose images (multiple allowed)</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -881,7 +983,8 @@
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-images mr-2"></i>Asset Images</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button></div>
+                                <button type="button" class="close text-white" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
                             <div class="modal-body p-3">
                                 <div id="assetCarousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner" id="carouselInner"></div>
@@ -915,25 +1018,49 @@
         </div>
     </form>
     <!-- Scripts -->
+    <!-- jQuery Core -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- jQuery UI -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <!-- Bootstrap 4-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- JSZip -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- pdfmake Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <!-- pdfmake Fonts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <!-- DataTables Core -->
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 4 -->
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.min.js"></script>
+    <!-- DataTables Buttons Core -->
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.min.js"></script>
+    <!-- Buttons Bootstrap 4 -->
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap4.min.js"></script>
+    <!-- Buttons HTML5 Export -->
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <!-- Buttons Print -->
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+    <!-- Buttons Column Visibility -->
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
+    <!-- DataTables Select -->
     <script src="https://cdn.datatables.net/select/2.0.3/js/dataTables.select.min.js"></script>
+    <!-- Select Bootstrap 4 -->
     <script src="https://cdn.datatables.net/select/2.0.3/js/select.bootstrap4.min.js"></script>
+    <!-- DataTables SearchPanes -->
     <script src="https://cdn.datatables.net/searchpanes/2.3.1/js/dataTables.searchPanes.min.js"></script>
+    <!-- SearchPanes Bootstrap 4 -->
     <script src="https://cdn.datatables.net/searchpanes/2.3.1/js/searchPanes.bootstrap4.min.js"></script>
+    <!-- DataTables StateRestore -->
     <script src="https://cdn.datatables.net/staterestore/1.4.3/js/dataTables.stateRestore.min.js"></script>
+    <!-- DataTables SearchBuilder -->
+    <script src="https://cdn.datatables.net/searchbuilder/1.7.1/js/dataTables.searchBuilder.min.js"></script>
+    <!-- SearchBuilder Bootstrap 4 -->
+    <script src="https://cdn.datatables.net/searchbuilder/1.7.1/js/searchBuilder.bootstrap4.min.js"></script>
+    <!-- Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
@@ -1037,7 +1164,7 @@
             const getHistory = () => JSON.parse(localStorage.getItem("assetHistory") || "[]");
             const saveHistory = d => localStorage.setItem("assetHistory", JSON.stringify(d));
 
-            
+
             // generate ID function
             const generateEmpId = () => {
                 const maxNum = getEmployees().reduce((max, e) => {
@@ -1600,7 +1727,7 @@
                     showEditError("editCpass", "Confirm password!");
                     return false;
                 }
-                if (inp.val() !== $("+editPassword").val()) {
+                if (inp.val() !== $("#editPassword").val()) {
                     showEditError("editCpass", "Passwords don't match!");
                     return false;
                 }
@@ -1783,11 +1910,74 @@
             </table>`;
             };
 
+            const empDtDom =
+                '<"row align-items-center mb-1"<"col-auto"<"dt-filter-btn">><"col-auto"<"dt-filter2-btn">>>' +
+                '<"row"<"col-md-12 mb-2"P>>' +
+                '<"row"<"col-md-12 mb-2"Q>>' +
+                '<"row align-items-center mb-2"<"col-md-2 mt-n3"l><"col-md-1"<"dt-state-btn">><"col-md-1"<"dt-load-btn">><"col-md-8 d-flex justify-content-end"<"dt-export-btn">f>>' +
+                '<"d-none"B>t<"d-flex justify-content-between align-items-center pt-2"ip>';
+
             const dtDom =
                 '<"row"<"col-12"<"dt-filter-btn">>>' +
                 '<"row"<"col-md-12 mb-2"P>>' +
                 '<"row align-items-center mb-2"<"col-md-2 mt-n3"l><"col-md-1"<"dt-state-btn">><"col-md-1"<"dt-load-btn">><"col-md-8 d-flex justify-content-end"<"dt-export-btn">f>>' +
                 '<"d-none"B>t<"d-flex justify-content-between align-items-center pt-2"ip>';
+
+            const empDtButtons = [
+                {
+                    text: '<i class="fa-solid fa-filter mr-1"></i> Filters',
+                    className: "btn btn-sm mb-2",
+                    action: () => $(".dtsp-panesContainer").slideToggle(200)
+                },
+                {
+                    text: '<i class="fa fa-search mr-1"></i> Condition',
+                    className: "btn btn-sm mb-2",
+                    action: () => $('.dtsb-searchBuilder').slideToggle(200)
+                },
+                {
+                    extend: "collection",
+                    text: '<i class="fa-solid fa-bars" style="color:#fff;"></i> Export',
+                    className: "btn btn-sm mb-3",
+                    buttons: [
+                        {
+                            extend: "copyHtml5",
+                            text: '<i class="fa-solid fa-copy mr-1"></i> Copy',
+                            className: "btn btn-sm"
+                        },
+                        {
+                            extend: "excelHtml5",
+                            text: '<i class="fa-solid fa-file-excel mr-1"></i> Excel',
+                            className: "btn btn-sm"
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            text: '<i class="fa-solid fa-file-pdf mr-1"></i> PDF',
+                            className: "btn btn-sm"
+                        },
+                        {
+                            extend: "csvHtml5",
+                            text: '<i class="fa-solid fa-file-csv mr-1"></i> CSV',
+                            className: "btn btn-sm"
+                        },
+                        {
+                            extend: "print",
+                            text: '<i class="fa-solid fa-print mr-1"></i> Print',
+                            className: "btn btn-sm"
+                        }
+                    ]
+                },
+                {
+                    extend: "createState",
+                    text: "Save Filter",
+                    className: "btn btn-sm mb-3"
+                },
+                {
+                    extend: "savedStates",
+                    text: "Load Filters",
+                    className: "btn btn-sm mb-3 btn-secondary"
+                }
+            ];
+
             const dtButtons = [
                 {
                     text: '<i class="fa-solid fa-filter mr-1"></i> Filters',
@@ -1874,8 +2064,11 @@
                         clear: false,
                         initCollapsed: true
                     },
-                    dom: dtDom,
-                    buttons: dtButtons,
+                    searchBuilder: {
+                        columns: [1, 2, 6]
+                    },
+                    dom: empDtDom,
+                    buttons: empDtButtons,
                     columnDefs: [{
                         targets: [0, 7, 8],
                         searchPanes: { show: false }
@@ -1935,8 +2128,8 @@
                             render: d => {
                                 const cls = d === "Active" ? "status-active"
                                     : "status-inactive"; const ico = d === "Active"
-                                    ? '<i class="fa-solid fa-circle-check mr-1"></i>'
-                                    : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
+                                        ? '<i class="fa-solid fa-circle-check mr-1"></i>'
+                                        : '<i class="fa-solid fa-circle-xmark mr-1"></i>';
                                 return `<span class="${cls}">${ico}${d || "—"}</span>`;
                             }
                         },
@@ -1965,10 +2158,12 @@
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
                         c.find(".dt-filter-btn").append(b.eq(0).detach());
-                        c.find(".dt-export-btn").append(b.eq(1).detach());
-                        c.find(".dt-state-btn").append(b.eq(2).detach());
-                        c.find(".dt-load-btn").append(b.eq(3).detach());
+                        c.find(".dt-filter2-btn").append(b.eq(1).detach());
+                        c.find(".dt-export-btn").append(b.eq(2).detach());
+                        c.find(".dt-state-btn").append(b.eq(3).detach());
+                        c.find(".dt-load-btn").append(b.eq(4).detach());
                         $(".dtsp-panesContainer").hide();
+                        $('.dtsb-searchBuilder').hide();
                     }
                 });
                 applyRole();
