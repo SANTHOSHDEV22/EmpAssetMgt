@@ -1377,8 +1377,8 @@
                 clearError("dob"); return true;
             };
             const validateEmail = () => {
-                const v = $("#email").val();
-                if (!v.trim()) {
+                const v = $("#email").val().trim().toLowerCase();
+                if (!v) {
                     showError("email", "Email is required!");
                     return false;
                 }
@@ -1386,7 +1386,7 @@
                     showError("email", "Enter a valid email!");
                     return false;
                 }
-                const exists = getEmployees().some(e => e.email.toLowerCase() === v.trim().toLowerCase());
+                const exists = getEmployees().some(e => e.email.toLowerCase() === v);
                 if (exists) {
                     showError("email", "This email is already registered!");
                     return false;
@@ -1557,7 +1557,7 @@
                     fullname: `${fn} ${ln}`,
                     gender: $("input[name='gender']:checked").val(),
                     dob: $("#dob").val().trim(),
-                    email: $("#email").val().trim(),
+                    email: $("#email").val().trim().toLowerCase(),
                     contact: $("#contact").val().trim(),
                     password: $("#pass").val().trim(),
                     department: $("#dept").val(),
@@ -1570,12 +1570,17 @@
                 const emps = getEmployees();
                 emps.push(emp);
                 saveEmployees(emps);
+                $("#addEmpModal").modal("hide");
                 Swal.fire({
                     title: "Success",
                     icon: "success",
                     text: `${emp.fullname} added successfully!`
+                }).then(() => {
+                    if (empTable && $.fn.DataTable.isDataTable("#empTable")) {
+                        loadEmpTable();
+                    }
                 });
-                $("#addEmpModal").modal("hide");
+
             });
             // reset form on modal close
             $("#addEmpModal").on("hidden.bs.modal", function () {
@@ -2157,13 +2162,29 @@
                     initComplete: function () {
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
-                        c.find(".dt-filter-btn").append(b.eq(0).detach());
-                        c.find(".dt-filter2-btn").append(b.eq(1).detach());
-                        c.find(".dt-export-btn").append(b.eq(2).detach());
-                        c.find(".dt-state-btn").append(b.eq(3).detach());
-                        c.find(".dt-load-btn").append(b.eq(4).detach());
+
+                        b.each(function () {
+                            const btn = $(this);
+                            const text = btn.text().trim();
+                            if (text.includes("Filters")) {
+                                c.find(".dt-filter-btn").append(btn.detach());
+                            }
+                            else if (text.includes("Condition")) {
+                                c.find(".dt-filter2-btn").append(btn.detach());
+                            }
+                            else if (text.includes("Export")) {
+                                c.find(".dt-export-btn").append(btn.detach());
+                            }
+                            else if (text.includes("Save Filter")) {
+                                c.find(".dt-state-btn").append(btn.detach());
+                            }
+                            else if (text.includes("Load Filters")) {
+                                c.find(".dt-load-btn").append(btn.detach());
+                            }
+                        });
+
                         $(".dtsp-panesContainer").hide();
-                        $('.dtsb-searchBuilder').hide();
+                        $(".dtsb-searchBuilder").hide();
                     }
                 });
                 applyRole();
@@ -2278,7 +2299,9 @@
                 }
                 saveEmployees(emps);
                 $("#editEmpModal").modal("hide");
-                loadEmpTable();
+                if (empTable && $.fn.DataTable.isDataTable("#empTable")) {
+                    loadEmpTable();
+                }
                 Swal.fire({
                     icon: "success",
                     title: "Updated!",
@@ -2292,7 +2315,10 @@
                 const emps = getEmployees();
                 const emp = emps.find(e => e.id === id);
                 if (!emp) return;
-                const blockedAssets = getAssets().filter(a => (a.status === "A" || a.status === "UM") && a.assignedTo === emp.fullname);
+                const blockedAssets = getAssets().filter(a =>
+                    (a.status === "A" || a.status === "UM") &&
+                    (a.assignedEmpId === emp.id || a.assignedTo === emp.fullname)
+                );
                 if (blockedAssets.length > 0) {
                     const assetList = blockedAssets.map(a => `${a.name} (${a.id}) — ${a.status === "A"
                         ? "Assigned"
@@ -2330,37 +2356,55 @@
             function loadAssignedTable() {
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
+                const todayStr = new Date().toLocaleDateString("en-GB");
                 const allAssets = getAssets();
+
+                const autoReturnedToday = JSON.parse(localStorage.getItem("autoReturnedToday") || "[]");
+                const autoReturnedDate = localStorage.getItem("autoReturnedDate") || "";
+                const currentDate = todayStr;
+
+                if (autoReturnedDate !== currentDate) {
+                    localStorage.setItem("autoReturnedToday", "[]");
+                    localStorage.setItem("autoReturnedDate", currentDate);
+                }
+
+                const processedToday = JSON.parse(localStorage.getItem("autoReturnedToday") || "[]");
                 let autoReturned = false;
+
                 allAssets.forEach((a, idx) => {
                     if (a.status === "A" && a.returnDate && a.returnDate !== "—") {
                         const retDate = parseDMY(a.returnDate);
-                        if (retDate && retDate <= today) {
+                        if (retDate && retDate <= today && !processedToday.includes(a.id)) {
                             const hist = getHistory();
-                            const todayStr = new Date().toLocaleDateString("en-GB");
                             hist.unshift({
                                 type: "return",
-                                msg: `${a.name} (${a.id}) auto-returned from ${a.assignedTo} on ${todayStr} (return date reached)`,
+                                msg: `${a.name} (${a.id}) auto-returned from ${a.assignedTo} (${a.assignedEmpId || "—"}) on ${todayStr} (return date reached)`,
                                 asset: a.name,
                                 assetId: a.id,
                                 employee: a.assignedTo,
+                                empId: a.assignedEmpId || "—",
                                 date: todayStr
                             });
                             saveHistory(hist);
                             allAssets[idx].status = "NA";
                             allAssets[idx].assignedTo = "—";
+                            allAssets[idx].assignedEmpId = "";
                             allAssets[idx].startDate = "—";
                             allAssets[idx].returnDate = "—";
+                            processedToday.push(a.id);
                             autoReturned = true;
                         }
                     }
                 });
+
                 if (autoReturned) {
+                    localStorage.setItem("autoReturnedToday", JSON.stringify(processedToday));
                     saveAssets(allAssets);
                     loadDashboard();
                 }
 
                 const assignedAssets = allAssets.filter(a => a.status === "A");
+
                 if (assignedTable && $.fn.DataTable.isDataTable("#assignedTable")) {
                     assignedTable.clear().rows.add(assignedAssets).draw();
                     assignedTable.column(4).visible(isAdmin);
@@ -2370,6 +2414,7 @@
                     $("#assignedTable").DataTable().destroy();
                     $("#assignedBody").empty();
                 }
+
                 assignedTable = $("#assignedTable").DataTable({
                     data: assignedAssets,
                     pageLength: 10,
@@ -2415,12 +2460,13 @@
                             searchable: false,
                             className: "text-center align-middle",
                             render: d => `<button type="button" class="btn btn-sm btn-warning returnAssetBtn" data-id="${d.id}">
-                                        <i class="fa-solid fa-rotate-left mr-1"></i>Return
-                                        </button>`
+                            <i class="fa-solid fa-rotate-left mr-1"></i>Return
+                            </button>`
                         }
                     ],
                     initComplete: function () { }
                 });
+
                 assignedTable.column(4).visible(isAdmin);
             }
 
@@ -2444,15 +2490,17 @@
                     const todayStr = new Date().toLocaleDateString("en-GB");
                     hist.unshift({
                         type: "return",
-                        msg: `${asset.name} (${asset.id}) returned from ${asset.assignedTo} on ${todayStr}`,
+                        msg: `${asset.name} (${asset.id}) returned from ${asset.assignedTo} (${asset.assignedEmpId || "—"}) on ${todayStr}`,
                         asset: asset.name,
                         assetId: asset.id,
                         employee: asset.assignedTo,
+                        empId: asset.assignedEmpId || "—",
                         date: todayStr
                     });
                     saveHistory(hist);
                     assets[idx].status = "NA";
                     assets[idx].assignedTo = "—";
+                    assets[idx].assignedEmpId = "";
                     assets[idx].startDate = "—";
                     assets[idx].returnDate = "—";
                     saveAssets(assets);
@@ -2556,19 +2604,76 @@
                     validateAssignAst()
                 ];
                 if (!ok.every(Boolean)) return;
+                const retVal = $("#assignReturnDate").val().trim();
+                if (retVal) {
+                    const retDate = parseDMY(retVal);
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    tomorrow.setHours(0, 0, 0, 0);
+                    const errEl = $("#assignReturnDate").closest(".input-group").siblings(".error-msg");
+                    if (!retDate) {
+                        errEl.text("Enter a valid return date (DD/MM/YYYY)!");
+                        $("#assignReturnDate").addClass("is-invalid");
+                        return;
+                    }
+                    if (retDate < tomorrow) {
+                        errEl.text("Return date must be at least tomorrow!");
+                        $("#assignReturnDate").addClass("is-invalid");
+                        return;
+                    }
+                    errEl.text("");
+                    $("#assignReturnDate").removeClass("is-invalid").addClass("is-valid");
+                }
+
                 const empId = $("#assignEmployee").val();
                 const assetId = $("#assignAsset").val();
                 const emp = getEmployees().find(e => e.id === empId);
+                if (!emp) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Employee not found!",
+                        text: "Please reselect the employee."
+                    });
+                    return;
+                }
+                if (emp.status !== "Active") {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Employee Inactive!",
+                        text: `${emp.fullname} is no longer active and cannot be assigned an asset.`
+                    });
+                    return;
+                }
+
                 const assets = getAssets();
                 const idx = assets.findIndex(a => a.id === assetId);
-                if (idx === -1 || !emp) return;
+                if (idx === -1) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Asset not found!",
+                        text: "Please reselect the asset."
+                    });
+                    return;
+                }
+                if (assets[idx].status !== "NA") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Asset Unavailable!",
+                        text: `${assets[idx].name} is no longer available. Please select another asset.`
+                    });
+                    return;
+                }
+
                 const startDate = $("#assignStartDate").val().trim();
-                const returnDate = $("#assignReturnDate").val().trim();
+                const returnDate = retVal;
+
                 assets[idx].status = "A";
                 assets[idx].assignedTo = emp.fullname;
+                assets[idx].assignedEmpId = emp.id;
                 assets[idx].startDate = startDate;
                 assets[idx].returnDate = returnDate || "—";
                 saveAssets(assets);
+
                 const hist = getHistory();
                 const today = new Date().toLocaleDateString("en-GB");
                 hist.unshift({
@@ -2582,6 +2687,7 @@
                     returnDate: returnDate || "—"
                 });
                 saveHistory(hist);
+
                 $("#assignModal").modal("hide");
                 loadAssignedTable();
                 loadDashboard();
@@ -2591,6 +2697,7 @@
                     html: `<b>${assets[idx].name}</b> assigned to <b>${emp.fullname}</b> successfully.`
                 });
             });
+
             //reset form on modal close
             $("#assignModal").on("hidden.bs.modal", function () {
                 $("#assignEmployee,#assignCategory").val("");
@@ -2727,10 +2834,21 @@
                     initComplete: function () {
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
-                        c.find(".dt-filter-btn").append(b.eq(0).detach());
-                        c.find(".dt-export-btn").append(b.eq(1).detach());
-                        c.find(".dt-state-btn").append(b.eq(2).detach());
-                        c.find(".dt-load-btn").append(b.eq(3).detach());
+
+                        b.each(function () {
+                            const btn = $(this);
+                            const text = btn.text().trim();
+                            if (text.includes("Filters")) {
+                                c.find(".dt-filter-btn").append(btn.detach());
+                            } else if (text.includes("Export")) {
+                                c.find(".dt-export-btn").append(btn.detach());
+                            } else if (text.includes("Save Filter")) {
+                                c.find(".dt-state-btn").append(btn.detach());
+                            } else if (text.includes("Load Filters")) {
+                                c.find(".dt-load-btn").append(btn.detach());
+                            }
+                        });
+
                         $(".dtsp-panesContainer").hide();
                     }
                 });
@@ -2941,38 +3059,57 @@
                     validateEditAssetName()
                 ];
                 if (!ok.every(Boolean)) return;
+
                 const id = $("#editAssetId").val();
                 const assets = getAssets();
                 const idx = assets.findIndex(a => a.id === id);
                 if (idx === -1) return;
+
                 const newStatus = $("#editAssetStatus").val();
+
                 if ((newStatus === "NA" || newStatus === "UM") && assets[idx].status === "A" && assets[idx].assignedTo !== "—") {
                     const hist = getHistory();
                     const todayStr = new Date().toLocaleDateString("en-GB");
                     hist.unshift({
                         type: "return",
-                        msg: `${assets[idx].name} (${assets[idx].id}) returned from ${assets[idx].assignedTo} on ${todayStr}`,
+                        msg: `${assets[idx].name} (${assets[idx].id}) returned from ${assets[idx].assignedTo} (${assets[idx].assignedEmpId || "—"}) on ${todayStr}`,
                         asset: assets[idx].name,
                         assetId: assets[idx].id,
                         employee: assets[idx].assignedTo,
+                        empId: assets[idx].assignedEmpId || "—",
                         date: todayStr
                     });
                     saveHistory(hist);
                     assets[idx].assignedTo = "—";
+                    assets[idx].assignedEmpId = "";
                     assets[idx].startDate = "—";
                     assets[idx].returnDate = "—";
                 }
+
                 const finalImages = [];
                 $("#editAssetImagePreviewWrap img").each(function () {
                     finalImages.push($(this).attr("src"));
                 });
+
                 assets[idx].category = $("#editAssetCategory").val();
                 assets[idx].name = $("#editAssetName").val().trim();
                 assets[idx].status = newStatus;
                 assets[idx].images = finalImages;
                 assets[idx].image = finalImages.length > 0 ? finalImages[0] : "";
-                saveAssets(assets);
-                $("#editAssetModal").modal("hide"); loadAssetTable();
+
+                try {
+                    saveAssets(assets);
+                } catch (e) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Storage Full!",
+                        text: "Could not save changes. Remove some images to free up space."
+                    });
+                    return;
+                }
+
+                $("#editAssetModal").modal("hide");
+                loadAssetTable();
                 Swal.fire({
                     icon: "success",
                     title: "Updated!",
