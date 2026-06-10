@@ -2162,26 +2162,11 @@
                     initComplete: function () {
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
-
-                        b.each(function () {
-                            const btn = $(this);
-                            const text = btn.text().trim();
-                            if (text.includes("Filters")) {
-                                c.find(".dt-filter-btn").append(btn.detach());
-                            }
-                            else if (text.includes("Condition")) {
-                                c.find(".dt-filter2-btn").append(btn.detach());
-                            }
-                            else if (text.includes("Export")) {
-                                c.find(".dt-export-btn").append(btn.detach());
-                            }
-                            else if (text.includes("Save Filter")) {
-                                c.find(".dt-state-btn").append(btn.detach());
-                            }
-                            else if (text.includes("Load Filters")) {
-                                c.find(".dt-load-btn").append(btn.detach());
-                            }
-                        });
+                        c.find(".dt-filter-btn").append(b.eq(0).detach());
+                        c.find(".dt-filter2-btn").append(b.eq(1).detach());
+                        c.find(".dt-export-btn").append(b.eq(2).detach());
+                        c.find(".dt-state-btn").append(b.eq(3).detach());
+                        c.find(".dt-load-btn").append(b.eq(4).detach());
 
                         $(".dtsp-panesContainer").hide();
                         $(".dtsb-searchBuilder").hide();
@@ -2834,20 +2819,10 @@
                     initComplete: function () {
                         const c = $(this.api().table().container());
                         const b = c.find(".dt-buttons button");
-
-                        b.each(function () {
-                            const btn = $(this);
-                            const text = btn.text().trim();
-                            if (text.includes("Filters")) {
-                                c.find(".dt-filter-btn").append(btn.detach());
-                            } else if (text.includes("Export")) {
-                                c.find(".dt-export-btn").append(btn.detach());
-                            } else if (text.includes("Save Filter")) {
-                                c.find(".dt-state-btn").append(btn.detach());
-                            } else if (text.includes("Load Filters")) {
-                                c.find(".dt-load-btn").append(btn.detach());
-                            }
-                        });
+                        c.find(".dt-filter-btn").append(b.eq(0).detach());
+                        c.find(".dt-export-btn").append(b.eq(1).detach());
+                        c.find(".dt-state-btn").append(b.eq(2).detach());
+                        c.find(".dt-load-btn").append(b.eq(3).detach());
 
                         $(".dtsp-panesContainer").hide();
                     }
