@@ -37,15 +37,15 @@
             overflow-y: auto;
         }
 
-        .navbar-collapse.collapsing {
-            left: -240px;
-            height: 100% !important;
-            transition: left 300ms ease-in-out !important;
-        }
+            .navbar-collapse.collapsing {
+                left: -240px;
+                height: 100% !important;
+                transition: left 300ms ease-in-out !important;
+            }
 
-        .navbar-collapse.show {
-            left: 0;
-        }
+            .navbar-collapse.show {
+                left: 0;
+            }
 
         .sidebar-overlay {
             position: fixed;
@@ -58,9 +58,9 @@
             display: none;
         }
 
-        .sidebar-overlay.active {
-            display: block;
-        }
+            .sidebar-overlay.active {
+                display: block;
+            }
 
         .dropdown-menu {
             display: none;
@@ -71,19 +71,19 @@
             float: none !important;
         }
 
-        .dropdown-menu.open {
-            display: block;
-        }
+            .dropdown-menu.open {
+                display: block;
+            }
 
-        .dropdown-menu .dropdown-item {
-            color: #adb5bd;
-            padding: 0.4rem 0.5rem;
-        }
+            .dropdown-menu .dropdown-item {
+                color: #adb5bd;
+                padding: 0.4rem 0.5rem;
+            }
 
-        .dropdown-menu .dropdown-item:hover {
-            background: #495057;
-            color: #fff;
-        }
+                .dropdown-menu .dropdown-item:hover {
+                    background: #495057;
+                    color: #fff;
+                }
 
         .role-badge {
             font-size: 0.7rem;
@@ -93,15 +93,15 @@
             letter-spacing: 0.5px;
         }
 
-        .role-badge.admin {
-            background: #28a745;
-            color: #fff;
-        }
+            .role-badge.admin {
+                background: #28a745;
+                color: #fff;
+            }
 
-        .role-badge.manager {
-            background: #17a2b8;
-            color: #fff;
-        }
+            .role-badge.manager {
+                background: #17a2b8;
+                color: #fff;
+            }
 
         #roleToggle, #roleToggle + .custom-control-label {
             cursor: pointer;
@@ -112,11 +112,11 @@
             width: 100%;
         }
 
-        .dash-table th, .dash-table td {
-            width: 50%;
-            text-align: center;
-            vertical-align: middle;
-        }
+            .dash-table th, .dash-table td {
+                width: 50%;
+                text-align: center;
+                vertical-align: middle;
+            }
 
         .dash-table-4 th, .dash-table-4 td {
             width: 25%;
@@ -147,15 +147,15 @@
             box-sizing: border-box;
         }
 
-        .cat-card .cat-name {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #212529;
-            margin: 0 0 8px 0;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #343a40;
-            letter-spacing: 0.2px;
-        }
+            .cat-card .cat-name {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: #212529;
+                margin: 0 0 8px 0;
+                padding-bottom: 6px;
+                border-bottom: 2px solid #343a40;
+                letter-spacing: 0.2px;
+            }
 
         .cat-stat-header {
             display: grid;
@@ -229,50 +229,50 @@
             align-items: stretch;
         }
 
-        .location-wrapper .location-label {
-            display: flex;
-            align-items: center;
-            padding: 0 0.75rem;
-            font-size: 1rem;
-            color: #495057;
-            background: #e9ecef;
-            border: 1px solid #ced4da;
-            border-right: none;
-            border-radius: 0.25rem 0 0 0.25rem;
-            white-space: nowrap;
-            min-height: 34px;
-        }
+            .location-wrapper .location-label {
+                display: flex;
+                align-items: center;
+                padding: 0 0.75rem;
+                font-size: 1rem;
+                color: #495057;
+                background: #e9ecef;
+                border: 1px solid #ced4da;
+                border-right: none;
+                border-radius: 0.25rem 0 0 0.25rem;
+                white-space: nowrap;
+                min-height: 34px;
+            }
 
         #location + .select2-container--classic, #editLocation + .select2-container--classic {
             flex: 1 1 auto;
             width: 100% !important;
         }
 
-        #location + .select2-container--classic .select2-selection--multiple,
-        #editLocation + .select2-container--classic .select2-selection--multiple {
-            min-height: 34px !important;
-            border: 1px solid #ced4da !important;
-            border-left: none !important;
-            border-radius: 0 0.25rem 0.25rem 0 !important;
-            background-image: none;
-            padding: 2px 4px;
-        }
+            #location + .select2-container--classic .select2-selection--multiple,
+            #editLocation + .select2-container--classic .select2-selection--multiple {
+                min-height: 34px !important;
+                border: 1px solid #ced4da !important;
+                border-left: none !important;
+                border-radius: 0 0.25rem 0.25rem 0 !important;
+                background-image: none;
+                padding: 2px 4px;
+            }
 
-        #location + .select2-container--classic .select2-selection__choice,
-        #editLocation + .select2-container--classic .select2-selection__choice {
-            background-color: #343a40;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            padding: 1px 6px;
-            font-size: 0.8rem;
-        }
+            #location + .select2-container--classic .select2-selection__choice,
+            #editLocation + .select2-container--classic .select2-selection__choice {
+                background-color: #343a40;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                padding: 1px 6px;
+                font-size: 0.8rem;
+            }
 
-        #location + .select2-container--classic .select2-selection__choice__remove,
-        #editLocation + .select2-container--classic .select2-selection__choice__remove {
-            color: #adb5bd;
-            margin-right: 4px;
-        }
+            #location + .select2-container--classic .select2-selection__choice__remove,
+            #editLocation + .select2-container--classic .select2-selection__choice__remove {
+                color: #adb5bd;
+                margin-right: 4px;
+            }
 
         .ui-datepicker {
             z-index: 9999 !important;
@@ -401,14 +401,14 @@
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Firstname</span></div>
-                                                <input type="text" class="form-control" id="fname" placeholder="Enter firstname" />
+                                                <input type="text" class="form-control" id="fname" placeholder="First NAME" />
                                             </div>
                                             <small class="text-danger error-msg d-block"></small>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend"><span class="input-group-text">Lastname</span></div>
-                                                <input type="text" class="form-control" id="lname" placeholder="Enter lastname" />
+                                                <input type="text" class="form-control" id="lname" placeholder="Last NAME" />
                                             </div>
                                             <small class="text-danger error-msg d-block"></small>
                                         </div>
@@ -533,15 +533,15 @@
                         <table id="empTable" class="table table-bordered table-striped table-hover" style="width: 100%">
                             <thead class="thead-dark">
                                 <tr class="text-center">
-                                    <th></th>
+                                    <th class="no-export"></th>
                                     <th>Full Name</th>
                                     <th>Gender</th>
                                     <th>DOB</th>
                                     <th>Email</th>
                                     <th>Contact</th>
                                     <th>Status</th>
-                                    <th class="emp-action-col">Action</th>
-                                    <th>Profile</th>
+                                    <th class="emp-action-col no-export">Action</th>
+                                    <th class="no-export">Profile</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -747,7 +747,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
+                                            <div class="input-group-prepend" id="assetId">
                                                 <label class="input-group-text" for="assignEmployee"><i class="fa-solid fa-user mr-2"></i>Employee</label>
                                             </div>
                                             <select class="custom-select" id="assignEmployee">
@@ -836,7 +836,7 @@
 
                 <!-- Add Asset Modal -->
                 <div class="modal fade" id="addAssetModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header bg-dark text-white">
                                 <h5 class="modal-title"><i class="fa-solid fa-plus mr-2"></i>Add Asset</h5>
@@ -939,7 +939,7 @@
                                         <small class="text-danger error-msg d-block"></small>
                                     </div>
                                 </div>
-                                <div class="row mb-2">
+                                <%--<div class="row mb-2">
                                     <div class="col-md-12">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
@@ -953,6 +953,8 @@
                                         </div>
                                         <small class="text-danger error-msg d-block"></small>
                                     </div>
+                                </div>--%>
+                                <div class="row mb-2" id="empChoose">
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-12">
@@ -1085,6 +1087,26 @@
                 }
             }
 
+            // system date format
+            
+            function getLocaleDateFormat() {
+                const locale = navigator.language || navigator.userLanguage || 'en-GB';
+                const testDate = new Date(2025, 0, 31);
+                const formatted = new Intl.DateTimeFormat(locale).format(testDate);
+                const parts = new Intl.DateTimeFormat(locale, {
+                    year: 'numeric', month: '2-digit', day: '2-digit'
+                }).formatToParts(testDate);
+                let format = '';
+                parts.forEach(part => {
+                    if (part.type === 'day') format += 'dd';
+                    else if (part.type === 'month') format += 'mm';
+                    else if (part.type === 'year') format += 'yy';
+                    else if (part.type === 'literal') format += part.value;
+                });
+
+                return format;
+            }
+
             // state
             let empTable = null;
             let assetTable = null;
@@ -1154,7 +1176,6 @@
                 { id: "AST024", category: "Headset", name: "HP DHE-8009 Gaming", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] },
                 { id: "AST025", category: "Headset", name: "JBL Quantum 100", status: "NA", assignedTo: "—", startDate: "—", returnDate: "—", image: "", images: [] }
             ];
-            if (!localStorage.getItem("assets")) saveAssets(seedAssets);
 
             // local storage function 
             const getEmployees = () => JSON.parse(localStorage.getItem("employees") || "[]");
@@ -1164,7 +1185,7 @@
             const getHistory = () => JSON.parse(localStorage.getItem("assetHistory") || "[]");
             const saveHistory = d => localStorage.setItem("assetHistory", JSON.stringify(d));
 
-
+            if (!localStorage.getItem("assets")) saveAssets(seedAssets);
             // generate ID function
             const generateEmpId = () => {
                 const maxNum = getEmployees().reduce((max, e) => {
@@ -1209,7 +1230,7 @@
                     }
                     else {
                         $(this).datepicker($.extend({
-                            dateFormat: "dd/mm/yy",
+                            dateFormat: getLocaleDateFormat(),
                             changeMonth: true,
                             changeYear: true,
                             yearRange: "1950:+10"
@@ -1217,6 +1238,7 @@
                     }
                 });
             };
+
 
             // navbar section ------------------------------------------------------------------------------------------------------------------------
             const overlay = $("#sidebarOverlay");
@@ -1865,6 +1887,7 @@
                     $("#editFname,#editLname,#editDob,#editEmail,#editContact,#editPassword,#editCpass").closest(".input-group").css("opacity", "0.6");
                     $("input[name='editGender']").closest(".row").css("opacity", "0.6");
                     $("#editEndDate").prop("disabled", false);
+
                 }
             };
 
@@ -1947,27 +1970,34 @@
                         {
                             extend: "copyHtml5",
                             text: '<i class="fa-solid fa-copy mr-1"></i> Copy',
-                            className: "btn btn-sm"
+                            className: "btn btn-sm",
+                            exportOptions: { columns: ':not(.no-export)' }
+                            
                         },
                         {
                             extend: "excelHtml5",
                             text: '<i class="fa-solid fa-file-excel mr-1"></i> Excel',
-                            className: "btn btn-sm"
+                            className: "btn btn-sm",
+                            exportOptions: { columns: ':not(.no-export)' }
+
                         },
                         {
                             extend: "pdfHtml5",
                             text: '<i class="fa-solid fa-file-pdf mr-1"></i> PDF',
-                            className: "btn btn-sm"
+                            className: "btn btn-sm",
+                            exportOptions: { columns: ':not(.no-export)' }
                         },
                         {
                             extend: "csvHtml5",
                             text: '<i class="fa-solid fa-file-csv mr-1"></i> CSV',
-                            className: "btn btn-sm"
+                            className: "btn btn-sm",
+                            exportOptions: { columns: ':not(.no-export)' }
                         },
                         {
                             extend: "print",
                             text: '<i class="fa-solid fa-print mr-1"></i> Print',
-                            className: "btn btn-sm"
+                            className: "btn btn-sm",
+                            exportOptions: { columns: ':not(.no-export)' }
                         }
                     ]
                 },
@@ -2070,7 +2100,7 @@
                         initCollapsed: true
                     },
                     searchBuilder: {
-                        columns: [1, 2, 6]
+                        columns: [1, 2, 6,]
                     },
                     dom: empDtDom,
                     buttons: empDtButtons,
@@ -2230,6 +2260,7 @@
 
             // update employee
             $("#updateEmpBtn").on("click", function () {
+                debugger;
                 const id = $("#editEmpId").val();
                 const mode = $("#editMode").val();
                 const emps = getEmployees();
@@ -2256,6 +2287,15 @@
                     emps[idx].contact = $("#editContact").val().trim();
                     emps[idx].password = $("#editPassword").val().trim();
                     emps[idx].status = $("#editStatus").val();
+                    if (emps[idx].status === "Inactive" && emps[idx].enddate === "") {
+                        debugger;
+                        const todayvalStr = new Date().toLocaleDateString("en-GB");
+                        emps[idx].enddate = todayvalStr;
+                    }
+                    else {
+                        emps[idx].enddate = "";
+                    }
+
                 } else {
                     const ok = [
                         validateEditDept(),
@@ -2268,6 +2308,7 @@
                     emps[idx].location = $("#editLocation").val() || [];
                     const relieveVal = $("#editEndDate").val().trim();
                     emps[idx].enddate = relieveVal;
+
                     if (relieveVal) {
                         emps[idx].status = "Inactive";
                         Swal.fire({
@@ -2277,10 +2318,13 @@
                             timer: 3000,
                             showConfirmButton: false
                         });
+
                     }
+
                     else {
                         emps[idx].status = $("#editStatus").val();
                     }
+
                 }
                 saveEmployees(emps);
                 $("#editEmpModal").modal("hide");
@@ -2944,6 +2988,8 @@
                     validateAssetStat()
                 ];
                 if (!ok.every(Boolean)) return;
+                const assets = getAssets();
+                const idx = assets.findIndex(a => a.id === assetId);
                 const file = $("#assetImage")[0].files[0];
                 const doSave = (img) => {
                     const asset = {
@@ -3028,6 +3074,10 @@
                 });
             });
 
+            // $("#editAssetModal").on('show.bs.modal', function () {
+            //     $("#empChoose").hide();
+            // });
+
             $("#updateAssetBtn").on("click", function () {
                 const ok = [
                     validateEditAssetCat(),
@@ -3041,6 +3091,11 @@
                 if (idx === -1) return;
 
                 const newStatus = $("#editAssetStatus").val();
+                // currentWork
+                // if (newStatus == "Assigned") {
+                //     $('#empChoose').append($('$("#assetID")').clone()).show();
+                // }
+
 
                 if ((newStatus === "NA" || newStatus === "UM") && assets[idx].status === "A" && assets[idx].assignedTo !== "—") {
                     const hist = getHistory();
