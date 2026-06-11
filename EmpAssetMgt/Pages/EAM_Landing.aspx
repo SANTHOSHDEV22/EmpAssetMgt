@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.7.1/css/searchBuilder.bootstrap4.min.css" />
     <!-- Select Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap4.min.css" />
+
     <!-- StateRestore -->
     <link rel="stylesheet" href="https://cdn.datatables.net/staterestore/1.4.3/css/stateRestore.dataTables.min.css" />
     <!-- Select2 -->
