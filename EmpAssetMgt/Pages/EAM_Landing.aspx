@@ -25,6 +25,18 @@
     <!-- jQuery UI -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <style>
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.3);
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            line-height: 1;
+        }
+
+        .navbar-toggler-icon {
+            width: 18px;
+            height: 18px;
+        }
+
         .navbar-collapse {
             position: fixed !important;
             left: -240px;
@@ -290,28 +302,59 @@
         .dt-filter-btn .btn, .dt-export-btn .btn, .dt-state-btn .btn, .dt-load-btn .btn {
             white-space: nowrap;
         }
+
+        .inline-date-wrap {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background: #fff;
+            padding: 2px 6px;
+            min-width: 130px;
+        }
+
+            .inline-date-wrap input {
+                border: none;
+                outline: none;
+                background: transparent;
+                font-size: 0.85rem;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            .inline-date-wrap .inline-cal-icon {
+                color: #6c757d;
+                font-size: 0.85rem;
+                cursor: pointer;
+                margin-left: 4px;
+            }
+
+            .inline-date-wrap input:read-only {
+                cursor: default;
+            }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <header>
             <nav class="navbar navbar-light bg-dark d-flex align-items-center px-3">
+                <button type="button" class="navbar-toggler mr-3" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <a href="#" class="navbar-brand h2 text-light mb-0">EAM</a>
                 <div class="ml-auto d-flex align-items-center">
-                    <div class="d-flex align-items-center mr-3">
+                    <div class="d-flex align-items-center">
                         <span id="roleLabel" class="role-badge admin mr-2">ADMIN</span>
                         <div class="custom-control custom-switch mb-0">
                             <input type="checkbox" class="custom-control-input" id="roleToggle" />
                             <label class="custom-control-label text-light" for="roleToggle"></label>
                         </div>
                     </div>
-                    <button type="button" class="navbar-toggler" id="sidebarToggleBtn" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                 </div>
             </nav>
             <div id="sidenav" class="navbar-collapse bg-dark pt-4">
-                <div class="d-flex justify-content-end px-3 mb-2">
+                <div class="d-flex justify-content-between align-items-center px-3 mb-2">
+                    <span class="h5 text-light mb-0 font-weight-bold">EAM</span>
                     <button type="button" class="btn btn-sm btn-outline-secondary text-light" id="closeSidebarBtn"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <ul class="navbar-nav ml-3">
@@ -874,11 +917,8 @@
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text" for="assetStatus">Status</label>
                                             </div>
-                                            <select class="custom-select" id="assetStatus">
-                                                <option value="">Select Status</option>
-                                                <option value="A">A — Assigned</option>
-                                                <option value="NA">NA — Not Assigned</option>
-                                                <option value="UM">UM — Under Maintenance</option>
+                                            <select class="custom-select" id="assetStatus" disabled="disabled">
+                                                <option value="NA" selected="selected">NA — Not Assigned</option>
                                             </select>
                                         </div>
                                         <small class="text-danger error-msg d-block"></small>
@@ -1088,23 +1128,28 @@
             }
 
             // system date format
-            
+
             function getLocaleDateFormat() {
                 const locale = navigator.language || navigator.userLanguage || 'en-GB';
                 const testDate = new Date(2025, 0, 31);
-                const formatted = new Intl.DateTimeFormat(locale).format(testDate);
-                const parts = new Intl.DateTimeFormat(locale, {
+
+                const formatted = new Intl.DateTimeFormat(locale, {
                     year: 'numeric', month: '2-digit', day: '2-digit'
-                }).formatToParts(testDate);
+                }).format(testDate);
+
+                const separatorMatch = formatted.match(/[^0-9]/);
+                const sep = separatorMatch ? separatorMatch[0] : '/';
+
+                const parts = formatted.split(sep);
                 let format = '';
-                parts.forEach(part => {
-                    if (part.type === 'day') format += 'dd';
-                    else if (part.type === 'month') format += 'mm';
-                    else if (part.type === 'year') format += 'yy';
-                    else if (part.type === 'literal') format += part.value;
+                parts.forEach(function (part) {
+                    const num = parseInt(part, 10);
+                    if (num === 31) format += 'dd' + sep;
+                    else if (num === 1) format += 'mm' + sep;
+                    else if (num === 2025) format += 'yy';
                 });
 
-                return format;
+                return format || ('dd' + sep + 'mm' + sep + 'yy');
             }
 
             // state
@@ -1112,6 +1157,7 @@
             let assetTable = null;
             let assignedTable = null;
             let isAdmin = true;
+            let addEmpModalReady = false;
 
             applyRole();
             $("#roleToggle").on("change", function () {
@@ -1205,7 +1251,7 @@
             // age calculation function
             const parseDMY = (str) => {
                 if (!str || str === "—") return null;
-                const p = str.split("/");
+                const p = str.split(/[\/\-]/);
                 if (p.length !== 3) return null;
                 const d = new Date(+p[2], +p[1] - 1, +p[0]);
                 return isNaN(d.getTime()) ? null : d;
@@ -1290,6 +1336,7 @@
 
             // Datepicker initialize
             $(document).on("shown.bs.modal", "#addEmpModal", function () {
+                addEmpModalReady = true;
                 initOrUpdateDatepicker("#dob", {
                     maxDate: getMax18Date(),
                     yearRange: "1950:-18"
@@ -1498,6 +1545,7 @@
                 return true;
             };
             const validateLocation = () => {
+                if (!addEmpModalReady) return true;
                 const v = $("#location").val();
                 const errEl = $("#location").closest(".col-md-12").find(".error-msg");
                 if (!v || v.length === 0) {
@@ -1606,6 +1654,7 @@
             });
             // reset form on modal close
             $("#addEmpModal").on("hidden.bs.modal", function () {
+                addEmpModalReady = false;
                 $("#fname,#lname,#dob,#email,#contact,#pass,#cpass").val("").removeClass("is-valid is-invalid");
                 $("input[name='gender']").prop("checked", false);
                 $("#dept").val("").removeClass("is-valid is-invalid");
@@ -1618,6 +1667,7 @@
 
             // Dashboad section ---------------------------------------------------------------------------------------------------------------------
             function loadDashboard() {
+                checkEmployeeRelieveDates();
                 const employees = getEmployees();
                 const assets = getAssets();
                 $("#totalEmp").text(employees.length);
@@ -1626,6 +1676,27 @@
                 $("#inactiveEmp").text(employees.filter(e => e.status === "Inactive").length);
                 $("#assignedAssets").text(assets.filter(a => a.status === "A").length);
                 $("#unassignedAssets").text(assets.filter(a => a.status === "NA").length);
+            }
+
+            // releive date check
+            function checkEmployeeRelieveDates() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const emps = getEmployees();
+                let changed = false;
+                emps.forEach((emp, idx) => {
+                    if (emp.status === "Active" && emp.enddate && emp.enddate !== "") {
+                        const relieveDate = parseDMY(emp.enddate);
+                        if (relieveDate && relieveDate <= today) {
+                            emps[idx].status = "Inactive";
+                            changed = true;
+                        }
+                    }
+                });
+
+                if (changed) {
+                    saveEmployees(emps);
+                }
             }
 
             // edit Employee validation
@@ -1972,7 +2043,7 @@
                             text: '<i class="fa-solid fa-copy mr-1"></i> Copy',
                             className: "btn btn-sm",
                             exportOptions: { columns: ':not(.no-export)' }
-                            
+
                         },
                         {
                             extend: "excelHtml5",
@@ -2065,6 +2136,7 @@
 
             // load datatable
             function loadEmpTable() {
+                checkEmployeeRelieveDates();
                 const employees = getEmployees();
                 if (empTable && $.fn.DataTable.isDataTable("#empTable")) {
                     empTable.clear().rows.add(employees).draw();
@@ -2310,18 +2382,30 @@
                     emps[idx].enddate = relieveVal;
 
                     if (relieveVal) {
-                        emps[idx].status = "Inactive";
-                        Swal.fire({
-                            icon: "info",
-                            title: "Status Auto-Updated",
-                            text: "Employee status set to Inactive.",
-                            timer: 3000,
-                            showConfirmButton: false
-                        });
+                        const relieveDate = parseDMY(relieveVal);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
 
-                    }
-
-                    else {
+                        if (relieveDate && relieveDate <= today) {
+                            emps[idx].status = "Inactive";
+                            Swal.fire({
+                                icon: "info",
+                                title: "Status Auto-Updated",
+                                text: "Relieve date reached. Employee set to Inactive.",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            emps[idx].status = $("#editStatus").val();
+                            Swal.fire({
+                                icon: "info",
+                                title: "Relieve Date Saved",
+                                text: `Employee will be set Inactive on ${relieveVal}.`,
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+                        }
+                    } else {
                         emps[idx].status = $("#editStatus").val();
                     }
 
@@ -2437,6 +2521,7 @@
                 if (assignedTable && $.fn.DataTable.isDataTable("#assignedTable")) {
                     assignedTable.clear().rows.add(assignedAssets).draw();
                     assignedTable.column(4).visible(isAdmin);
+                    initInlineDatepickers();
                     return;
                 }
                 if ($.fn.DataTable.isDataTable("#assignedTable")) {
@@ -2475,13 +2560,36 @@
                             data: "startDate",
                             className: "text-center align-middle",
                             defaultContent: "—",
-                            render: $.fn.dataTable.render.text()
+                            render: function (d, type, row) {
+                                if (type !== 'display') return d;
+                                return `<div class="inline-date-wrap">
+                                    <input type="text"
+                                           class="inline-start-date"
+                                           data-id="${row.id}"
+                                           value="${d || '—'}"
+                                           placeholder="DD/MM/YYYY"
+                                           autocomplete="off"
+                                           readonly />
+                                    <i class="fa-solid fa-calendar-days inline-cal-icon inline-start-cal" data-id="${row.id}"></i>
+                                </div>`;
+                            }
                         },
                         {
                             data: "returnDate",
                             className: "text-center align-middle",
                             defaultContent: "—",
-                            render: $.fn.dataTable.render.text()
+                            render: function (d, type, row) {
+                                if (type !== 'display') return d;
+                                return `<div class="inline-date-wrap">
+                                    <input type="text"
+                                           class="inline-return-date"
+                                           data-id="${row.id}"
+                                           value="${d || '—'}"
+                                           placeholder="DD/MM/YYYY"
+                                           autocomplete="off" />
+                                    <i class="fa-solid fa-calendar-days inline-cal-icon inline-return-cal" data-id="${row.id}"></i>
+                                </div>`;
+                            }
                         },
                         {
                             data: null,
@@ -2497,7 +2605,163 @@
                 });
 
                 assignedTable.column(4).visible(isAdmin);
+                initInlineDatepickers();
             }
+            //row datepicker
+            function initInlineDatepickers() {
+                $("#assignedTable").find(".inline-start-date").each(function () {
+                    if ($(this).hasClass("hasDatepicker")) return;
+
+                    $(this).datepicker({
+                        dateFormat: 'dd/mm/yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        yearRange: "2000:+5",
+                        onSelect: function (dateStr) {
+                            const assetId = $(this).data("id");
+                            const assets = getAssets();
+                            const idx = assets.findIndex(a => a.id === assetId);
+                            if (idx === -1) return;
+
+                            const retVal = assets[idx].returnDate;
+                            if (retVal && retVal !== "—") {
+                                const retDate = parseDMY(retVal);
+                                const newStart = parseDMY(dateStr);
+                                if (retDate && newStart && newStart >= retDate) {
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Invalid Start Date",
+                                        text: "Start date must be before the return date!",
+                                        timer: 2500,
+                                        showConfirmButton: false
+                                    });
+                                    $(this).val(assets[idx].startDate || "—");
+                                    return;
+                                }
+                            }
+
+                            assets[idx].startDate = dateStr;
+                            saveAssets(assets);
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "Start Date Updated",
+                                text: `Start date set to ${dateStr}`,
+                                timer: 1800,
+                                showConfirmButton: false
+                            });
+                        }
+                    });
+                });
+
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+
+                $("#assignedTable").find(".inline-return-date").each(function () {
+                    if ($(this).hasClass("hasDatepicker")) return;
+
+                    $(this).datepicker({
+                        dateFormat: 'dd/mm/yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        yearRange: "2000:+5",
+                        minDate: tomorrow,
+                        onSelect: function (dateStr) {
+                            const assetId = $(this).data("id");
+                            const assets = getAssets();
+                            const idx = assets.findIndex(a => a.id === assetId);
+                            if (idx === -1) return;
+                            const startVal = assets[idx].startDate;
+                            if (startVal && startVal !== "—") {
+                                const startDate = parseDMY(startVal);
+                                const newRet = parseDMY(dateStr);
+                                if (startDate && newRet && newRet <= startDate) {
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Invalid Return Date",
+                                        text: "Return date must be after the start date!",
+                                        timer: 2500,
+                                        showConfirmButton: false
+                                    });
+                                    $(this).val(assets[idx].returnDate || "—");
+                                    return;
+                                }
+                            }
+                            assets[idx].returnDate = dateStr;
+                            saveAssets(assets);
+                            const selectedDate = parseDMY(dateStr);
+                            const today = new Date();
+                            today.setHours(0, 0, 0, 0);
+
+                            if (selectedDate && selectedDate <= today) {
+                                const todayStr = new Date().toLocaleDateString("en-GB");
+                                const hist = getHistory();
+                                hist.unshift({
+                                    type: "return",
+                                    msg: `${assets[idx].name} (${assets[idx].id}) auto-returned from ${assets[idx].assignedTo} (${assets[idx].assignedEmpId || "—"}) on ${todayStr} (return date reached)`,
+                                    asset: assets[idx].name,
+                                    assetId: assets[idx].id,
+                                    employee: assets[idx].assignedTo,
+                                    empId: assets[idx].assignedEmpId || "—",
+                                    date: todayStr
+                                });
+                                saveHistory(hist);
+                                assets[idx].status = "NA";
+                                assets[idx].assignedTo = "—";
+                                assets[idx].assignedEmpId = "";
+                                assets[idx].startDate = "—";
+                                assets[idx].returnDate = "—";
+                                saveAssets(assets);
+                                loadAssignedTable();
+                                loadDashboard();
+
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Asset Auto-Returned!",
+                                    html: `Return date reached. Asset has been returned and <b>history updated</b>.`,
+                                    timer: 2500,
+                                    showConfirmButton: false
+                                });
+
+                            } else {
+                                const todayStr = new Date().toLocaleDateString("en-GB");
+                                const hist = getHistory();
+                                hist.unshift({
+                                    type: "scheduled",
+                                    msg: `${assets[idx].name} (${assets[idx].id}) return scheduled on ${dateStr} for ${assets[idx].assignedTo} (${assets[idx].assignedEmpId || "—"}) — set on ${todayStr}`,
+                                    asset: assets[idx].name,
+                                    assetId: assets[idx].id,
+                                    employee: assets[idx].assignedTo,
+                                    empId: assets[idx].assignedEmpId || "—",
+                                    date: todayStr,
+                                    returnDate: dateStr
+                                });
+                                saveHistory(hist);
+                                loadDashboard();
+
+                                Swal.fire({
+                                    icon: "info",
+                                    title: "Return Date Set",
+                                    html: `Asset will be auto-returned on <b>${dateStr}</b>.<br><small class="text-muted">History entry recorded.</small>`,
+                                    timer: 2200,
+                                    showConfirmButton: false
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+
+            $(document).on("click", ".inline-start-cal", function () {
+                const id = $(this).data("id");
+                $("#assignedTable").find(`.inline-start-date[data-id="${id}"]`).datepicker("show");
+            });
+
+            $(document).on("click", ".inline-return-cal", function () {
+                const id = $(this).data("id");
+                $("#assignedTable").find(`.inline-return-date[data-id="${id}"]`).datepicker("show");
+            });
 
             // return asset button
             $(document).on("click", ".returnAssetBtn", function () {
@@ -2984,19 +3248,17 @@
             $("#saveAssetBtn").on("click", function () {
                 const ok = [
                     validateAssetCat(),
-                    validateAssetName(),
-                    validateAssetStat()
+                    validateAssetName()
                 ];
                 if (!ok.every(Boolean)) return;
                 const assets = getAssets();
-                const idx = assets.findIndex(a => a.id === assetId);
                 const file = $("#assetImage")[0].files[0];
                 const doSave = (img) => {
                     const asset = {
                         id: generateAssetId(),
                         category: $("#assetCategory").val(),
                         name: $("#assetName").val().trim(),
-                        status: $("#assetStatus").val(),
+                        status: "NA",
                         assignedTo: "—",
                         startDate: "—",
                         returnDate: "—",
@@ -3213,8 +3475,11 @@
                 hist.forEach((item, i) => {
                     const badge = item.type === "return"
                         ? '<span class="badge badge-danger mr-2">Returned</span>'
-                        : item.type === "delete" ? '<span class="badge badge-dark mr-2">Deleted</span>'
-                            : '<span class="badge badge-success mr-2">Assigned</span>';
+                        : item.type === "delete"
+                            ? '<span class="badge badge-dark mr-2">Deleted</span>'
+                            : item.type === "scheduled"
+                                ? '<span class="badge badge-info mr-2">Scheduled</span>'
+                                : '<span class="badge badge-success mr-2">Assigned</span>';
                     $("#historyBody").append(`<tr><td class="text-center align-middle">${i + 1}</td><td class="text-left">${badge}${item.msg}</td></tr>`);
                 });
             }
