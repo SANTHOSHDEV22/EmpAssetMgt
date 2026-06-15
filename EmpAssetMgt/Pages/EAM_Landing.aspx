@@ -1129,7 +1129,6 @@
             }
 
             // system date format
-
             function getLocaleDateFormat() {
                 const locale = navigator.language || navigator.userLanguage || 'en-GB';
                 const testDate = new Date(2025, 0, 31);
@@ -1152,6 +1151,28 @@
 
                 return format || ('dd' + sep + 'mm' + sep + 'yy');
             }
+
+
+            // function getLocaleDateFormat() {
+            //     const resolved = new Intl.DateTimeFormat(navigator.language).resolvedOptions();
+            //     const locale = resolved.locale;
+            //     const testDate = new Date(2025, 0, 2);
+            //     const parts = new Intl.DateTimeFormat(locale, {
+            //         year: 'numeric', month: '2-digit', day: '2-digit'
+            //     }).formatToParts(testDate);
+            //     let format = '';
+            //     parts.forEach(part => {
+            //         switch (part.type) {
+            //             case 'day': format += 'dd'; break;
+            //             case 'month': format += 'mm'; break;
+            //             case 'year': format += 'yy'; break;
+            //             case 'literal': format += part.value; break;
+            //         }
+            //     });
+
+            //     return format || 'dd/mm/yy';
+            // }
+            // console.log(getLocaleDateFormat());
 
             // state
             let empTable = null;
@@ -2564,13 +2585,7 @@
                             render: function (d, type, row) {
                                 if (type !== 'display') return d;
                                 return `<div class="inline-date-wrap">
-                                    <input type="text"
-                                           class="inline-start-date"
-                                           data-id="${row.id}"
-                                           value="${d || '—'}"
-                                           placeholder="DD/MM/YYYY"
-                                           autocomplete="off"
-                                           readonly />
+                                    <input type="text" class="inline-start-date" data-id="${row.id}" value="${d || '—'}" placeholder="DD/MM/YYYY" autocomplete="off" readonly />
                                     <i class="fa-solid fa-calendar-days inline-cal-icon inline-start-cal" data-id="${row.id}"></i>
                                 </div>`;
                             }
@@ -2582,12 +2597,7 @@
                             render: function (d, type, row) {
                                 if (type !== 'display') return d;
                                 return `<div class="inline-date-wrap">
-                                    <input type="text"
-                                           class="inline-return-date"
-                                           data-id="${row.id}"
-                                           value="${d || '—'}"
-                                           placeholder="DD/MM/YYYY"
-                                           autocomplete="off" />
+                                    <input type="text" class="inline-return-date" data-id="${row.id}" value="${d || '—'}" placeholder="DD/MM/YYYY" autocomplete="off" />
                                     <i class="fa-solid fa-calendar-days inline-cal-icon inline-return-cal" data-id="${row.id}"></i>
                                 </div>`;
                             }
